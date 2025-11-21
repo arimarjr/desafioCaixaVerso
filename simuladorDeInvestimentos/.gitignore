@@ -1,0 +1,32 @@
+# Angular 19 - Mantém repositório leve (~2 MB)
+
+# Dependências
+node_modules/
+
+# Build
+dist/
+build/
+out/
+
+# Cache / temporários
+.angular/
+.cache/
+tmp/
+temp/
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Testes
+coverage/
+
+# Angular incremental build
+*.tsbuildinfo

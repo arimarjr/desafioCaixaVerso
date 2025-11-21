@@ -1,0 +1,182 @@
+.pagina-inicial-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f9f9f9;
+  width: 100%;
+
+  .conteudo-principal {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .titulo-principal {
+    text-align: left;
+    margin-bottom: 0px;
+    color: #005CA9;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1.3;
+    padding: 38px 0;
+  }
+
+  .texto-login {
+    text-align: left;
+    margin-bottom: 40px;
+    color: #005CA9;
+    font-size: 20px;
+    font-weight: 500;
+    max-width: 1000%;
+    padding-left: 3px;
+  }
+
+  .cards-tipos {
+    display: grid;
+    gap: 25px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    
+    
+
+    .tipo-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 25px;
+      cursor: pointer;
+      border-radius: 12px;
+      border: 2px solid #005CA9;
+      transition: all 0.25s ease;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: left;
+      min-height: 280px;
+
+      &:hover {
+        background: #f0f7ff;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      mat-card-title {
+        font-size: 20px;
+        color: #005CA9;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      mat-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        p {
+          font-size: 16px;
+          margin: 0;
+          color: #005CA9;
+          padding: 0px
+        }
+      }
+
+      .card-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: auto;
+
+        button {
+          width: 100%;
+          background: #005CA9 !important;
+          color: #fff !important;
+          font-weight: 600;
+          border-radius: 6px;
+          padding: 10px 0;
+        }
+
+        a {
+          color: #005CA9;
+          text-decoration: underline;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .popup-conteudo {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+
+      .fechar {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        border: none;
+        background: #005CA9;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      h2 { color: #005CA9; margin-bottom: 16px; font-size: 22px; }
+      p { color: #333; white-space: pre-line; font-size: 15px; }
+    }
+  }
+
+
+}
+
+/* ===================== RESPONSIVIDADE ===================== */
+
+/* Grandes telas */
+@media (max-width: 1400px) {
+  .titulo-principal { font-size: 28px; }
+  .texto-login { font-size: 15px; }
+}
+
+/* Tablets grandes */
+@media (max-width: 1200px) {
+  .cards-tipos { 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+  }
+}
+
+/* Tablets médios / celulares grandes */
+@media (max-width: 800px) {
+  .cards-tipos { grid-template-columns: 1fr; }
+  .titulo-principal { font-size: 24px; }
+  .texto-login { font-size: 14px; }
+}
+
+/* Pequenos celulares */
+@media (max-width: 450px) {
+  .pagina-inicial-container { padding: 20px 12px; }
+  .titulo-principal { font-size: 20px; }
+  .texto-login { font-size: 13px; }
+  .tipo-card { padding: 18px; }
+}

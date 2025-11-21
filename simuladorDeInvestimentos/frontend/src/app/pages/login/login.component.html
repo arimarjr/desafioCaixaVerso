@@ -1,0 +1,34 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="titulo">Acesso a Área do Investidor</h2>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <!-- ADICIONADO for="email" -->
+      <label for="email">Email</label>
+
+      <!-- ADICIONADO id="email" -->
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Digite seu email"
+      />
+
+      <!-- ADICIONADO for="senha" -->
+      <label for="senha">Senha</label>
+
+      <!-- ADICIONADO id="senha" -->
+      <input
+        id="senha"
+        type="password"
+        formControlName="senha"
+        placeholder="Digite sua senha"
+      />
+
+      <button type="submit" [disabled]="loading">Entrar</button>
+
+      <p class="erro" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>

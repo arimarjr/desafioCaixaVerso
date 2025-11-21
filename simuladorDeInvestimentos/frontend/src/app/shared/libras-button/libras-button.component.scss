@@ -1,0 +1,31 @@
+/* Ícone Libras flutuante */
+.libras-btn {
+  position: fixed;
+//   bottom: 40px;
+  top: 190px;  
+  right: 20px;
+  border: none;
+  background: #07508b;
+  border-radius: 100%;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+}
