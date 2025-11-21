@@ -58,11 +58,11 @@ export class DashboardsComponent implements OnInit {
   meses = Array.from({ length: 12 }, (_, i) => `Mês ${i + 1}`);
 
   produtos: Produto[] = [
-    { id: 100, nome: 'Tesouro Direto Selic 2027', tipo: 'Tesouro Direto', descricao: 'Título público federal indicado para iniciantes, com alta segurança.', rentabilidade: 0.105, risco: 'Baixo' },
-    { id: 101, nome: 'CDB Caixa 2026', tipo: 'Renda Fixa', descricao: 'CDB pós-fixado de baixo risco.', rentabilidade: 0.13, risco: 'Baixo' },
-    { id: 102, nome: 'Fundo Agressivo RV', tipo: 'Fundos de Investimento', descricao: 'Fundo de ações mais arrojado.', rentabilidade: 0.18, risco: 'Alto' },
-    { id: 103, nome: 'LCI Caixa Imobiliário', tipo: 'LCI/LCA', descricao: 'Letra de crédito imobiliário. Isenta de Imposto de Renda.', rentabilidade: 0.15, risco: 'Baixo.' },
-    { id: 104, nome: 'Previdência Privada Caixa', tipo: 'Previdência', descricao: 'Plano de previdência para longo prazo.', rentabilidade: 0.15, risco: 'Médio' }
+    { id: 100, nome: 'Tesouro Direto Selic 2027', tipo: 'Tesouro Direto', descricao: 'Título público federal indicado para investidos conservadores que buscam segurança.', rentabilidade: 0.105, risco: 'Baixo' },
+    { id: 101, nome: 'CDB Caixa Pós 2026', tipo: 'Renda Fixa', descricao: 'Um investimento de renda fixa com juros flutuantes, com rentabilidade atrelada ao CDI, muito próxima da Selic, a taxa básica de juros.', rentabilidade: 0.13, risco: 'Baixo' },
+    { id: 102, nome: 'Fundo Agressivo RV', tipo: 'Fundos de Investimento', descricao: 'A CAIXA oferece diversos fundos de renda variável, como fundos de ações que buscam acompanhar o desempenho do Ibovespa.', rentabilidade: 0.18, risco: 'Alto' },
+    { id: 103, nome: 'LCI Caixa Imobiliário', tipo: 'LCI/LCA', descricao: 'Letra de Crédito Imobiliário. Isenta de Imposto de Renda. Garantida pelo Fundo Garantidor de Créditos (FGC)', rentabilidade: 0.15, risco: 'Baixo.' },
+    { id: 104, nome: 'Previdência Privada Caixa', tipo: 'Previdência', descricao: 'Previdência Privada é uma solução para quem deseja complementar a aposentadoria e realizar projetos futuros.', rentabilidade: 0.15, risco: 'Médio' }
   ];
 
   cores = ['#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF'];
