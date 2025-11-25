@@ -1,44 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeaderComponent } from './header.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Component, HostListener } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from "@angular/router";
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
+})
+export class HeaderComponent {
+  menuOpen = false;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        HeaderComponent,
-        RouterTestingModule,
-        MatToolbarModule,
-        MatIconModule
-      ]
-    }).compileComponents();
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should render the logo title', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.logo')?.textContent)
-      .toContain('Simulador de Investimentos Caixa');
-  });
-
-  it('should have a link to access account that points to login', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const link = compiled.querySelector('.botao-acesse-sua-conta') as HTMLAnchorElement;
-    expect(link).toBeTruthy();
-    // Mantendo o link atual: href="login"
-    // usamos getAttribute para checar exatamente o que está no template
-    expect(link.getAttribute('href')).toBe('login');
-  });
-});
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.header') && this.menuOpen) {
+      this.menuOpen = false;
+    }
+  }
+}

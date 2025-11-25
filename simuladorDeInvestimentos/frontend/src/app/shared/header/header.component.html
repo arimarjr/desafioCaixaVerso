@@ -3,40 +3,47 @@
   role="navigation"
   aria-label="Menu principal do site"
 >
+  <div class="left-content">
+    <a routerLink="/pagina-inicial" class="logo-container">
+      <img 
+        src="logo_caixa_header_negativa.svg"
+        class="logo-img"
+        alt="Logo Caixa. Ir para página inicial."
+      >
+    </a>
 
-  <a routerLink="pagina-inicial">
-    <img 
-      src="logo_caixa_header_negativa.svg" 
-      class="logo-img" 
-      alt="Logo Caixa. Ir para página inicial."
-    >
-  </a>  
+    <span class="logo-title">| Simulador de Investimentos Caixa</span>
+  </div>
 
-  <span class="logo">|     Simulador de Investimentos Caixa</span>
+  <!-- Botão hamburguer -->
+  <button
+    class="menu-toggle"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen"
+    aria-label="Abrir menu de navegação"
+  > 
+    <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
+  </button>
 
-  <span class="spacer"></span>
-
-  <div class="header-actions">
-
+  <!-- Menu de ações -->
+  <nav class="header-actions" [class.show]="menuOpen">
     <a 
       mat-button
       href="https://www.caixa.gov.br/voce/contas/conta-digital/baixar-app/Paginas/default.aspx"
-      target="_blank"
       class="ancora-header"
-      aria-label="Abrir página para criar Conta Caixa. Abre em nova aba."
+      target="_blank"
     >
-        Abra sua Conta CAIXA
+      Abra sua Conta CAIXA
     </a>
 
     <a 
-      href="login" 
+      routerLink="/login" 
       class="botao-acesse-sua-conta"
       aria-label="Acessar área do investidor"
     >
       <mat-icon aria-hidden="true">lock</mat-icon>
       <span>Área do Investidor</span>
     </a>
-
-  </div>
+  </nav>
 
 </mat-toolbar>

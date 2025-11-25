@@ -1,181 +1,135 @@
 /* =========================
-   Header Geral
+   HEADER
 ========================= */
 .header {
+  width: 100%;
   background-color: #005CA9;
   color: white;
-  font-weight: 600;
-  font-size: 18px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
-  flex-wrap: nowrap;      /* não quebrar em desktop */
-  overflow: hidden;
+  padding: 12px 16px;
   box-sizing: border-box;
-  min-height: 88px;
+  flex-wrap: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Logo / título */
-.logo {
+/* =========================
+   LOGO
+========================= */
+.left-content {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 22px;
-  font-weight: 400;
-  white-space: nowrap;
-  margin-right: 12px;
+  gap: 12px;
 }
 
 .logo-img {
-  height: 110px;
-  flex-shrink: 0;
-  margin-right: 8px;
-  padding-top: 6px;
+  height: clamp(40px, 6vw, 80px);
+  width: auto;
+  object-fit: contain;
 }
 
-/* spacer */
-.spacer {
-  flex: 1;
-  min-width: 0;
+.logo-title {
+  font-size: clamp(14px, 2.3vw, 22px);
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 /* =========================
-   Container dos botões (grupo)
+   BOTÕES
 ========================= */
 .header-actions {
   display: flex;
-  gap: 50px;
   align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
+  gap: 18px;
 }
 
-/* Botões */
-.header-actions a,
-.header-actions a[mat-button],
-.ancora-header[mat-button],
-.botao-acesse-sua-conta,
-a.ancora-header,
-a.botao-acesse-sua-conta {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+.ancora-header,
+.botao-acesse-sua-conta {
+  background: linear-gradient(180deg, #FFFFFF, #D0E0E3) !important;
+  border: 1px solid #FFFFFF !important;
+  color: #005CA9 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
-  box-sizing: border-box;
-  background: linear-gradient(180deg, #FFFFFF, #D0E0E3);
-  border: 1px solid #FFFFFF;
+  padding: 10px 14px !important;
+  min-width: 160px;
   border-radius: 4px;
-  color: #005CA9;
+  height: 46px;
   font-size: 15px;
   font-weight: 900;
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  transition: background .18s, box-shadow .18s, transform .08s;
-  text-align: center;
-
-  /* === largura padrão desktop === */
-  flex: 0 0 220px;
-  min-width: 160px;
-  max-width: 260px;
-  height: 50px;
-  line-height: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-/* Ícone alinhado */
-.header-actions a mat-icon,
-.header-actions a[mat-button] mat-icon,
+/* Ícone do botão */
 .botao-acesse-sua-conta mat-icon {
-  font-size: 18px;
-  line-height: 1;
-  margin-right: 6px;
-  width: 18px;
-}
-
-/* Hover */
-.header-actions a:hover,
-.header-actions a[mat-button]:hover,
-.botao-acesse-sua-conta:hover {
-  background: linear-gradient(180deg, #F0F0F0, #C8D8DC);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-  transform: translateY(-1px);
+  font-size: 18px !important;
 }
 
 /* =========================
-   Responsividade
+   HAMBURGUER (Mobile)
 ========================= */
-
-/* telas médias: botões fluidos */
-@media (max-width: 1300px) {
-  .header-actions a,
-  .header-actions a[mat-button],
-  .ancora-header[mat-button],
-  .botao-acesse-sua-conta {
-    flex: 1 1 0;
-    min-width: 140px;
-    max-width: none;
-    height: 48px;
-    white-space: normal;
-  }
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
-/* tablet */
+.menu-toggle mat-icon {
+  font-size: 34px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
 @media (max-width: 992px) {
-  .logo-img { height: 55px; }
-  .logo { font-size: 18px; }
-  .header { padding: 8px 12px; min-height: 72px; }
-}
 
-/* mobile */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-    padding: 10px 12px;
+  .menu-toggle {
+    display: block;
   }
 
   .header-actions {
+    position: absolute;
+    top: 100%;
+    right: 0;
     width: 100%;
-    display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 0 12px;
+    background: #005CA9;
+    padding: 20px;
+    gap: 14px;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: all 0.35s ease-in-out;
   }
 
-  .header-actions a,
-  .header-actions a[mat-button],
-  .ancora-header[mat-button],
+  .header-actions.show {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .ancora-header,
   .botao-acesse-sua-conta {
-    flex: 1 1 auto;
     width: 100%;
-    min-width: 0;
-    height: 48px;
-    white-space: normal;
-    padding: 12px;
+    max-width: none;
   }
-
-  .spacer { display: none; }
 }
 
-/* mobile pequeno */
 @media (max-width: 480px) {
-  .logo-img { height: 40px; }
-  .logo { font-size: 14px; }
-}
-
-/* =========================
-   ❗ Ajuste solicitado
-   Empurrar o botão ~50px para a esquerda,
-   sem perder responsividade.
-   Funciona apenas no desktop.
-========================= */
-@media (min-width: 993px) {
-  .header-actions {
-    margin-right: 50px;
+  .logo-title {
+    font-size: 13px;
   }
 }
