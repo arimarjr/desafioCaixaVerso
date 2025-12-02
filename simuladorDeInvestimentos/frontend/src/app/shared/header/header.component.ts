@@ -2,8 +2,9 @@ import { Component, HostListener } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -15,18 +16,31 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
 
   menuOpen: boolean = false;
+  mostrarBotoes: boolean = true;
+
+  constructor(private router: Router) {
+    // Observa navegação de rota
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.atualizarVisibilidade(event.urlAfterRedirects);
+      });
+  }
+
+  atualizarVisibilidade(url: string) {
+    // Botões somente na página inicial
+    this.mostrarBotoes = (url === '/pagina-inicial' || url === '/');
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
-  // Fecha o menu no ESC
-  @HostListener('document:keydown.escape', ['$event'])
+  @HostListener('document:keydown.escape')
   closeMenuOnEsc() {
     this.menuOpen = false;
   }
 
-  // Fecha ao clicar fora
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event) {
     const target = event.target as HTMLElement;

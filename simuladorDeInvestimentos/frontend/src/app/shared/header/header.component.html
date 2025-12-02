@@ -15,7 +15,6 @@
     <span class="logo-title">| Simulador de Investimentos Caixa</span>
   </div>
 
-  <!-- Botão hamburguer -->
   <button
     class="menu-toggle"
     (click)="toggleMenu()"
@@ -25,8 +24,8 @@
     <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
   </button>
 
-  <!-- Menu de ações -->
-  <nav class="header-actions" [class.show]="menuOpen">
+  <!-- Botões só aparecem se mostrarBotoes = true -->
+  <nav class="header-actions" *ngIf="mostrarBotoes" [class.show]="menuOpen">
     <a 
       mat-button
       href="https://www.caixa.gov.br/voce/contas/conta-digital/baixar-app/Paginas/default.aspx"
