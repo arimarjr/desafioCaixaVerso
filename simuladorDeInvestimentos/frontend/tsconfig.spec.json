@@ -1,10 +1,21 @@
+<<<<<<< HEAD
 
+=======
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+>>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+<<<<<<< HEAD
     "types": ["jest"],
     "esModuleInterop": true
+=======
+    "types": [
+      "jasmine"
+    ]
+>>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
   },
   "include": [
     "src/**/*.spec.ts",

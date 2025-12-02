@@ -93,15 +93,22 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
+<<<<<<< HEAD
               "node_modules/sidsc-components/styles/main.scss"
+=======
+              "src/styles.scss"
+>>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
             ],
             "scripts": []
           }
         }
       }
     }
+<<<<<<< HEAD
   },
   "cli": {
     "analytics": "e20d9356-191a-46d8-8ea6-8348e2a89057"
+=======
+>>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
   }
 }
