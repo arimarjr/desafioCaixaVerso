@@ -1,0 +1,64 @@
+{
+  "clientes": [],
+  "perfilRisco": [
+    {
+      "clienteId": 123,
+      "perfil": "Moderado",
+      "descricao": "Perfil equilibrado entre segurança e rentabilidade.",
+      "pontuacao": 65
+    }
+  ],
+  "investimentos": [
+    {
+      "id": 1,
+      "clienteId": 123,
+      "tipo": "CDB",
+      "valor": 5000,
+      "rentabilidade": 0.12,
+      "data": "2025-01-15"
+    },
+    {
+      "id": 2,
+      "clienteId": 123,
+      "tipo": "Fundo Multimercado",
+      "valor": 3000,
+      "rentabilidade": 0.08,
+      "data": "2025-03-10"
+    }
+  ],
+  "produtos": [
+    {
+      "id": 101,
+      "nome": "CDB Caixa 2026",
+      "tipo": "CDB",
+      "rentabilidade": 0.13,
+      "risco": "Baixo",
+      "perfil": "moderado"
+    },
+    {
+      "id": 102,
+      "nome": "Fundo Agressivo XPTO",
+      "tipo": "Fundo",
+      "rentabilidade": 0.18,
+      "risco": "Alto",
+      "perfil": "agressivo"
+    },
+    {
+      "id": 103,
+      "nome": "Tesouro Selic",
+      "tipo": "Tesouro",
+      "rentabilidade": 0.10,
+      "risco": "Baixo",
+      "perfil": "conservador"
+    }
+  ],
+  "simulacoes": [],
+  "usuarios": [],
+  "users": [
+    {
+      "clienteId": 123,
+      "email": "cliente@exemplo.com",
+      "senhaHash": "$2a$10$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+  ]
+}

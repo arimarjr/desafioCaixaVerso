@@ -1,0 +1,48 @@
+<mat-toolbar 
+  class="header"
+  role="navigation"
+  aria-label="Menu principal do site"
+>
+  <div class="left-content">
+    <a routerLink="/pagina-inicial" class="logo-container">
+      <img 
+        src="logo_caixa_header_negativa.svg"
+        class="logo-img"
+        alt="Logo Caixa. Ir para página inicial."
+      >
+    </a>
+
+    <span class="logo-title">| Simulador de Investimentos Caixa</span>
+  </div>
+
+  <button
+    class="menu-toggle"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen"
+    aria-label="Abrir menu de navegação"
+  > 
+    <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
+  </button>
+
+  <!-- Botões só aparecem se mostrarBotoes = true -->
+  <nav class="header-actions" *ngIf="mostrarBotoes" [class.show]="menuOpen">
+    <a 
+      mat-button
+      href="https://www.caixa.gov.br/voce/contas/conta-digital/baixar-app/Paginas/default.aspx"
+      class="ancora-header"
+      target="_blank"
+    >
+      Abra sua Conta CAIXA
+    </a>
+
+    <a 
+      routerLink="/login" 
+      class="botao-acesse-sua-conta"
+      aria-label="Acessar área do investidor"
+    >
+      <mat-icon aria-hidden="true">lock</mat-icon>
+      <span>Área do Investidor</span>
+    </a>
+  </nav>
+
+</mat-toolbar>

@@ -1,0 +1,71 @@
+<div class="pagina-inicial-container">
+  <!-- Conteúdo principal -->
+  <div class="conteudo-principal">
+    <h1 class="titulo-principal">
+      Acesse a Área do Investidor para simular seu investimento e planejar seu futuro.
+    </h1>
+
+    <p class="texto-login">
+      Especialistas experientes para ajudar você a construir seu patrimônio com segurança e confiança.
+    </p>
+
+    <div class="cards-tipos">
+      <mat-card class="tipo-card" *ngFor="let card of cards">
+        <mat-card-title>{{ card.titulo }}</mat-card-title>
+
+        <mat-card-content>
+          <p>{{ card.resumo }}</p>
+        </mat-card-content>
+
+        <div class="card-actions">
+
+          <!-- BOTÃO ACESSÍVEL -->
+          <button 
+            (click)="abrirPopup(card.tipo)"
+            [attr.aria-label]="'Saiba mais sobre ' + card.titulo"
+          >
+            Saiba mais
+          </button>
+
+          <!-- LINK ACESSÍVEL -->
+          <a
+            *ngIf="card.link"
+            [href]="card.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'Ir para ' + card.titulo"
+          >
+            Ir para site
+          </a>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div 
+    class="popup" 
+    *ngIf="popupAberto"
+    [attr.aria-hidden]="!popupAberto"
+  >
+    <div
+      class="popup-conteudo"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'popup-titulo'"
+    >
+      <button 
+        class="fechar" 
+        (click)="fecharPopup()" 
+        aria-label="Fechar popup"
+        #fecharBtn
+      >
+        X
+      </button>
+
+      <h2 id="popup-titulo">{{ popupTitulo }}</h2>
+
+      <p [innerHTML]="popupDescricao"></p>
+    </div>
+  </div>
+</div>

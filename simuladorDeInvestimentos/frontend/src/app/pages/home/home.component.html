@@ -1,0 +1,75 @@
+<div class="welcome-card mat-elevation-z4">
+  <h2 class="titulo-centralizado">Olá, Rafael!</h2>
+  <p class="subtitulo-centralizado">Vamos identificar seus objetivos e seu Perfil de Investidor!</p>
+</div>
+
+<section class="investimento-section" *ngIf="perguntas[currentStep]">
+  <form class="investimento-form" (submit)="$event.preventDefault()">
+
+    <div class="pergunta-card">
+      <label class="pergunta-titulo">
+        {{ perguntas[currentStep]?.pergunta }}
+      </label>
+
+      <!-- INPUT NUMÉRICO -->
+      <ng-container *ngIf="perguntas[currentStep]?.tipo === 'numero'">
+        <div class="input-container">
+          <mat-form-field appearance="outline" class="campo-input">
+            <mat-label>Valor a aplicar</mat-label>
+            <input matInput
+                   type="text"
+                   [value]="valorFormatado"
+                   (input)="onValorChange($event)"
+                   placeholder="0,00"
+                   autocomplete="off"
+                   inputmode="numeric"
+                   pattern="[0-9]*">
+            <span matPrefix>R$&nbsp;</span>
+          </mat-form-field>
+        </div>
+
+        <div class="botoes-acoes">
+          <button mat-stroked-button
+                  class="btn-voltar"
+                  type="button"
+                  (click)="voltarPergunta()"
+                  *ngIf="currentStep > 0">
+            Voltar
+          </button>
+
+          <button mat-raised-button
+                  class="btn-proximo"
+                  type="button"
+                  (click)="proximaPergunta()">
+            Continuar
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- BOTÕES DE OPÇÃO -->
+      <ng-container *ngIf="perguntas[currentStep]?.opcoes?.length">
+        <div class="opcoes-container">
+          <div class="opcoes-grid">
+            <button mat-raised-button
+                    class="botao-opcao"
+                    *ngFor="let opcao of perguntas[currentStep]?.opcoes"
+                    (click)="selecionarOpcao(opcao)">
+              {{ opcao.label }}
+            </button>
+          </div>
+
+          <div class="botoes-acoes">
+            <button mat-stroked-button
+                    class="btn-voltar"
+                    type="button"
+                    (click)="voltarPergunta()"
+                    *ngIf="currentStep > 0">
+              Voltar
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </form>
+</section>

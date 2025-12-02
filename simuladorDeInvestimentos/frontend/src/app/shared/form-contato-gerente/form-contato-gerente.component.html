@@ -1,0 +1,134 @@
+<div class="page-container">
+  <div class="form-container">
+    <h2>Entre em Contato com o Gerente</h2>
+
+    <form (ngSubmit)="enviarFormulario()" #contatoForm="ngForm">
+
+      <!-- Nome -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nome completo</mat-label>
+        <input
+          matInput
+          [(ngModel)]="nome"
+          name="nome"
+          required
+          aria-label="Nome completo"
+        >
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          aria-label="Email"
+        >
+      </mat-form-field>
+
+      <!-- Telefone -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Telefone</mat-label>
+        <input
+          matInput
+          type="tel"
+          [(ngModel)]="telefone"
+          name="telefone"
+          required
+          aria-label="Telefone"
+        >
+      </mat-form-field>
+
+      <!-- Patrimônio -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Seu patrimônio para investir</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="patrimonioFormatado"
+          (input)="onPatrimonioInput($event)"
+          name="patrimonio"
+          required
+          aria-label="Seu patrimônio para investir"
+        >
+      </mat-form-field>
+
+      <!-- Perguntas -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Suas perguntas ou comentários</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          [(ngModel)]="perguntasCliente"
+          name="perguntasCliente"
+          aria-label="Perguntas ou comentários"
+        ></textarea>
+      </mat-form-field>
+
+      <!-- Checkbox -->
+      <mat-checkbox
+        [(ngModel)]="aceitaContato"
+        name="aceitaContato"
+        required
+        aria-describedby="texto-privacidade"
+      >
+        Eu concordo em receber comunicações.<br>
+        Ao informar meus dados, eu concordo com a 
+        <a href="#" target="_blank">Política de Privacidade</a>.
+      </mat-checkbox>
+
+      <span id="texto-privacidade" class="visually-hidden">
+        Ao informar meus dados, eu concordo com a Política de Privacidade.
+      </span>
+
+      <!-- Botão Enviar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!contatoForm.form.valid"
+        aria-label="Enviar formulário de contato"
+      >
+        Enviar
+      </button>
+
+    </form>
+  </div>
+</div>
+
+<!-- POPUP ACESSÍVEL -->
+<ng-template [ngIf]="popupAberto">
+  <div
+    class="popup-backdrop"
+    role="alertdialog"
+    aria-modal="true"
+    aria-live="assertive"
+    aria-labelledby="popup-titulo"
+  >
+    <div class="popup-info">
+      <button
+        class="popup-close"
+        (click)="fecharPopup()"
+        aria-label="Fechar popup"
+      >
+        ✕
+      </button>
+
+      <div class="popup-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" fill="#127527"/>
+          <path d="M6 12l5 5 7-9" stroke="white" stroke-width="3"
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="popup-text">
+        <strong id="popup-titulo">Cadastro realizado com sucesso!</strong>
+        <p>Em breve nossos gerentes entrarão em contato com você.</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
