@@ -1,11 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BaseChartDirective } from 'ng2-charts';
-import { ChartData, ChartOptions } from 'chart.js';
+import { Chart, ChartDataset, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 interface Produto {
   id: number;
@@ -40,112 +41,118 @@ export class DialogInvestimentoComponent {
 @Component({
   selector: 'app-dashboards',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDialogModule,
-    BaseChartDirective
-  ],
+  imports: [CommonModule, FormsModule, MatCardModule, MatButtonModule, MatDialogModule],
   templateUrl: './dashboards.component.html',
   styleUrls: ['./dashboards.component.scss']
 })
-export class DashboardsComponent implements OnInit {
+export class DashboardsComponent implements OnInit, AfterViewInit {
+
   perfil = '';
   perfilDescricao = '';
   valorInicial = 10000;
 
-  meses = Array.from({ length: 12 }, (_, i) => `Mês ${i + 1}`);
+  novoValor: string = '10.000,00';
+  novosMeses: number = 12;
 
-  produtos: Produto[] = [
-    { id: 100, nome: 'Tesouro Direto Selic 2027', tipo: 'Tesouro Direto', descricao: 'Título público federal indicado para investidos conservadores que buscam segurança.', rentabilidade: 0.105, risco: 'Baixo' },
-    { id: 101, nome: 'CDB Caixa Pós 2026', tipo: 'Renda Fixa', descricao: 'Um investimento de renda fixa com juros flutuantes, com rentabilidade atrelada ao CDI, muito próxima da Selic, a taxa básica de juros.', rentabilidade: 0.13, risco: 'Baixo' },
-    { id: 102, nome: 'Fundo Agressivo RV', tipo: 'Fundos de Investimento', descricao: 'A CAIXA oferece diversos fundos de renda variável, como fundos de ações que buscam acompanhar o desempenho do Ibovespa.', rentabilidade: 0.18, risco: 'Alto' },
-    { id: 103, nome: 'LCI Caixa Imobiliário', tipo: 'LCI/LCA', descricao: 'Letra de Crédito Imobiliário. Isenta de Imposto de Renda. Garantida pelo Fundo Garantidor de Créditos (FGC)', rentabilidade: 0.15, risco: 'Baixo.' },
-    { id: 104, nome: 'Previdência Privada Caixa', tipo: 'Previdência', descricao: 'Previdência Privada é uma solução para quem deseja complementar a aposentadoria e realizar projetos futuros.', rentabilidade: 0.15, risco: 'Médio' }
-  ];
+  meses: string[] = [];
+  produtos: Produto[] = [];
+  cores = ['#005CA9', '#0095DA', '#7ED957', '#F2A900', '#B00020'];
 
-  cores = ['#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF'];
+  chartLinha: Chart | undefined;
+  chartBarra: Chart | undefined;
 
-  chartDataLinha: ChartData<'line'> = { labels: this.meses, datasets: [] };
-  chartDataBarra: ChartData<'bar'> = { labels: this.meses, datasets: [] };
+  resultadosFinais: { nome: string; valor: number }[] = [];
 
-  chartOptions: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: true } }
-  };
-
-  constructor(private router: Router, private dialog: MatDialog) {}
+  constructor(private router: Router, private dialog: MatDialog) {
+    this.produtos = [
+      { id: 100, nome: 'Tesouro Direto Selic 2027', tipo: 'Tesouro Direto', descricao: 'Título público federal indicado para investidores conservadores que buscam segurança.', rentabilidade: 0.105, risco: 'Baixo' },
+      { id: 101, nome: 'CDB Caixa Pós 2026', tipo: 'Renda Fixa', descricao: 'Rentabilidade atrelada ao CDI.', rentabilidade: 0.13, risco: 'Baixo' },
+      { id: 102, nome: 'Fundo Agressivo RV', tipo: 'Fundos', descricao: 'Fundos de renda variável mais agressivos.', rentabilidade: 0.18, risco: 'Alto' },
+      { id: 103, nome: 'LCI Caixa Imobiliário', tipo: 'LCI/LCA', descricao: 'Letra de Crédito Imobiliário isenta de IR.', rentabilidade: 0.15, risco: 'Baixo' },
+      { id: 104, nome: 'Previdência Privada Caixa', tipo: 'Previdência', descricao: 'Investimento para complementar aposentadoria.', rentabilidade: 0.15, risco: 'Médio' }
+    ];
+  }
 
   ngOnInit(): void {
-    const rawState =
-      typeof history !== 'undefined' &&
-      history &&
-      'state' in history
-        ? history.state
-        : undefined;
-
-    const state: any =
-      rawState && typeof rawState === 'object' ? rawState : {};
-
-    this.perfil = state.perfil ? state.perfil : 'Moderado';
-    this.valorInicial = state.valorInicial ? state.valorInicial : 10000;
-
+    const state: any = history.state;
+    this.perfil = state.perfil || 'Moderado';
+    this.valorInicial = state.valorInicial || 10000;
     this.definirPerfilDescricao();
-    this.simularTodosProdutos();
+  }
+
+  ngAfterViewInit() {
+    this.simularTodosProdutos(this.valorInicial, 12);
   }
 
   definirPerfilDescricao() {
-    switch (this.perfil) {
-      case 'Conservador':
-        this.perfilDescricao = 'Investe buscando preservar o capital e manter liquidez, com baixa tolerância a risco, priorizando segurança e estabilidade mesmo que os retornos sejam menores.';
-        break;
-      case 'Moderado':
-        this.perfilDescricao = 'Busca equilibrar segurança e retorno, com tolerância média a risco, aceitando parte do capital em produtos mais arriscados para obter ganhos maiores no médio ou longo prazo.';
-        break;
-      case 'Agressivo':
-        this.perfilDescricao = 'Foca em maiores retornos, assumindo alta volatilidade e risco, aceitando oscilações significativas no capital e priorizando ganhos potenciais no longo prazo, adequado para investidores experientes.';
-        break;
-      default:
-        this.perfilDescricao = 'Perfil não identificado.';
+    const descricoes: any = {
+      'Conservador': 'Investe buscando preservar o capital e manter liquidez, com baixa tolerância a risco, priorizando segurança e estabilidade mesmo que os retornos sejam menores.',
+      'Moderado': 'Busca equilibrar segurança e retorno, com tolerância média a risco, aceitando parte do capital em produtos mais arriscados para obter ganhos maiores no médio ou longo prazo.',
+      'Agressivo': 'Foca em maiores retornos, assumindo alta volatilidade e risco, aceitando oscilações significativas no capital e priorizando ganhos potenciais no longo prazo, adequado para investidores experientes.'
+    };
+    this.perfilDescricao = descricoes[this.perfil] || 'Perfil não identificado.';
+  }
+
+  formatarMoeda(event: any) {
+    let valor = event.target.value.replace(/[R$\.\s]/g, '').replace(',', '.');
+    let numero = parseFloat(valor);
+    if (!isNaN(numero)) {
+      this.novoValor = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    } else {
+      this.novoValor = '';
     }
   }
 
-  simularTodosProdutos() {
-    this.chartDataLinha = { labels: this.meses, datasets: [] };
-    this.chartDataBarra = { labels: this.meses, datasets: [] };
+  simularTodosProdutos(valor: number, meses: number) {
+    this.meses = Array.from({ length: meses }, (_, i) => `Mês ${i + 1}`);
+    this.resultadosFinais = [];
+
+    const datasetsLinha: ChartDataset<'line'>[] = [];
+    const datasetsBarra: ChartDataset<'bar'>[] = [];
 
     this.produtos.forEach((p, i) => {
       const taxaMensal = Math.pow(1 + p.rentabilidade, 1 / 12) - 1;
-      const valores = this.meses.map((_, m) =>
-        +(this.valorInicial * Math.pow(1 + taxaMensal, m + 1)).toFixed(2)
+      const valores = Array.from({ length: meses }, (_, m) =>
+        +(valor * Math.pow(1 + taxaMensal, m + 1)).toFixed(2)
       );
 
-      this.chartDataLinha.datasets.push({
+      datasetsLinha.push({
         label: p.nome,
         data: valores,
         borderColor: this.cores[i],
-        backgroundColor: this.cores[i],
+        backgroundColor: 'transparent',
         fill: false,
-        tension: 0.3
-      } as any);
+        tension: 0.35
+      });
 
-      this.chartDataBarra.datasets.push({
+      datasetsBarra.push({
         label: p.nome,
         data: valores,
         backgroundColor: this.cores[i]
-      } as any);
+      });
+
+      this.resultadosFinais.push({ nome: p.nome, valor: valores[valores.length - 1] });
     });
+
+    if (this.chartLinha) this.chartLinha.destroy();
+    const ctxLinha = document.getElementById('graficoLinha') as HTMLCanvasElement;
+    this.chartLinha = new Chart(ctxLinha, { type: 'line', data: { labels: this.meses, datasets: datasetsLinha }, options: { responsive: true, maintainAspectRatio: false } });
+
+    if (this.chartBarra) this.chartBarra.destroy();
+    const ctxBarra = document.getElementById('graficoBarra') as HTMLCanvasElement;
+    this.chartBarra = new Chart(ctxBarra, { type: 'bar', data: { labels: this.meses, datasets: datasetsBarra }, options: { responsive: true, maintainAspectRatio: false } });
+  }
+
+  simularNovosValores() {
+    const valor = Number(this.novoValor.replace(/[.\s]/g, '').replace(',', '.'));
+    if (valor < 100 || this.novosMeses < 1) return;
+    this.simularTodosProdutos(valor, this.novosMeses);
   }
 
   abrirPopup(produto: Produto) {
     this.dialog.open(DialogInvestimentoComponent, {
       width: '420px',
-      data: {
-        nome: produto.nome,
-        descricaoCompleta: `${produto.descricao}\n\nTipo: ${produto.tipo}\nRisco: ${produto.risco}\nRentabilidade anual: ${(produto.rentabilidade * 100).toFixed(2)}%`
-      }
+      data: { nome: produto.nome, descricaoCompleta: produto.descricao }
     });
   }
 
