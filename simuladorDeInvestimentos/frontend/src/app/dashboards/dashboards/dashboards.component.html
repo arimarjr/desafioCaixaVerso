@@ -1,28 +1,17 @@
-<<<<<<< HEAD
 
 <div class="dashboard-container">
 
   <!-- PERFIL -->
-=======
-<div class="dashboard-container">
-
->>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
   <div class="perfil-container">
     <h2 class="titulo-principal">Perfil do Investidor: <strong>{{ perfil }}</strong></h2>
     <p class="perfil-descricao">{{ perfilDescricao }}</p>
   </div>
 
-<<<<<<< HEAD
   <!-- CARDS DE PRODUTOS -->
   <div class="cards-tipos">
     <mat-card *ngFor="let p of produtos" class="tipo-card" (click)="abrirPopup(p)">
       <mat-card-title>{{ p.nome }}</mat-card-title>
       
-=======
-  <div class="cards-tipos">
-    <mat-card *ngFor="let p of produtos" class="tipo-card" (click)="abrirPopup(p)">
-      <mat-card-title>{{ p.nome }}</mat-card-title>
->>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
       <mat-card-content>
         <p>{{ p.tipo }}</p>
         <div class="risco"><strong>Risco:</strong> {{ p.risco }}</div>
@@ -31,10 +20,7 @@
     </mat-card>
   </div>
 
-<<<<<<< HEAD
   <!-- GRÁFICOS -->
-=======
->>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
   <div class="graficos-container">
     <mat-card class="grafico-card">
       <mat-card-title>Evolução Mensal — Linha</mat-card-title>
@@ -51,7 +37,6 @@
     </mat-card>
   </div>
 
-<<<<<<< HEAD
   <!-- SIMULADOR + TABELA (ABAIXO DOS GRÁFICOS) -->
   <div class="simulacao-container">
     <mat-card class="simulador-card">
@@ -105,44 +90,6 @@
   <!-- BOTÃO CONTATO -->
   <div class="btn-contato-container">
     <button mat-raised-button (click)="solicitarContato()">Solicite que um dos nossos Gerentes entre em Contato com Você!</button>
-=======
-  <mat-card class="simulador-card">
-    <mat-card-title>Simule outros valores</mat-card-title>
-    <div class="simulacao-grid">
-      <div class="campo">
-        <label>Valor Inicial</label>
-        <input type="text" [(ngModel)]="novoValor" (input)="formatarMoeda($event)" />
-      </div>
-      <div class="campo">
-        <label>Período (meses)</label>
-        <input type="number" [(ngModel)]="novosMeses" min="1" max="60" />
-      </div>
-      <div class="acao">
-        <button mat-raised-button color="primary" (click)="simularNovosValores()">Simular</button>
-      </div>
-    </div>
-  </mat-card>
-
-  <mat-card class="tabela-card">
-    <table class="tabela-resultado">
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Valor Final</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let r of resultadosFinais">
-          <td>{{ r.nome }}</td>
-          <td>{{ r.valor | currency:'BRL':'symbol':'1.2-2' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </mat-card>
-
-  <div class="btn-contato-container">
-    <button mat-raised-button (click)="solicitarContato()">Solicitar Contato com Gerente</button>
->>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
   </div>
 
 </div>

@@ -5,13 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-=======
->>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
 import { Chart, ChartDataset, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -27,11 +24,7 @@ interface Produto {
 @Component({
   selector: 'dialog-investimento',
   standalone: true,
-<<<<<<< HEAD
   imports: [CommonModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule],
-=======
-  imports: [CommonModule, MatDialogModule, MatButtonModule],
->>>>>>> ea94d19104c454edcf52d107cb440f681f25754c
   template: `
     <h2 mat-dialog-title>{{ data.nome }}</h2>
     <div mat-dialog-content>

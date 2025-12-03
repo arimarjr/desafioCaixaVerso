@@ -4,29 +4,29 @@
 node_modules/
 
 # Build
-dist/
-build/
-out/
+dist/  
+build/ 
+out/ 
 
 # Cache / temporários
-.angular/
-.cache/
-tmp/
-temp/
+.angular/ 
+.cache/ 
+tmp/ 
+temp/ 
 
 # IDEs
-.vscode/
-.idea/
+.vscode/ 
+.idea/ 
 
 # Sistema operacional
-.DS_Store
-Thumbs.db
+.DS_Store 
+Thumbs.db 
 
 # Logs
-*.log
+*.log 
 
 # Testes
-coverage/
+coverage/ 
 
 # Angular incremental build
-*.tsbuildinfo
+*.tsbuildinfo 
