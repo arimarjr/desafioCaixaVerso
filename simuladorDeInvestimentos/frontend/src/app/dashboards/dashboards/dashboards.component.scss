@@ -109,7 +109,7 @@
   padding: 18px;
   border: 3px solid #005CA9;
   border-radius: 12px;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 6px 14px rgba(0,0,0,0.06);
   display: flex;
   flex-direction: column;
@@ -122,7 +122,6 @@
   grid-template-columns: 1fr 160px 160px;
   gap: 24px;
   align-items: end;
-  
 }
 
 /* LABEL */
@@ -130,7 +129,7 @@
   font-weight: 600;
   color: #005CA9;
   margin-bottom: 12px;
-  margin-left: 10px;
+  margin-left: 12px;
 }
 
 /* INPUT PADRÃO */
@@ -139,24 +138,26 @@ input {
   padding: 8px;
   border-radius: 8px;
   border: 2px solid #005CA9;
-  margin-left: 10px;
+  margin-left: 12px;
   margin-bottom: 12px;
   font-size: 16px;
 }
 
-/* BOTÃO SIMULAR */
+
 .acao {
   padding: 0 16px;
+  margin-left: 12px; /* → Alinha com os inputs */
 }
 
 .acao button {
-  height: 44px;
+  height: 48px !important; /* mesma altura dos mat-form-field */
   width: 100%;
   background: #005CA9;
   color: #ffffff;
   border-radius: 6px;
   font-size: 20px;
   margin-bottom: 12px;
+  margin-top: 6px;  /* pequeno alinhamento vertical */
   transition: background 0.3s ease;
 }
 
@@ -172,8 +173,7 @@ input {
   text-align: left;
   margin-bottom: 12px;
   margin-top: 5px;
-  margin-left: 10px;
-  
+  margin-left: 12px;
 }
 
 /* ============================================================
@@ -215,7 +215,7 @@ input {
     font-size: 20px;
     padding: 12px 28px;
     border-radius: 6px;
-    background-color: #005CA9; //Fale com gerente
+    background-color: #005CA9;
     color: #ffffff;
     font-weight: 500;
     width: 100%;
@@ -236,11 +236,12 @@ input[type=number] {
 }
 
 /* ============================================================
-   FIXES ANGULAR MATERIAL — COMPATIBILIDADE INPUT R$
+   FIXES ANGULAR MATERIAL — INPUT COM R$
    ============================================================ */
 .campo-input.mat-form-field {
   width: 100%;
-  
+  margin-left: 12px !important;  /* ← AFASTAMENTO DA BORDA */
+  margin-top: 6px !important;
 }
 
 .campo-input .mat-form-field-flex,
@@ -276,7 +277,7 @@ input[type=number] {
 }
 
 /* ============================================================
-   RESPONSIVIDADE (IPHONE / SAMSUNG)
+   RESPONSIVIDADE
    ============================================================ */
 
 /* Gráficos em coluna */
@@ -315,7 +316,7 @@ input[type=number] {
   }
 }
 
-/* Tabela ajustada */
+/* Tabela responsiva */
 @media (max-width: 760px) {
   .tabela-resultado th,
   .tabela-resultado td {
@@ -331,12 +332,13 @@ input[type=number] {
   }
 }
 
-/* Ajuste de largura dos gráficos em telas grandes */
+/* Gráficos ajustados */
 @media (max-width: 1100px) {
   .graficos-container {
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .grafico-card {
     max-width: 95%;
   }
