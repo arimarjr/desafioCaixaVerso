@@ -1,4 +1,6 @@
-/* CONTAINER GERAL */
+/* ============================================================
+   CONTAINER GERAL
+   ============================================================ */
 .dashboard-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -8,7 +10,9 @@
   gap: 24px;
 }
 
-/* PERFIL */
+/* ============================================================
+   PERFIL
+   ============================================================ */
 .perfil-container {
   .titulo-principal {
     color: #005CA9;
@@ -23,13 +27,16 @@
   }
 }
 
-/* CARDS DE PRODUTOS */
+/* ============================================================
+   CARDS DE PRODUTOS
+   ============================================================ */
 .cards-tipos {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: nowrap;
 }
+
 .tipo-card {
   flex: 1;
   min-width: 180px;
@@ -42,30 +49,32 @@
   flex-direction: column;
   justify-content: space-between;
 
-  /* Botão "Saiba mais" */
   button {
-    width: 100%;                /* Ocupa toda a largura do card */
-    background: #005CA9 !important; /* Cor azul */
-    color: #fff !important;     /* Texto branco */
-    font-weight: 600;           /* Negrito */
-    border-radius: 6px;         /* Cantos arredondados */
-    padding: 10px 0;            /* Espaçamento interno */
-    font-size: 16px;            /* Tamanho da fonte */
-    margin-top: 12px;           /* Espaço acima do botão */
+    width: 100%;
+    background: #005CA9 !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-top: 12px;
     transition: background 0.3s ease;
   }
 
   button:hover {
-    background: #003F7F !important; /* Cor mais escura no hover */
+    background: #003F7F !important;
   }
 }
 
-/* GRÁFICOS */
+/* ============================================================
+   GRÁFICOS
+   ============================================================ */
 .graficos-container {
   display: flex;
   justify-content: space-between;
   gap: 16px;
 }
+
 .grafico-card {
   flex: 1;
   max-width: 580px;
@@ -74,18 +83,26 @@
   border: 3px solid #005CA9;
   background: #fff;
   box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+
   mat-card-title {
     color: #005CA9;
     font-weight: 600;
     text-align: center;
   }
+
   .grafico-wrapper {
     height: 300px;
-    canvas { width: 100% !important; height: 100% !important; }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
   }
 }
 
-/* SIMULADOR + TABELA */
+/* ============================================================
+   SIMULADOR + TABELA
+   ============================================================ */
 .simulacao-container {
   width: 100%;
   max-width: 1200px;
@@ -105,6 +122,7 @@
   grid-template-columns: 1fr 160px 160px;
   gap: 24px;
   align-items: end;
+  
 }
 
 /* LABEL */
@@ -115,7 +133,7 @@
   margin-left: 10px;
 }
 
-/* INPUT */
+/* INPUT PADRÃO */
 input {
   height: 44px;
   padding: 8px;
@@ -130,6 +148,7 @@ input {
 .acao {
   padding: 0 16px;
 }
+
 .acao button {
   height: 44px;
   width: 100%;
@@ -140,6 +159,7 @@ input {
   margin-bottom: 12px;
   transition: background 0.3s ease;
 }
+
 .acao button:hover {
   background: #003F7F;
 }
@@ -153,9 +173,12 @@ input {
   margin-bottom: 12px;
   margin-top: 5px;
   margin-left: 10px;
+  
 }
 
-/* TABELA */
+/* ============================================================
+   TABELA
+   ============================================================ */
 .tabela-resultado {
   width: 100%;
   border-collapse: collapse;
@@ -163,30 +186,36 @@ input {
   border-radius: 8px;
   overflow: hidden;
 }
+
 .tabela-resultado th,
 .tabela-resultado td {
   border: 1px solid #2D8AD8;
   padding: 10px;
 }
+
 .tabela-resultado th {
   background: #f4f8fb;
   color: #005CA9;
   font-weight: 700;
 }
+
 .tabela-resultado tr:nth-child(even) {
   background: #f9fcff;
 }
 
-/* BOTÃO CONTATO */
+/* ============================================================
+   BOTÃO CONTATO
+   ============================================================ */
 .btn-contato-container {
   text-align: center;
   margin-top: 32px;
   padding-bottom: 60px;
+
   button {
     font-size: 20px;
     padding: 12px 28px;
     border-radius: 6px;
-    background-color: #005CA9;
+    background-color: #005CA9; //Fale com gerente
     color: #ffffff;
     font-weight: 500;
     width: 100%;
@@ -194,21 +223,115 @@ input {
   }
 }
 
-
-/* Remove setas no Chrome, Safari, Edge */
+/* ============================================================
+   REMOÇÃO SETAS DOS NÚMEROS
+   ============================================================ */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* Remove setas no Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
+/* ============================================================
+   FIXES ANGULAR MATERIAL — COMPATIBILIDADE INPUT R$
+   ============================================================ */
+.campo-input.mat-form-field {
+  width: 100%;
+  
+}
 
-/* RESPONSIVIDADE */
+.campo-input .mat-form-field-flex,
+.campo-input .mat-mdc-text-field-wrapper {
+  border-radius: 8px !important;
+  border: 2px solid #005CA9 !important;
+  background: #ffffff !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  height: 48px !important;
+}
+
+.campo-input .mat-form-field-outline,
+.campo-input .mat-mdc-form-field-outline {
+  color: #005CA9 !important;
+}
+
+.campo-input .mat-mdc-form-field-icon-prefix {
+  color: #005CA9 !important;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.campo-input input.mat-input-element,
+.campo-input input.mdc-text-field__input {
+  font-size: 18px !important;
+  font-weight: 600;
+}
+
+.campo-input .mat-mdc-floating-label {
+  color: #005CA9 !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================================
+   RESPONSIVIDADE (IPHONE / SAMSUNG)
+   ============================================================ */
+
+/* Gráficos em coluna */
+@media (max-width: 760px) {
+  .graficos-container {
+    flex-direction: column;
+  }
+
+  .grafico-card {
+    max-width: 100% !important;
+  }
+}
+
+/* Cards lado a lado → coluna */
+@media (max-width: 760px) {
+  .cards-tipos {
+    flex-wrap: wrap;
+  }
+
+  .tipo-card {
+    min-width: 100%;
+  }
+}
+
+/* Simulador — grid vira 1 coluna */
+@media (max-width: 760px) {
+  .simulacao-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Botão simular full-width */
+@media (max-width: 760px) {
+  .acao button {
+    width: 100% !important;
+  }
+}
+
+/* Tabela ajustada */
+@media (max-width: 760px) {
+  .tabela-resultado th,
+  .tabela-resultado td {
+    padding: 6px;
+    font-size: 13px;
+  }
+}
+
+/* Botão contato responsivo */
+@media (max-width: 760px) {
+  .btn-contato-container button {
+    width: 100% !important;
+  }
+}
+
+/* Ajuste de largura dos gráficos em telas grandes */
 @media (max-width: 1100px) {
   .graficos-container {
     flex-wrap: wrap;
@@ -218,6 +341,7 @@ input[type=number] {
     max-width: 95%;
   }
 }
+
 @media (max-width: 900px) {
   .simulacao-container {
     max-width: 95%;
