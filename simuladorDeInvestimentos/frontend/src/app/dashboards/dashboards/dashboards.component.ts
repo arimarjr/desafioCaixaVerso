@@ -24,7 +24,7 @@ interface Produto {
 }
 
 /* ------------------- */
-/* POPUP DO PRODUTO    */
+/* POPUP PRODUTO       */
 /* ------------------- */
 @Component({
   selector: 'dialog-investimento',
@@ -52,7 +52,7 @@ export class DialogInvestimentoComponent {
 }
 
 /* ------------------- */
-/*     DASHBOARD       */
+/* COMPONENTE PRINCIPAL*/
 /* ------------------- */
 @Component({
   selector: 'app-dashboards',
@@ -75,18 +75,22 @@ export class DashboardsComponent implements OnInit, AfterViewInit {
   perfilDescricao = '';
   valorInicial = 10000;
 
-  novoValor: string = '10.000,00';
-  novosMeses: number = 12;
+  novoValor: string = '0,00';
+  novosMeses: number = 0;
 
   meses: string[] = [];
   resultadosFinais: { nome: string; valor: number }[] = [];
 
   produtos: Produto[] = [
     { id: 100, nome: 'Tesouro Direto Selic 2027', tipo: 'Tesouro Direto', descricao: 'Título público federal indicado para investidores conservadores que buscam segurança.', rentabilidade: 0.105, risco: 'Baixo' },
-    { id: 101, nome: 'CDB Caixa Pós 2026', tipo: 'Renda Fixa', descricao: 'Rentabilidade atrelada ao CDI.', rentabilidade: 0.13, risco: 'Baixo' },
-    { id: 102, nome: 'Fundo Agressivo RV', tipo: 'Fundos', descricao: 'Fundos de renda variável mais agressivos.', rentabilidade: 0.18, risco: 'Alto' },
-    { id: 103, nome: 'LCI Caixa Imobiliário', tipo: 'LCI/LCA', descricao: 'Letra de Crédito Imobiliário isenta de IR.', rentabilidade: 0.15, risco: 'Baixo' },
-    { id: 104, nome: 'Previdência Privada Caixa', tipo: 'Previdência', descricao: 'Investimento para complementar aposentadoria.', rentabilidade: 0.15, risco: 'Médio' }
+
+    { id: 101, nome: 'CDB Caixa Pós 2026', tipo: 'Renda Fixa', descricao: 'Um investimento de renda fixa com juros flutuantes, com rentabilidade atrelada ao CDI, muito próxima da Selic, a taxa básica de juros.', rentabilidade: 0.13, risco: 'Baixo' },
+
+    { id: 102, nome: 'Fundo Agressivo RV', tipo: 'Fundos', descricao: 'A CAIXA oferece diversos fundos de renda variável, como fundos de ações que buscam acompanhar o desempenho do Ibovespa.', rentabilidade: 0.18, risco: 'Alto' },
+
+    { id: 103, nome: 'LCI Caixa Imobiliário', tipo: 'LCI/LCA', descricao: 'Letra de Crédito Imobiliário. Isenta de Imposto de Renda. Garantida pelo Fundo Garantidor de Créditos (FGC)', rentabilidade: 0.15, risco: 'Baixo' },
+
+    { id: 104, nome: 'Previdência Privada Caixa', tipo: 'Previdência', descricao: 'Previdência Privada é uma solução para quem deseja complementar a aposentadoria e realizar projetos futuros.', rentabilidade: 0.15, risco: 'Médio' }
   ];
 
   chartLinha!: Chart;
@@ -107,9 +111,9 @@ export class DashboardsComponent implements OnInit, AfterViewInit {
 
   definirPerfilDescricao() {
     const d: any = {
-      'Conservador': 'Investe buscando preservar o capital...',
-      'Moderado': 'Busca equilíbrio entre segurança e retorno...',
-      'Agressivo': 'Foca em maiores retornos, assumindo alta volatilidade...'
+      'Conservador': 'Investe buscando preservar o capital e manter liquidez, com baixa tolerância a risco, priorizando segurança e estabilidade mesmo que os retornos sejam menores.',
+      'Moderado': 'Busca equilibrar segurança e retorno, com tolerância média a risco, aceitando parte do capital em produtos mais arriscados para obter ganhos maiores no médio ou longo prazo.',
+      'Agressivo': 'Foca em maiores retornos, assumindo alta volatilidade e risco, aceitando oscilações significativas no capital e priorizando ganhos potenciais no longo prazo, adequado para investidores experientes.'
     };
     this.perfilDescricao = d[this.perfil];
   }
@@ -172,22 +176,35 @@ export class DashboardsComponent implements OnInit, AfterViewInit {
     if (this.chartLinha) this.chartLinha.destroy();
     this.chartLinha = new Chart(
       document.getElementById('graficoLinha') as HTMLCanvasElement,
-      { type: 'line', data: { labels: this.meses, datasets: datasetsLinha },
-        options: { responsive: true, maintainAspectRatio: false } }
+      {
+        type: 'line',
+        data: { labels: this.meses, datasets: datasetsLinha },
+        options: { responsive: true, maintainAspectRatio: false }
+      }
     );
 
     if (this.chartBarra) this.chartBarra.destroy();
     this.chartBarra = new Chart(
       document.getElementById('graficoBarra') as HTMLCanvasElement,
-      { type: 'bar', data: { labels: this.meses, datasets: datasetsBarra },
-        options: { responsive: true, maintainAspectRatio: false } }
+      {
+        type: 'bar',
+        data: { labels: this.meses, datasets: datasetsBarra },
+        options: { responsive: true, maintainAspectRatio: false }
+      }
     );
   }
 
+  /* ------------------------- */
+  /*     BOTÃO SIMULAR         */
+  /* ------------------------- */
   simularNovosValores() {
-    const valor = Number(this.novoValor.replace(/\./g, '').replace(',', '.'));
+    const valor = parseFloat(
+      this.novoValor
+        .replace(/\./g, '')
+        .replace(',', '.')
+    );
 
-    if (valor < 50) return;
+    if (isNaN(valor) || valor < 50) return;
 
     this.simularTodosProdutos(valor, this.novosMeses);
   }

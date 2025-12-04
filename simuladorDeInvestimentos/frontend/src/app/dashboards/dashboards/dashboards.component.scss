@@ -242,6 +242,7 @@ input[type=number] {
   width: 100%;
   margin-left: 12px !important;  /* ← AFASTAMENTO DA BORDA */
   margin-top: 6px !important;
+ 
 }
 
 .campo-input .mat-form-field-flex,
@@ -252,29 +253,36 @@ input[type=number] {
   padding-left: 12px !important;
   padding-right: 12px !important;
   height: 48px !important;
+  
 }
 
 .campo-input .mat-form-field-outline,
 .campo-input .mat-mdc-form-field-outline {
   color: #005CA9 !important;
+  
+  
 }
 
 .campo-input .mat-mdc-form-field-icon-prefix {
   color: #005CA9 !important;
   font-weight: 700;
   margin-right: 4px;
+  
+  
 }
 
 .campo-input input.mat-input-element,
 .campo-input input.mdc-text-field__input {
   font-size: 18px !important;
   font-weight: 600;
+ 
 }
 
 .campo-input .mat-mdc-floating-label {
   color: #005CA9 !important;
   font-weight: 600 !important;
 }
+
 
 /* ============================================================
    RESPONSIVIDADE
