@@ -121,7 +121,7 @@
   display: grid;
   grid-template-columns: 1fr 160px 160px;
   gap: 24px;
-  align-items: end;
+  align-items: center;
 }
 
 /* LABEL */
@@ -134,30 +134,34 @@
 
 /* INPUT PADRÃO */
 input {
-  height: 44px;
+  height: 40px;
   padding: 8px;
   border-radius: 8px;
   border: 2px solid #005CA9;
   margin-left: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   font-size: 16px;
 }
 
-
+/* BOTÃO SIMULAR */
 .acao {
   padding: 0 16px;
-  margin-left: 12px; /* → Alinha com os inputs */
+  margin-left: 12px;
+  padding-left: 1px;
+  padding-right: 35px;
+  margin-top: 0px;
+  margin-bottom: 8px;
 }
 
 .acao button {
-  height: 48px !important; /* mesma altura dos mat-form-field */
+  height: 48px !important;
   width: 100%;
   background: #005CA9;
   color: #ffffff;
   border-radius: 6px;
   font-size: 20px;
   margin-bottom: 12px;
-  margin-top: 6px;  /* pequeno alinhamento vertical */
+  margin-top: 6px;
   transition: background 0.3s ease;
 }
 
@@ -205,6 +209,7 @@ input {
 
 /* ============================================================
    BOTÃO CONTATO
+   (CORRIGIDO PARA CELULAR — NÃO CORTA O TEXTO)
    ============================================================ */
 .btn-contato-container {
   text-align: center;
@@ -219,12 +224,18 @@ input {
     color: #ffffff;
     font-weight: 500;
     width: 100%;
-    height: 50px;
+
+    /* CORREÇÃO IMPORTANTE */
+    white-space: normal !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+    word-wrap: break-word !important;
+    text-align: center;
   }
 }
 
 /* ============================================================
-   REMOÇÃO SETAS DOS NÚMEROS
+   REMOÇÃO DAS SETAS DOS INPUTS NUMBER
    ============================================================ */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -240,9 +251,8 @@ input[type=number] {
    ============================================================ */
 .campo-input.mat-form-field {
   width: 100%;
-  margin-left: 12px !important;  /* ← AFASTAMENTO DA BORDA */
+  margin-left: 10px !important;
   margin-top: 6px !important;
- 
 }
 
 .campo-input .mat-form-field-flex,
@@ -252,30 +262,24 @@ input[type=number] {
   background: #ffffff !important;
   padding-left: 12px !important;
   padding-right: 12px !important;
-  height: 48px !important;
-  
+  height: 36px !important;
 }
 
-.campo-input .mat-form-field-outline,
 .campo-input .mat-mdc-form-field-outline {
   color: #005CA9 !important;
-  
-  
 }
 
 .campo-input .mat-mdc-form-field-icon-prefix {
   color: #005CA9 !important;
   font-weight: 700;
   margin-right: 4px;
-  
-  
 }
 
 .campo-input input.mat-input-element,
 .campo-input input.mdc-text-field__input {
   font-size: 18px !important;
   font-weight: 600;
- 
+  height: 10px !important;
 }
 
 .campo-input .mat-mdc-floating-label {
@@ -283,48 +287,45 @@ input[type=number] {
   font-weight: 600 !important;
 }
 
-
 /* ============================================================
    RESPONSIVIDADE
    ============================================================ */
 
-/* Gráficos em coluna */
+/* GRÁFICOS EM COLUNA */
 @media (max-width: 760px) {
   .graficos-container {
     flex-direction: column;
   }
-
   .grafico-card {
     max-width: 100% !important;
   }
 }
 
-/* Cards lado a lado → coluna */
+/* CARDS EM COLUNA */
 @media (max-width: 760px) {
   .cards-tipos {
     flex-wrap: wrap;
   }
-
   .tipo-card {
     min-width: 100%;
   }
 }
 
-/* Simulador — grid vira 1 coluna */
+/* SIMULADOR EM UMA COLUNA */
 @media (max-width: 760px) {
   .simulacao-grid {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* Botão simular full-width */
+/* BOTÃO SIMULAR FULL-WIDTH */
 @media (max-width: 760px) {
   .acao button {
     width: 100% !important;
   }
 }
 
-/* Tabela responsiva */
+/* TABELA MENOR NO MOBILE */
 @media (max-width: 760px) {
   .tabela-resultado th,
   .tabela-resultado td {
@@ -333,20 +334,20 @@ input[type=number] {
   }
 }
 
-/* Botão contato responsivo */
-@media (max-width: 760px) {
+/* BOTÃO CONTATO AJUSTADO NO MOBILE */
+@media (max-width: 480px) {
   .btn-contato-container button {
-    width: 100% !important;
+    font-size: 16px !important;
+    padding: 14px 12px !important;
   }
 }
 
-/* Gráficos ajustados */
+/* GRÁFICOS AJUSTADOS */
 @media (max-width: 1100px) {
   .graficos-container {
     flex-wrap: wrap;
     justify-content: center;
   }
-
   .grafico-card {
     max-width: 95%;
   }
