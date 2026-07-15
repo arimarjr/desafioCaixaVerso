@@ -1,0 +1,42 @@
+<mat-toolbar 
+  class="header"
+  role="navigation"
+  aria-label="Menu principal do site"
+>
+
+  <a routerLink="pagina-inicial">
+    <img 
+      src="logo_caixa_header_negativa.svg" 
+      class="logo-img" 
+      alt="Logo Caixa. Ir para página inicial."
+    >
+  </a>  
+
+  <span class="logo">|     Simulador de Investimentos Caixa</span>
+
+  <span class="spacer"></span>
+
+  <div class="header-actions">
+
+    <a 
+      mat-button
+      href="https://www.caixa.gov.br/voce/contas/conta-digital/baixar-app/Paginas/default.aspx"
+      target="_blank"
+      class="ancora-header"
+      aria-label="Abrir página para criar Conta Caixa. Abre em nova aba."
+    >
+        Abra sua Conta CAIXA
+    </a>
+
+    <a 
+      href="login" 
+      class="botao-acesse-sua-conta"
+      aria-label="Acessar área do investidor"
+    >
+      <mat-icon aria-hidden="true">lock</mat-icon>
+      <span>Área do Investidor</span>
+    </a>
+
+  </div>
+
+</mat-toolbar>
