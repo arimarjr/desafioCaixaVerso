@@ -1,0 +1,85 @@
+<div class="oportunidades">
+  <div class="oport-header">
+    <h2 class="oport-titulo">Oportunidades da Carteira</h2>
+    <span class="oport-total">{{ operacoes().length }} operações</span>
+  </div>
+
+  <!-- CARDS DE RESUMO -->
+  <div class="resumo-grid">
+    <div class="resumo-card" [class.ativo]="filtroAtivo() === 'todos'" (click)="aplicarFiltro('todos')">
+      <span class="material-icons rc-icon rc-todos">folder_open</span>
+      <div class="rc-info">
+        <span class="rc-num">{{ operacoes().length }}</span>
+        <span class="rc-label">Total</span>
+      </div>
+    </div>
+    <div class="resumo-card" [class.ativo]="filtroAtivo() === 'em-andamento'" (click)="aplicarFiltro('em-andamento')">
+      <span class="material-icons rc-icon rc-andamento">pending</span>
+      <div class="rc-info">
+        <span class="rc-num">{{ contadores.emAndamento() }}</span>
+        <span class="rc-label">Em Andamento</span>
+      </div>
+    </div>
+    <div class="resumo-card" [class.ativo]="filtroAtivo() === 'aguardando-conformidade'" (click)="aplicarFiltro('aguardando-conformidade')">
+      <span class="material-icons rc-icon rc-conformidade">hourglass_top</span>
+      <div class="rc-info">
+        <span class="rc-num">{{ contadores.aguardandoConformidade() }}</span>
+        <span class="rc-label">Na Conformidade</span>
+      </div>
+    </div>
+    <div class="resumo-card" [class.ativo]="filtroAtivo() === 'com-pendencia'" (click)="aplicarFiltro('com-pendencia')">
+      <span class="material-icons rc-icon rc-pendencia">warning</span>
+      <div class="rc-info">
+        <span class="rc-num">{{ contadores.comPendencia() }}</span>
+        <span class="rc-label">Com Pendência</span>
+      </div>
+    </div>
+    <div class="resumo-card" [class.ativo]="filtroAtivo() === 'pronto-contrato'" (click)="aplicarFiltro('pronto-contrato')">
+      <span class="material-icons rc-icon rc-contrato">task_alt</span>
+      <div class="rc-info">
+        <span class="rc-num">{{ contadores.prontoContrato() }}</span>
+        <span class="rc-label">Pronto p/ Contrato</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTA DE OPERAÇÕES -->
+  @if (operacoesFiltradas.length === 0) {
+    <div class="lista-vazia">
+      <span class="material-icons">inbox</span>
+      <p>Nenhuma operação neste status.</p>
+    </div>
+  } @else {
+    <div class="operacoes-grid">
+      @for (op of operacoesFiltradas; track op.id) {
+        <div class="operacao-card" [class]="'op-' + op.status" (click)="abrirOperacao(op.cnpj)">
+          <div class="op-header">
+            <div class="op-empresa">
+              <span class="op-nome">{{ op.razaoSocial }}</span>
+              <span class="op-cnpj">{{ op.cnpj | slice:0:2 }}.{{ op.cnpj | slice:2:5 }}.{{ op.cnpj | slice:5:8 }}/{{ op.cnpj | slice:8:12 }}-{{ op.cnpj | slice:12 }}</span>
+            </div>
+            <span class="op-badge" [class]="'badge-' + op.status">{{ statusLabel(op.status) }}</span>
+          </div>
+          <div class="op-body">
+            <div class="op-info">
+              <span class="material-icons op-info-icon">account_balance</span>
+              {{ op.linhaCredito }}
+            </div>
+            <div class="op-info">
+              <span class="material-icons op-info-icon">timeline</span>
+              Etapa: <strong>{{ op.etapa }}</strong>
+            </div>
+            <div class="op-info op-data">
+              <span class="material-icons op-info-icon">calendar_today</span>
+              Atualizado: {{ op.dataAtualizacao }}
+            </div>
+          </div>
+          <div class="op-footer">
+            <dsc-button label="Abrir Operação" variant="secondary" iconSuffix="chevron_right" />
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
+

@@ -1,0 +1,198 @@
+.pesquisas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.pesquisas__cabecalho {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: #555;
+    max-width: 52rem;
+  }
+}
+
+.pesquisas__acoes {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+
+  button {
+    white-space: nowrap;
+    background-color: #00437A !important;
+    color: #fff !important;
+  }
+}
+
+.pesquisas__identificador {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 32rem;
+
+  label {
+    font-weight: 600;
+  }
+
+  input {
+    min-height: 2.5rem;
+    border: 1px solid #c7c7c7;
+    border-radius: 0.5rem;
+    padding: 0 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+.pesquisas__marcar-todos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f7fb;
+  border: 1px solid #dfe5f2;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.pesquisas__grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #005CA9;
+  }
+}
+
+.pesquisas__tabela {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dde3ef;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.pesquisas__linha {
+  display: grid;
+  grid-template-columns: 3.5rem 13rem minmax(12rem, 1fr) 7.5rem 10rem 11rem;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #edf1f7;
+  min-width: 720px;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.pesquisas__linha--cabecalho {
+  background: #eef3fb;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #374151;
+}
+
+.pesquisas__descricao {
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.pesquisas__tag {
+  display: inline-flex;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.pesquisas__tag--obrigatoria {
+  color: #7a3b00;
+  background: #fff0d8;
+}
+
+.pesquisas__upload {
+  display: inline-flex;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid #1976d2;
+    color: #1976d2;
+    border-radius: 0.5rem;
+    padding: 0.45rem 0.7rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover {
+      background: #1976d2;
+      color: #fff;
+    }
+  }
+}
+
+.pesquisas__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.pesquisas__status--ok {
+  color: #1b7f3a;
+}
+
+.pesquisas__status--pendente {
+  color: #8a5a00;
+}
+
+small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #555;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  .pesquisas__linha {
+    grid-template-columns: 1fr;
+  }
+
+  .pesquisas__linha--cabecalho {
+    display: none;
+  }
+
+  .pesquisas__cabecalho {
+    flex-direction: column;
+  }
+}

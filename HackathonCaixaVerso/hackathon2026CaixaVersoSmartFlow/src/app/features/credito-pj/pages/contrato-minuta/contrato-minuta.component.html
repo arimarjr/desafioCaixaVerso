@@ -1,0 +1,365 @@
+<div class="contrato-minuta">
+
+  <!-- ════════════════════════════════════════════════════════════
+       ESTADO 1 — PRÉ-GERAÇÃO: resumo + botão Gerar CCB
+       ════════════════════════════════════════════════════════════ -->
+  @if (!contratoGerado()) {
+    <div class="contrato-minuta__pre-geracao">
+
+      <div class="contrato-minuta__icone-doc">
+        <span class="material-icons">description</span>
+      </div>
+
+      <div class="contrato-minuta__pre-header">
+        <h2>Cédula de Crédito Bancária</h2>
+        <p>GIROCAIXA Fácil — Modelo MO33190047 v047</p>
+        <span class="contrato-minuta__badge">#PÚBLICO</span>
+      </div>
+
+      @if (vm) {
+        <div class="contrato-minuta__resumo-simulacao">
+          <h3>Resumo da Simulação</h3>
+          <div class="contrato-minuta__resumo-grid">
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Empresa</span>
+              <span class="contrato-minuta__resumo-valor">{{ vm.razaoSocial }}</span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">CNPJ</span>
+              <span class="contrato-minuta__resumo-valor">{{ vm.cnpj }}</span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Linha de Crédito</span>
+              <span class="contrato-minuta__resumo-valor">{{ linhaCredito }}</span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Valor Solicitado</span>
+              <span class="contrato-minuta__resumo-valor contrato-minuta__resumo-valor--destaque">
+                {{ valorSolicitado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+              </span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Prazo</span>
+              <span class="contrato-minuta__resumo-valor">{{ prazoMeses }} meses</span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Taxa Mensal</span>
+              <span class="contrato-minuta__resumo-valor">{{ taxaMensal }}% a.m.</span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Parcela (Tabela Price)</span>
+              <span class="contrato-minuta__resumo-valor contrato-minuta__resumo-valor--destaque">
+                {{ valorParcela | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+              </span>
+            </div>
+            <div class="contrato-minuta__resumo-item">
+              <span class="contrato-minuta__resumo-label">Carência</span>
+              <span class="contrato-minuta__resumo-valor">{{ carenciaMeses }} meses</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (erro()) {
+        <div class="contrato-minuta__erro" role="alert">
+          <span class="material-icons">error_outline</span>
+          <span>{{ erro() }}</span>
+        </div>
+      }
+
+      <div class="contrato-minuta__acoes">
+        <button class="btn btn--secundario" type="button" (click)="voltar.emit()">
+          <span class="material-icons">arrow_back</span>Voltar
+        </button>
+        <button
+          class="btn btn--primario"
+          type="button"
+          [disabled]="contratoGerando() || !vm"
+          (click)="gerarContrato()">
+          @if (contratoGerando()) {
+            <span class="material-icons spin">autorenew</span>Gerando contrato...
+          } @else {
+            <span class="material-icons">article</span>Gerar CCB GIROCAIXA Fácil
+          }
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- ════════════════════════════════════════════════════════════
+       ESTADO 2 — CONTRATO GERADO: preview da CCB
+       ════════════════════════════════════════════════════════════ -->
+  @if (contratoGerado(); as contrato) {
+
+    <!-- ─── DOCUMENTO CCB (imprimível) ─── -->
+    <div class="ccb" id="ccb-para-impressao">
+
+      <!-- CABEÇALHO -->
+      <div class="ccb__cabecalho">
+        <div class="ccb__cabecalho-logo">
+          <img src="assets/logo-caixa.png" alt="CAIXA Econômica Federal" height="48"
+               onerror="this.style.display='none'" />
+          <span class="ccb__cabecalho-banco">CAIXA ECONÔMICA FEDERAL</span>
+        </div>
+        <div class="ccb__cabecalho-titulo">
+          <h1>CÉDULA DE CRÉDITO BANCÁRIO</h1>
+          <p>GIROCAIXA Fácil — Modelo MO33190047 v047</p>
+        </div>
+        <div class="ccb__sigilo">
+          <span class="ccb__sigilo-badge">#PÚBLICO</span>
+        </div>
+      </div>
+
+      <!-- BLOCO DE IDENTIFICAÇÃO -->
+      <table class="ccb__tabela-id">
+        <tbody>
+          <tr>
+            <td>
+              <span class="ccb__campo-label">Número da CCB</span>
+              <strong class="ccb__campo-valor">{{ contrato.contratoId }}</strong>
+            </td>
+            <td>
+              <span class="ccb__campo-label">Data de Emissão</span>
+              <strong class="ccb__campo-valor">{{ dataAtual | date:'dd/MM/yyyy' }}</strong>
+            </td>
+            <td>
+              <span class="ccb__campo-label">Data de Vencimento</span>
+              <strong class="ccb__campo-valor">{{ dataVencimento | date:'dd/MM/yyyy' }}</strong>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ccb__campo-label">Valor (R$)</span>
+              <strong class="ccb__campo-valor ccb__campo-valor--destaque">
+                {{ valorSolicitado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+              </strong>
+            </td>
+            <td>
+              <span class="ccb__campo-label">Município</span>
+              <strong class="ccb__campo-valor">{{ vm?.cidade || 'Brasília' }}</strong>
+            </td>
+            <td>
+              <span class="ccb__campo-label">Superintendência Regional</span>
+              <strong class="ccb__campo-valor">SR/DF</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 1. EMITENTE -->
+      <div class="ccb__secao">
+        <h3 class="ccb__secao-titulo">1. EMITENTE (DEVEDOR)</h3>
+        @if (vm) {
+          <div class="ccb__campo-grid">
+            <div class="ccb__campo">
+              <span class="ccb__campo-label">Razão Social</span>
+              <span class="ccb__campo-valor">{{ vm.razaoSocial }}</span>
+            </div>
+            <div class="ccb__campo">
+              <span class="ccb__campo-label">CNPJ</span>
+              <span class="ccb__campo-valor">{{ vm.cnpj }}</span>
+            </div>
+            @if (vm.endereco) {
+              <div class="ccb__campo ccb__campo--full">
+                <span class="ccb__campo-label">Endereço</span>
+                <span class="ccb__campo-valor">{{ vm.endereco }}</span>
+              </div>
+            }
+            <div class="ccb__campo ccb__campo--full">
+              <span class="ccb__campo-label">Representantes Legais / Sócios</span>
+              <span class="ccb__campo-valor">{{ socios }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- 2. CREDOR -->
+      <div class="ccb__secao">
+        <h3 class="ccb__secao-titulo">2. CREDOR</h3>
+        <div class="ccb__campo-grid">
+          <div class="ccb__campo">
+            <span class="ccb__campo-label">Razão Social</span>
+            <span class="ccb__campo-valor">CAIXA ECONÔMICA FEDERAL</span>
+          </div>
+          <div class="ccb__campo">
+            <span class="ccb__campo-label">CNPJ</span>
+            <span class="ccb__campo-valor">00.360.305/0001-04</span>
+          </div>
+          <div class="ccb__campo ccb__campo--full">
+            <span class="ccb__campo-label">Sede</span>
+            <span class="ccb__campo-valor">SBS Quadra 4, Lotes 3 e 4 — Brasília/DF — CEP 70092-900</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CONDIÇÕES FINANCEIRAS -->
+      <div class="ccb__secao">
+        <h3 class="ccb__secao-titulo">3. CONDIÇÕES FINANCEIRAS</h3>
+        <table class="ccb__tabela-financeira">
+          <thead>
+            <tr>
+              <th>Linha de Crédito</th>
+              <th>Valor</th>
+              <th>Prazo</th>
+              <th>Taxa Mensal</th>
+              <th>Carência</th>
+              <th>Parcela (Price)</th>
+              <th>Total a Pagar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ linhaCredito }}</td>
+              <td>{{ valorSolicitado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ prazoMeses }} meses</td>
+              <td>{{ taxaMensal }}% a.m.</td>
+              <td>{{ carenciaMeses }} meses</td>
+              <td>{{ valorParcela | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ valorTotal | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4. CLÁUSULAS E CONDIÇÕES GERAIS -->
+      <div class="ccb__secao ccb__secao--clausulas">
+        <h3 class="ccb__secao-titulo">4. CLÁUSULAS E CONDIÇÕES GERAIS</h3>
+
+        <p class="ccb__clausula">
+          <strong>4.1 OBJETO:</strong> A presente Cédula de Crédito Bancário tem por objeto
+          a concessão de crédito ao Emitente, no valor e nas condições especificadas na
+          Seção 3, destinados ao capital de giro da empresa, nos termos da linha {{ linhaCredito }}.
+        </p>
+
+        <p class="ccb__clausula">
+          <strong>4.2 PAGAMENTO:</strong> O valor total da operação será amortizado em
+          {{ prazoMeses }} parcelas mensais e consecutivas, calculadas com base na Tabela Price,
+          sendo a primeira parcela com vencimento {{ carenciaMeses + 1 }} meses a contar desta data.
+        </p>
+
+        <p class="ccb__clausula">
+          <strong>4.3 ENCARGOS MORATÓRIOS:</strong> O atraso no pagamento implicará multa de 2%
+          sobre o valor em atraso, acrescida de juros de mora de 1% ao mês, sem prejuízo
+          dos encargos contratuais.
+        </p>
+
+        <p class="ccb__clausula">
+          <strong>4.4 GARANTIAS:</strong> As garantias pactuadas foram analisadas e aprovadas
+          no processo de concessão de crédito, conforme documentação constante do dossiê
+          da operação.
+        </p>
+
+        <p class="ccb__clausula">
+          <strong>4.5 OBRIGAÇÕES DO EMITENTE:</strong> O Emitente compromete-se a manter
+          sua situação cadastral em dia, comunicar imediatamente qualquer alteração societária
+          relevante e cumprir integralmente as condições pactuadas nesta CCB.
+        </p>
+      </div>
+
+      <!-- HASH E AUTENTICIDADE -->
+      <div class="ccb__secao ccb__secao--hash">
+        <div class="ccb__hash-linha">
+          <span class="ccb__hash-label">Hash do Documento:</span>
+          <code class="ccb__hash-valor">{{ contrato.hashDocumento }}</code>
+        </div>
+        <div class="ccb__hash-linha">
+          <span class="ccb__hash-label">Gerado em:</span>
+          <span class="ccb__hash-valor">{{ contrato.dataGeracao | date:"dd/MM/yyyy 'às' HH:mm:ss" }}</span>
+        </div>
+        <p class="ccb__aviso-simulacao">
+          ATENÇÃO: Este documento é uma minuta gerada para fins de simulação do hackathon
+          e não possui valor jurídico. O contrato definitivo deverá ser emitido e assinado
+          conforme os procedimentos oficiais da CAIXA Econômica Federal.
+        </p>
+      </div>
+
+      <!-- ASSINATURAS -->
+      <div class="ccb__assinaturas">
+        <div class="ccb__assinatura-bloco">
+          <div class="ccb__assinatura-linha"></div>
+          <p>{{ vm?.razaoSocial }}</p>
+          <p>CNPJ: {{ vm?.cnpj }}</p>
+          <p class="ccb__assinatura-cargo">Emitente (Devedor)</p>
+        </div>
+        <div class="ccb__assinatura-bloco">
+          <div class="ccb__assinatura-linha"></div>
+          <p>CAIXA ECONÔMICA FEDERAL</p>
+          <p>CNPJ: 00.360.305/0001-04</p>
+          <p class="ccb__assinatura-cargo">Credor</p>
+        </div>
+        <div class="ccb__assinatura-bloco">
+          <div class="ccb__assinatura-linha"></div>
+          <p>Testemunha 1</p>
+          <p>CPF: _________________</p>
+          <p class="ccb__assinatura-cargo">Testemunha</p>
+        </div>
+        <div class="ccb__assinatura-bloco">
+          <div class="ccb__assinatura-linha"></div>
+          <p>Testemunha 2</p>
+          <p>CPF: _________________</p>
+          <p class="ccb__assinatura-cargo">Testemunha</p>
+        </div>
+      </div>
+
+    </div><!-- /ccb -->
+
+    <!-- BOTÕES DE AÇÃO (sem impressão) -->
+    <div class="contrato-minuta__acoes no-print">
+      <button class="btn btn--secundario" type="button" (click)="voltar.emit()">
+        <span class="material-icons">arrow_back</span>Voltar
+      </button>
+      <button class="btn btn--neutro" type="button" (click)="imprimirContrato()">
+        <span class="material-icons">print</span>Baixar / Imprimir
+      </button>
+      <button class="btn btn--assinatura" type="button" (click)="iniciarAssinaturaDigital()">
+        <span class="material-icons">draw</span>Assinatura Digital
+      </button>
+    </div>
+
+  }<!-- /contratoGerado -->
+
+  <!-- ════════════════════════════════════════════════════════════
+       OVERLAY — Assinatura Digital
+       ════════════════════════════════════════════════════════════ -->
+  @if (assinaturaModalAberta()) {
+    <div class="assinatura-overlay" role="dialog" aria-modal="true" aria-label="Assinatura digital">
+      <div class="assinatura-card"
+           [class.assinatura-card--assinado]="assinaturaStatus() === 'assinado'">
+
+        @if (assinaturaStatus() === 'aguardando') {
+          <span class="material-icons assinatura-card__icone spin">autorenew</span>
+          <h3 class="assinatura-card__titulo">Aguardando assinatura digital.</h3>
+          <p class="assinatura-card__texto">
+            Por favor, aguarde enquanto a assinatura é processada...
+          </p>
+          <div class="assinatura-card__barra">
+            <div class="assinatura-card__barra-progresso"></div>
+          </div>
+        }
+
+        @if (assinaturaStatus() === 'assinado') {
+          <span class="material-icons assinatura-card__icone">verified</span>
+          <h3 class="assinatura-card__titulo">Contrato assinado.</h3>
+          <p class="assinatura-card__texto">
+            A assinatura digital foi concluída com sucesso.
+          </p>
+          @if (contratoGerado(); as contrato) {
+            <dl class="assinatura-card__detalhes">
+              <dt>Número CCB</dt>
+              <dd>{{ contrato.contratoId }}</dd>
+              <dt>Hash</dt>
+              <dd class="assinatura-card__hash">{{ contrato.hashDocumento }}</dd>
+              <dt>Assinado em</dt>
+              <dd>{{ dataAtual | date:"dd/MM/yyyy 'às' HH:mm" }}</dd>
+            </dl>
+          }
+          <button class="btn btn--primario" type="button" (click)="fecharAssinatura()">
+            <span class="material-icons">check_circle</span>Concluir
+          </button>
+        }
+
+      </div>
+    </div>
+  }
+
+</div>

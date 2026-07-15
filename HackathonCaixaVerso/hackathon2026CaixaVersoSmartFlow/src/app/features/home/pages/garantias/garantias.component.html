@@ -1,0 +1,247 @@
+﻿<section class="garantias-page">
+
+  <!-- ══ CABEÇALHO ══════════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <h1 class="page-titulo">Garantias da Operação</h1>
+    <div class="operacao-info">
+      <div class="operacao-info-item">
+        <span class="operacao-info-label">Valor Solicitado</span>
+        <strong class="operacao-info-valor">
+          {{ valorContratado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+        </strong>
+      </div>
+      <div class="operacao-info-divisor" aria-hidden="true"></div>
+      <div class="operacao-info-item">
+        <span class="operacao-info-label">Linha de Crédito</span>
+        <strong class="operacao-info-valor">{{ linhaCredito }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ FORMULÁRIO — ADICIONAR GARANTIA ═══════════════════════════════════ -->
+  <section class="adicionar-card" aria-labelledby="titulo-adicionar">
+    <h2 class="adicionar-titulo" id="titulo-adicionar">Adicionar Garantia</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onAdicionar()" novalidate>
+
+      <div class="form-grid">
+
+        <!-- Tipo de Garantia -->
+        <div class="form-field">
+          <label class="form-label" for="tipoGarantia">Tipo de Garantia</label>
+          <select
+            id="tipoGarantia"
+            class="form-select"
+            formControlName="tipoGarantia"
+            [class.form-select--error]="tipoGarantia.invalid && tipoGarantia.touched"
+            aria-describedby="erro-tipo">
+            <option value="" disabled>Selecione o tipo...</option>
+            @for (tipo of tiposGarantia; track tipo.valor) {
+              <option [value]="tipo.valor">{{ tipo.label }}</option>
+            }
+          </select>
+          @if (tipoGarantia.invalid && tipoGarantia.touched) {
+            <span id="erro-tipo" class="form-error" role="alert">
+              Tipo de Garantia é obrigatório.
+            </span>
+          }
+        </div>
+
+        <!-- Valor da Garantia -->
+        <div class="form-field">
+          <label class="form-label" for="valorGarantia">Valor da Garantia</label>
+          <div class="input-prefix-wrapper"
+               [class.input-wrapper--error]="valorGarantia.invalid && valorGarantia.touched">
+            <span class="input-prefix">R$</span>
+            <input
+              id="valorGarantia"
+              class="form-input"
+              type="text"
+              #inputGarantia
+              inputmode="numeric"
+              [placeholder]="valorMinimoGarantiaTexto"
+              (input)="aoDigitarValorGarantia($event)"
+              (blur)="aoSairValorGarantia()"
+              aria-describedby="erro-valor-garantia hint-valor-garantia"
+            />
+          </div>
+          <small id="hint-valor-garantia" class="form-input-hint">
+            mín. {{ valorMinimoGarantia | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — 12,5% do valor contratado
+          </small>
+          @if (valorGarantia.invalid && valorGarantia.touched) {
+            <span id="erro-valor-garantia" class="form-error" role="alert">
+              @if (valorGarantia.hasError('required')) {
+                Valor da Garantia é obrigatório.
+              } @else if (valorGarantia.hasError('valorMinimo') || valorGarantia.hasError('min')) {
+                O valor mínimo é {{ valorMinimoGarantia | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} (12,5% do valor contratado).
+              }
+            </span>
+          }
+        </div>
+
+      </div>
+
+      <!-- ── BANDEIRAS (exibido ao selecionar Faturamento de Cartão) ──────── -->
+      @if (isFaturamentoCartao) {
+        <div class="bandeiras-section">
+          <p class="bandeiras-titulo">Composição por bandeira</p>
+          <p class="bandeiras-instrucao">
+            Marque as bandeiras que compõem a garantia e informe o percentual de cada uma.
+            O total das bandeiras selecionadas deve ser <strong>100%</strong>.
+          </p>
+
+          <div class="bandeiras-lista">
+            @for (b of bandeiras(); track b.id) {
+              <div class="bandeira-row" [class.bandeira-row--ativa]="b.selecionada">
+
+                <label class="bandeira-check-label">
+                  <input
+                    type="checkbox"
+                    class="bandeira-checkbox"
+                    [checked]="b.selecionada"
+                    (change)="toggleBandeira(b.id)"
+                  />
+                  <span class="bandeira-nome">{{ b.nome }}</span>
+                </label>
+
+                <div class="bandeira-percentual-wrapper" [class.bandeira-percentual-wrapper--hidden]="!b.selecionada">
+                  <input
+                    type="number"
+                    class="input-percentual"
+                    [class.input-percentual--error]="!!erroBandeiras() && b.selecionada"
+                    [value]="b.percentual ?? ''"
+                    (input)="atualizarPercentual(b.id, $event)"
+                    [attr.disabled]="b.selecionada ? null : true"
+                    min="0"
+                    max="100"
+                    placeholder="0"
+                    [attr.aria-label]="'Percentual ' + b.nome"
+                  />
+                  <span class="percentual-simbolo">%</span>
+                </div>
+
+              </div>
+            }
+          </div>
+
+          <!-- Total dos percentuais -->
+          <div class="bandeiras-total-row">
+            <span class="bandeiras-total-label">Total selecionado:</span>
+            <span class="bandeiras-total-valor"
+                  [class.bandeiras-total--ok]="totalPercentualBandeiras() === 100"
+                  [class.bandeiras-total--parcial]="totalPercentualBandeiras() > 0 && totalPercentualBandeiras() < 100"
+                  [class.bandeiras-total--excesso]="totalPercentualBandeiras() > 100">
+              {{ totalPercentualBandeiras() | number:'1.0-0':'pt-BR' }}%
+              @if (totalPercentualBandeiras() === 100) {
+                <span class="material-icons total-check" aria-hidden="true">check_circle</span>
+              }
+            </span>
+          </div>
+
+          @if (erroBandeiras()) {
+            <span class="form-error bandeiras-erro" role="alert">{{ erroBandeiras() }}</span>
+          }
+        </div>
+      }
+
+      <div class="form-acoes">
+        <button type="submit" class="btn-adicionar">
+          <span class="material-icons" aria-hidden="true">add_circle_outline</span>
+          Adicionar Garantia
+        </button>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- ══ LISTA DE GARANTIAS ADICIONADAS ════════════════════════════════════ -->
+  @if (garantiasAdicionadas().length > 0) {
+    <section class="garantias-lista-card" aria-labelledby="titulo-lista">
+      <h2 class="lista-titulo" id="titulo-lista">
+        Garantias Adicionadas
+        <span class="lista-badge">{{ garantiasAdicionadas().length }}</span>
+      </h2>
+
+      <div class="table-wrapper">
+        <table class="garantias-table" aria-label="Lista de garantias adicionadas">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tipo de Garantia</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Bandeiras</th>
+              <th scope="col" class="col-acao">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (g of garantiasAdicionadas(); track g.tipo + $index; let i = $index) {
+              <tr>
+                <td class="col-num">{{ i + 1 }}</td>
+                <td>{{ g.tipoLabel }}</td>
+                <td class="col-valor">{{ g.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+                <td class="col-desc">{{ g.descricao }}</td>
+                <td class="col-acao">
+                  <button
+                    type="button"
+                    class="btn-remover"
+                    (click)="onRemoverGarantia(i)"
+                    [attr.aria-label]="'Remover garantia ' + (i + 1)">
+                    <span class="material-icons" aria-hidden="true">delete_outline</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+
+  <!-- ══ RESUMO DE COBERTURA ═══════════════════════════════════════════════ -->
+  <div class="cobertura-resumo">
+
+    <div class="cobertura-item">
+      <span class="cobertura-label">Valor total solicitado</span>
+      <strong class="cobertura-valor">
+        {{ valorContratado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+      </strong>
+    </div>
+
+    <div class="cobertura-divisor" aria-hidden="true"></div>
+
+    <div class="cobertura-item">
+      <span class="cobertura-label">Total em garantias</span>
+      <strong class="cobertura-valor">
+        {{ totalEmGarantias() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+      </strong>
+    </div>
+
+    <div class="cobertura-divisor" aria-hidden="true"></div>
+
+    <div class="cobertura-item cobertura-item--cobertura">
+      <span class="cobertura-label">% de cobertura</span>
+      <div class="cobertura-valor-wrapper">
+        <strong class="cobertura-valor"
+                [class.cobertura-valor--ok]="percentualCobertura() >= 12.5"
+                [class.cobertura-valor--nok]="percentualCobertura() > 0 && percentualCobertura() < 12.5">
+          {{ percentualCobertura() | number:'1.1-1':'pt-BR' }}%
+        </strong>
+        @if (percentualCobertura() >= 12.5) {
+          <span class="cobertura-badge cobertura-badge--ok">
+            <span class="material-icons" aria-hidden="true">check_circle</span>
+            mín. 12,5% atingido
+          </span>
+        } @else {
+          <span class="cobertura-badge cobertura-badge--pendente">mín. 12,5%</span>
+        }
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ RODAPÉ DE AÇÕES ═════════════════════════════════════════════════════ -->
+  <footer class="acoes-footer">
+    <button type="button" class="btn-secundario" (click)="onVoltar()">Voltar</button>
+  </footer>
+
+</section>

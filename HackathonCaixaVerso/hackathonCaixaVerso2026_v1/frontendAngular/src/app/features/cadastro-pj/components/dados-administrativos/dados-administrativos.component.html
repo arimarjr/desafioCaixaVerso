@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="submeter()" class="dados-administrativos">
+  <h3>Dados Administrativos para Avaliação de Crédito</h3>
+
+  <div class="campo">
+    <label for="dataReferencia">Data de Referência *</label>
+    <input id="dataReferencia" type="date" formControlName="dataReferencia" />
+  </div>
+
+  <div class="campo">
+    <label for="documentoFaturamento">Documento de Faturamento *</label>
+    <select id="documentoFaturamento" formControlName="documentoFaturamento">
+      <option value="1">1 – Balanço Patrimonial</option>
+      <option value="2">2 – Declaração de IR</option>
+      <option value="3">3 – Extrato Bancário</option>
+    </select>
+  </div>
+
+  <div class="campo">
+    <label for="dataUltimaAtualizacaoContratual">Data da Última Atualização Contratual *</label>
+    <input id="dataUltimaAtualizacaoContratual" type="date" formControlName="dataUltimaAtualizacaoContratual" />
+  </div>
+
+  <div class="campo">
+    <label for="pvResponsavel">PV Responsável *</label>
+    <input id="pvResponsavel" type="text" formControlName="pvResponsavel" placeholder="Código PV" />
+  </div>
+
+  <fieldset class="campo-grupo">
+    <legend>Alterações Societárias/Contratuais</legend>
+
+    <div class="radio-row">
+      <span class="radio-row-label">Alterou sócios com participação &gt; 50%</span>
+      <div class="radio-opcoes">
+        <label><input type="radio" formControlName="alterouSociosMaior50" [value]="false" /> Não</label>
+        <label><input type="radio" formControlName="alterouSociosMaior50" [value]="true"  /> Sim</label>
+      </div>
+    </div>
+
+    <div class="radio-row">
+      <span class="radio-row-label">Excluiu administradores anteriores</span>
+      <div class="radio-opcoes">
+        <label><input type="radio" formControlName="excluiuAdministradoresAnteriores" [value]="false" /> Não</label>
+        <label><input type="radio" formControlName="excluiuAdministradoresAnteriores" [value]="true"  /> Sim</label>
+      </div>
+    </div>
+
+    <div class="radio-row">
+      <span class="radio-row-label">Alterou objeto social</span>
+      <div class="radio-opcoes">
+        <label><input type="radio" formControlName="alterouObjetoSocial" [value]="false" /> Não</label>
+        <label><input type="radio" formControlName="alterouObjetoSocial" [value]="true"  /> Sim</label>
+      </div>
+    </div>
+
+    <div class="radio-row">
+      <span class="radio-row-label">Alterou CNAE principal</span>
+      <div class="radio-opcoes">
+        <label><input type="radio" formControlName="alterouCnaePrincipal" [value]="false" /> Não</label>
+        <label><input type="radio" formControlName="alterouCnaePrincipal" [value]="true"  /> Sim</label>
+      </div>
+    </div>
+
+    <div class="radio-row">
+      <span class="radio-row-label">Alterou município</span>
+      <div class="radio-opcoes">
+        <label><input type="radio" formControlName="alterouMunicipio" [value]="false" /> Não</label>
+        <label><input type="radio" formControlName="alterouMunicipio" [value]="true"  /> Sim</label>
+      </div>
+    </div>
+
+    <div class="radio-row">
+      <span class="radio-row-label">Deixou de ser Sociedade Simples</span>
+      <div class="radio-opcoes">
+        <label><input type="radio" formControlName="deixouSerSociedadeSimples" [value]="false" /> Não</label>
+        <label><input type="radio" formControlName="deixouSerSociedadeSimples" [value]="true"  /> Sim</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="acoes">
+    <button mat-raised-button color="primary" type="submit">
+      <span class="material-icons">play_arrow</span>
+      Iniciar Avaliação
+    </button>
+  </div>
+</form>

@@ -1,0 +1,21 @@
+<form [formGroup]="formGroup" (ngSubmit)="buscar()" class="form-cnpj-busca">
+  <div class="cnpj-input-row">
+    <div class="cnpj-field">
+      <dsc-input
+        formControlName="cnpj"
+        mask="00.000.000/0000-00"
+        [label]="'CNPJ'"
+        [placeholder]="'00.000.000/0000-00'"
+        [errorMessage]="getErrorMessage()">
+      </dsc-input>
+    </div>
+    <div class="cnpj-btn">
+      <dsc-button
+        label="Buscar Empresa"
+        iconPrefix="search"
+        type="submit"
+        (click)="buscar()">
+      </dsc-button>
+    </div>
+  </div>
+</form>

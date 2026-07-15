@@ -1,0 +1,11 @@
+.form-cnpj-busca { width: 100%; }
+
+.cnpj-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cnpj-field { flex: 1; min-width: 220px; }
+.cnpj-btn { flex-shrink: 0; padding-bottom: 0; }

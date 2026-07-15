@@ -1,0 +1,513 @@
+<div class="home-page">
+
+  <!-- ── HERO: busca por CNPJ ── -->
+  <section class="hero-busca">
+    <div class="hero-conteudo">
+      <h2 class="hero-titulo">Smart Flow PJ</h2>
+      <p class="hero-subtitulo">Informe o CNPJ para consultar os dados do cliente.</p>
+      <div class="busca-wrapper">
+        <app-input-cnpj (pesquisar)="aoReceberCnpj($event)" />
+      </div>
+      @if (erroNaoEncontrado()) {
+        <p class="hero-erro">CNPJ não encontrado na base de dados.</p>
+      }
+      @if (carregando()) {
+        <p class="hero-carregando">
+          <span class="material-icons spin">cached</span>
+          Realizando avaliação de crédito...
+        </p>
+      }
+    </div>
+  </section>
+
+  <!-- ── DASHBOARD: exibido após busca ── -->
+  @if (empresaVm(); as vm) {
+
+    <!-- STEPPER -->
+    <div class="stepper-wrapper">
+      <div class="stepper">
+        @for (etapa of etapas; track etapa; let i = $index) {
+          <div class="step"
+            [class.step--ativo]="i === stepAtivo()"
+            [class.step--concluido]="i < stepAtivo()"
+            [class.step--clicavel]="i < stepAtivo()"
+            (click)="irParaEtapa(i)">
+            <div class="step-circulo">{{ i + 1 }}</div>
+            <span class="step-label">{{ etapa }}</span>
+          </div>
+          @if (i < etapas.length - 1) {
+            <div class="step-linha" [class.step-linha--concluida]="i < stepAtivo()"></div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="dashboard">
+
+      <!-- ════════════════════════════════════
+           STEP 0 — Resumo da Avaliação
+           ════════════════════════════════════ -->
+      @if (stepAtivo() === 0) {
+
+      <!-- BLOCO 1 — Dados da Empresa + Financeiro -->
+      <div class="bloco grid-2">
+
+        <app-cards titulo="Dados da Empresa" icone="business">
+          <dl class="campos">
+            <div class="campo">
+              <dt class="campo-label">Razão Social</dt>
+              <dd class="campo-valor">{{ vm.razaoSocial }}</dd>
+            </div>
+            <div class="campo">
+              <dt class="campo-label">Nome Fantasia</dt>
+              <dd class="campo-valor">{{ vm.nomeFantasia }}</dd>
+            </div>
+            <div class="campo">
+              <dt class="campo-label">CNPJ</dt>
+              <dd class="campo-valor">{{ vm.cnpj }}</dd>
+            </div>
+          </dl>
+        </app-cards>
+
+        <app-cards titulo="Informações Financeiras" icone="trending_up">
+          <dl class="campos">
+            <div class="campo">
+              <dt class="campo-label">Faturamento Anual</dt>
+              <dd class="campo-valor campo-valor--verde campo-valor--grande">{{ vm.faturamentoAnual }}</dd>
+            </div>
+            <div class="campo">
+              <dt class="campo-label">Segmento</dt>
+              <dd class="campo-valor">{{ vm.segmento }}</dd>
+            </div>
+          </dl>
+        </app-cards>
+
+      </div>
+
+      <!-- ════════════════════════════════════
+           BLOCO 2 — Rating de Risco e Limite Global
+           ════════════════════════════════════ -->
+      <div class="bloco">
+        <app-cards titulo="Rating de Risco e Limite Global" icone="shield">
+          <div class="rating-limite">
+
+            <!-- Lado esquerdo: Rating -->
+            <div class="rating-lado">
+              <div class="rating-badge" [class.rating-badge--ok]="vm.ratingAprovado" [class.rating-badge--nok]="!vm.ratingAprovado">
+                {{ vm.ratingBadge }}
+              </div>
+              <p class="rating-subtitulo">Classificação de Risco</p>
+              <p class="rating-status" [class.rating-status--ok]="vm.ratingAprovado" [class.rating-status--nok]="!vm.ratingAprovado">
+                {{ vm.ratingTexto }}
+              </p>
+              <dl class="campos campos--compacto">
+                <div class="campo">
+                  <dt class="campo-label">Data de Avaliação</dt>
+                  <dd class="campo-valor">{{ vm.dataAvaliacao }}</dd>
+                </div>
+                <div class="campo">
+                  <dt class="campo-label">Válido até</dt>
+                  <dd class="campo-valor">{{ vm.validoAte }}</dd>
+                </div>
+              </dl>
+            </div>
+
+            <!-- Divisor vertical azul -->
+            <div class="divisor-v"></div>
+
+            <!-- Lado direito: Limite -->
+            <div class="limite-lado">
+              <p class="limite-titulo">Limite Global Aprovado</p>
+              <p class="limite-valor">{{ vm.limiteGlobalStr }}</p>
+
+              <div class="limite-sub">
+                <div class="limite-sub-item">
+                  <span class="campo-label">Utilizado</span>
+                  <span class="limite-sub-valor limite-sub-valor--vermelho">{{ vm.limiteUtilizadoStr }}</span>
+                </div>
+                <div class="limite-sub-item">
+                  <span class="campo-label">Disponível</span>
+                  <span class="limite-sub-valor limite-sub-valor--verde">{{ vm.limiteDisponivelStr }}</span>
+                </div>
+              </div>
+
+              <div class="progress-area">
+                <div class="progress-label">Utilização do Limite: {{ vm.percentualUtilizado }}%</div>
+                <div class="progress-trilha">
+                  <div class="progress-barra" [style.width.%]="vm.percentualUtilizado"></div>
+                </div>
+              </div>
+
+              <div class="limite-rodape">
+                💡 Limite disponível para novas contratações de crédito.
+              </div>
+            </div>
+
+          </div>
+        </app-cards>
+      </div>
+
+      <!-- ════════════════════════════════════
+           BLOCO 3 — Relacionamento / Engajamento / Produtos
+           ════════════════════════════════════ -->
+      <div class="bloco grid-3">
+
+        <app-cards titulo="Relacionamento com a CAIXA" icone="handshake">
+          <dl class="campos">
+            <div class="campo">
+              <dt class="campo-label">Tempo de Relacionamento</dt>
+              <dd class="campo-valor campo-valor--grande">{{ vm.tempoRelacionamento }}</dd>
+            </div>
+            <div class="campo">
+              <dt class="campo-label">Cliente desde</dt>
+              <dd class="campo-valor">{{ vm.clienteDesde }}</dd>
+            </div>
+          </dl>
+        </app-cards>
+
+        <app-cards titulo="Índice de Engajamento PJ" icone="star">
+          <div class="nepj-badge">{{ vm.nepj }}</div>
+          <dl class="campos campos--compacto">
+            <div class="campo">
+              <dt class="campo-label">Classificação</dt>
+              <dd class="campo-valor campo-valor--grande">{{ vm.nepjClassificacao }}</dd>
+            </div>
+            <div class="campo">
+              <dt class="campo-label">Descrição</dt>
+              <dd class="campo-valor">{{ vm.nepjDescricao }}</dd>
+            </div>
+          </dl>
+        </app-cards>
+
+        <app-cards titulo="Produtos Ativos" icone="inventory">
+          <ul class="produtos">
+            <li class="produtos-item">
+              <span class="material-icons check-icon">check_circle</span>
+              <span>Conta Corrente PJ - 0023-5</span>
+            </li>
+            <li class="produtos-item">
+              <span class="material-icons check-icon">check_circle</span>
+              <div>
+                <div>Cartão Empresarial (**** 5678)</div>
+                <small class="campo-label">Limite: R$ 50.000,00</small>
+              </div>
+            </li>
+            <li class="produtos-item">
+              <span class="material-icons check-icon">check_circle</span>
+              <span>Boleto Eletrônico</span>
+            </li>
+          </ul>
+        </app-cards>
+
+      </div>
+
+      <!-- ════════════════════════════════════
+           BLOCO 4 — Ofertas Recomendadas
+           ════════════════════════════════════ -->
+      <div class="bloco bloco--ofertas-destaque">
+        <div class="ofertas-header">
+          <h3 class="bloco-titulo">Ofertas Recomendadas para seu cliente!</h3>
+          <p class="bloco-subtitulo">Com base na avaliação de crédito (Score {{ vm.scoreInterno }} · Risco {{ vm.classificacaoRisco }})</p>
+        </div>
+
+        <!-- ── Aguardando resposta da IA ── -->
+        @if (carregandoIa()) {
+          <div class="ia-card">
+            <div class="ia-card-cabecalho">
+              <div class="ia-card-cabecalho-left">
+                <span class="ia-icone-circulo">
+                  <span class="material-icons spin">smart_toy</span>
+                </span>
+                <div>
+                  <p class="ia-card-titulo">Recomendações da IA Caixa</p>
+                  <p class="ia-card-subtitulo">Consultando normativos e gerando recomendações personalizadas...</p>
+                </div>
+              </div>
+              <span class="ia-badge ia-badge--processando">PROCESSANDO</span>
+            </div>
+            <div class="ia-card-corpo ia-card-corpo--skeleton">
+              <div class="ia-skeleton"></div>
+              <div class="ia-skeleton ia-skeleton--med"></div>
+              <div class="ia-skeleton ia-skeleton--curta"></div>
+              <div class="ia-skeleton" style="margin-top:.5rem"></div>
+              <div class="ia-skeleton ia-skeleton--med"></div>
+              <div class="ia-skeleton ia-skeleton--curta"></div>
+              <div class="ia-skeleton" style="margin-top:.5rem"></div>
+              <div class="ia-skeleton ia-skeleton--med"></div>
+            </div>
+          </div>
+        }
+
+        <!-- ── Resposta da IA disponível ── -->
+        @if (!carregandoIa() && recomendacaoIa()) {
+          <div class="ia-card">
+            <div class="ia-card-cabecalho">
+              <div class="ia-card-cabecalho-left">
+                <span class="ia-icone-circulo">
+                  <span class="material-icons">smart_toy</span>
+                </span>
+                <div>
+                  <p class="ia-card-titulo">Recomendações da IA Caixa</p>
+                  <p class="ia-card-subtitulo">Gerado com base nos normativos internos da Caixa Econômica Federal</p>
+                </div>
+              </div>
+              <span class="ia-badge">ANÁLISE IA</span>
+            </div>
+            <div class="ia-card-corpo">
+              @if (respostaIaEstruturada(); as estr) {
+                @if (estr.produtos.length > 0) {
+
+                  @if (estr.introducao) {
+                    <p class="ia-intro">{{ estr.introducao }}</p>
+                  }
+
+                  <!-- Grade de produtos -->
+                  <div class="ia-produtos-grid">
+                    @for (p of estr.produtos; track p.numero) {
+                      <div class="ia-produto-card">
+                        <div class="ia-produto-header">
+                          <span class="ia-produto-numero">{{ p.numero }}</span>
+                          <div class="ia-produto-info">
+                            <p class="ia-produto-titulo">{{ p.titulo }}</p>
+                            @if (p.siapi) {
+                              <span class="ia-produto-siapi">{{ p.siapi }}</span>
+                            }
+                          </div>
+                        </div>
+                        <div class="ia-produto-corpo">
+                          @for (sub of p.subsecoes; track sub.titulo) {
+                            <div class="ia-subsecao">
+                              <div class="ia-subsecao-header">
+                                <span class="material-icons ia-subsecao-icone">{{ sub.icone }}</span>
+                                <span class="ia-subsecao-titulo">{{ sub.titulo }}</span>
+                              </div>
+                              <ul class="ia-lista">
+                                @for (item of sub.itens; track item) {
+                                  <li class="ia-lista-item">{{ item }}</li>
+                                }
+                              </ul>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    }
+                  </div>
+
+                  <!-- Observações -->
+                  @if (estr.observacoes.length > 0) {
+                    <div class="ia-observacoes">
+                      <div class="ia-bloco-header">
+                        <span class="material-icons">info_outline</span>
+                        <span>Observações</span>
+                      </div>
+                      <ul class="ia-lista ia-lista--obs">
+                        @for (obs of estr.observacoes; track obs) {
+                          <li class="ia-lista-item">{{ obs }}</li>
+                        }
+                      </ul>
+                    </div>
+                  }
+
+                  <!-- Referências gerais -->
+                  @if (estr.refsGerais.length > 0) {
+                    <div class="ia-refs">
+                      <div class="ia-bloco-header">
+                        <span class="material-icons">auto_stories</span>
+                        <span>Referências Normativas Utilizadas</span>
+                      </div>
+                      <div class="ia-refs-tags">
+                        @for (ref of estr.refsGerais; track ref) {
+                          <span class="ia-ref-tag">{{ ref }}</span>
+                        }
+                      </div>
+                    </div>
+                  }
+
+                } @else {
+                  <!-- Fallback: texto bruto quando o parser não encontrou produtos -->
+                  <pre class="ia-resposta">{{ recomendacaoIa() }}</pre>
+                }
+              }
+            </div>
+            <div class="ia-card-rodape">
+              <span class="material-icons">verified</span>
+              <span>Análise gerada automaticamente por Inteligência Artificial com base em normativos oficiais da Caixa Econômica Federal</span>
+            </div>
+          </div>
+        }
+
+        <!-- ── Fallback: ofertas calculadas (quando IA indisponível) ── -->
+        @if (!carregandoIa() && !recomendacaoIa()) {
+          <div class="grid-2">
+
+            <app-cards titulo="Capital de Giro" icone="payments">
+              @if (vm.ofertaCapitalGiro.preAprovado) {
+                <div class="oferta-selo">PRÉ-APROVADO</div>
+              }
+              <dl class="campos">
+                <div class="campo">
+                  <dt class="campo-label">Até</dt>
+                  <dd class="campo-valor campo-valor--verde campo-valor--grande">{{ vm.ofertaCapitalGiro.valorStr }}</dd>
+                </div>
+                <div class="campo">
+                  <dt class="campo-label">Taxa</dt>
+                  <dd class="campo-valor">{{ vm.ofertaCapitalGiro.taxa }}</dd>
+                </div>
+                <div class="campo">
+                  <dt class="campo-label">Prazo</dt>
+                  <dd class="campo-valor">{{ vm.ofertaCapitalGiro.prazo }}</dd>
+                </div>
+              </dl>
+              <p class="oferta-obs">Baseado no faturamento e histórico de crédito</p>
+            </app-cards>
+
+            <app-cards titulo="Antecipação de Recebíveis" icone="schedule_send">
+              @if (vm.ofertaAntecipaRecebiveis.preAprovado) {
+                <div class="oferta-selo">PRÉ-APROVADO</div>
+              }
+              <dl class="campos">
+                <div class="campo">
+                  <dt class="campo-label">Até</dt>
+                  <dd class="campo-valor campo-valor--verde campo-valor--grande">{{ vm.ofertaAntecipaRecebiveis.valorStr }}</dd>
+                </div>
+                <div class="campo">
+                  <dt class="campo-label">Taxa</dt>
+                  <dd class="campo-valor">{{ vm.ofertaAntecipaRecebiveis.taxa }}</dd>
+                </div>
+                <div class="campo">
+                  <dt class="campo-label">Prazo</dt>
+                  <dd class="campo-valor">{{ vm.ofertaAntecipaRecebiveis.prazo }}</dd>
+                </div>
+              </dl>
+              <p class="oferta-obs">Ideal para capital de giro de curto prazo</p>
+            </app-cards>
+
+          </div>
+        }
+      </div>
+
+      <!-- ════════════════════════════════════
+           BLOCO 5 — Restrições + Sócios
+           ════════════════════════════════════ -->
+      <div class="bloco grid-2">
+
+        <app-cards titulo="Situação do CNPJ" icone="verified_user">
+          @if (!vm.possuiRestricao) {
+            <div class="status-faixa status-faixa--ok">
+              <span class="material-icons">check_circle</span>
+              Sem restrições no CNPJ
+            </div>
+          } @else {
+            <div class="status-faixa status-faixa--nok">
+              <span class="material-icons">cancel</span>
+              CNPJ com restrições cadastrais
+            </div>
+          }
+        </app-cards>
+
+        <app-cards titulo="Sócios da Empresa" icone="group">
+          <ul class="socios">
+            @for (socio of vm.socios; track socio.cpf) {
+              <li class="socio-item">
+                <div class="socio-nome">{{ socio.nome }}</div>
+                <div class="campo-label">CPF: {{ socio.cpf }}</div>
+                <span class="socio-status" [class.socio-status--ok]="socio.status === 'Sem restrições'" [class.socio-status--nok]="socio.status !== 'Sem restrições'">
+                  {{ socio.status }}
+                </span>
+              </li>
+            }
+          </ul>
+        </app-cards>
+
+      </div>
+
+      } @else if (stepAtivo() === 1) {
+
+      <!-- ════════════════════════════════════
+           STEP 1 — Linhas de Crédito
+           ════════════════════════════════════ -->
+      <div class="bloco">
+        <div class="ofertas-header">
+          <h3 class="bloco-titulo">Linhas de Crédito Disponíveis</h3>
+          <p class="bloco-subtitulo">Selecione a linha e simule o crédito para o cliente</p>
+        </div>
+        <app-capital-giro-simulacao (voltar)="irParaEtapa(0)" />
+      </div>
+
+      } @else if (stepAtivo() === 2) {
+
+      <!-- ════════════════════════════════════
+           STEP 2 — Pesquisas Cadastrais
+           ════════════════════════════════════ -->
+      <div class="bloco bloco--sem-padding">
+        <app-pesquisas-lista
+          [cnpj]="vm.cnpj"
+          [nomesECpfsSocios]="sociosParaPesquisa()"
+        />
+      </div>
+
+      } @else if (stepAtivo() === 3) {
+
+      <!-- ════════════════════════════════════
+           STEP 3 — Garantias
+           ════════════════════════════════════ -->
+      <div class="bloco">
+        <app-garantias [valorContratado]="100000" [linhaCredito]="'Capital de Giro'" (voltar)="irParaEtapa(1)" />
+      </div>
+
+      } @else if (stepAtivo() === 4) {
+
+      <!-- ════════════════════════════════════
+           STEP 4 — Resumo da Operação
+           ════════════════════════════════════ -->
+      <div class="bloco bloco--sem-padding">
+        <app-resumo-operacao
+          [vm]="vm"
+          [linhaCredito]="'Capital de Giro'"
+          [valorSolicitado]="100000"
+          [prazoMeses]="12"
+          [taxaMensal]="1"
+          [carenciaMeses]="6"
+          (voltar)="irParaEtapa(3)"
+          (gerarMinuta)="avancarEtapa()"
+        />
+      </div>
+
+      } @else if (stepAtivo() === 5) {
+
+      <!-- ════════════════════════════════════
+           STEP 5 — Minuta do Contrato
+           ════════════════════════════════════ -->
+      <div class="bloco bloco--sem-padding">
+        <app-contrato-minuta
+          [vm]="vm"
+          [linhaCredito]="'Capital de Giro'"
+          [valorSolicitado]="100000"
+          [prazoMeses]="12"
+          [taxaMensal]="1"
+          [carenciaMeses]="6"
+          (voltar)="irParaEtapa(4)"
+        />
+      </div>
+
+      }
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="dashboard-rodape">
+      <button class="btn-avancar" (click)="avancarEtapa()">
+        Avançar <span class="material-icons">arrow_forward</span>
+      </button>
+    </div>
+
+  } @else {
+
+    <!-- OPORTUNIDADES DA CARTEIRA -->
+    <section class="oportunidades-section">
+      <app-oportunidades-da-carteira />
+    </section>
+
+  }
+
+</div>

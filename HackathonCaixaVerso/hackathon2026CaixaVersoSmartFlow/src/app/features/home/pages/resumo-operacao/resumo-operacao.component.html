@@ -1,0 +1,201 @@
+<section class="resumo">
+
+  <!-- ── CABEÇALHO ─────────────────────────────────── -->
+  <div class="resumo__header">
+    <div class="resumo__header-esq">
+      <span class="material-icons resumo__header-icone">summarize</span>
+      <div>
+        <h2 class="resumo__titulo">Resumo da Operação</h2>
+        <p class="resumo__subtitulo">Proposta preliminar sujeita à aprovação</p>
+      </div>
+    </div>
+    <div class="resumo__data-proposta">
+      <span class="material-icons">event</span>
+      <div>
+        <span class="resumo__data-label">Data da Proposta</span>
+        <strong class="resumo__data-valor">{{ dataProposta }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BLOCO 1: DADOS DO CLIENTE ─────────────────── -->
+  <div class="resumo__card">
+    <h3 class="resumo__card-titulo">
+      <span class="material-icons">business</span>
+      Dados do Cliente
+    </h3>
+    @if (vm) {
+      <div class="resumo__grid resumo__grid--3">
+        <div class="resumo__campo">
+          <span class="resumo__label">Razão Social</span>
+          <span class="resumo__valor">{{ vm.razaoSocial }}</span>
+        </div>
+        <div class="resumo__campo">
+          <span class="resumo__label">CNPJ</span>
+          <span class="resumo__valor">{{ vm.cnpj }}</span>
+        </div>
+        <div class="resumo__campo">
+          <span class="resumo__label">Nome Fantasia</span>
+          <span class="resumo__valor">{{ vm.nomeFantasia }}</span>
+        </div>
+        <div class="resumo__campo">
+          <span class="resumo__label">Segmento</span>
+          <span class="resumo__valor">{{ vm.segmento }}</span>
+        </div>
+        <div class="resumo__campo">
+          <span class="resumo__label">Faturamento Anual</span>
+          <span class="resumo__valor resumo__valor--verde">{{ vm.faturamentoAnual }}</span>
+        </div>
+        <div class="resumo__campo">
+          <span class="resumo__label">Rating de Risco</span>
+          <span class="resumo__rating-badge"
+                [class.resumo__rating-badge--ok]="vm.ratingAprovado"
+                [class.resumo__rating-badge--nok]="!vm.ratingAprovado">
+            {{ vm.ratingBadge }} — {{ vm.ratingTexto }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- ── BLOCO 2: CONDIÇÕES DO CRÉDITO ─────────────── -->
+  <div class="resumo__card">
+    <h3 class="resumo__card-titulo">
+      <span class="material-icons">payments</span>
+      Condições do Crédito
+    </h3>
+
+    <div class="resumo__credito-strip">
+      <div class="resumo__credito-strip-item">
+        <span class="resumo__label">Linha de Crédito</span>
+        <span class="resumo__credito-nome">{{ linhaCredito }}</span>
+      </div>
+      <div class="resumo__credito-strip-item">
+        <span class="resumo__label">Valor Solicitado</span>
+        <span class="resumo__credito-valor">{{ valorSolicitado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+      </div>
+      <div class="resumo__credito-strip-item resumo__credito-strip-item--destaque">
+        <span class="resumo__label">Valor a ser Liberado</span>
+        <strong class="resumo__credito-liberado">{{ valorLiberado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+      </div>
+    </div>
+
+    <div class="resumo__grid resumo__grid--4">
+      <div class="resumo__campo">
+        <span class="resumo__label">(-) IOF (0,38% + 0,0082% a.d.)</span>
+        <span class="resumo__valor resumo__valor--deducao">-{{ iof | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+      </div>
+      <div class="resumo__campo">
+        <span class="resumo__label">(-) TAC (1,5%)</span>
+        <span class="resumo__valor resumo__valor--deducao">-{{ tac | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+      </div>
+      <div class="resumo__campo">
+        <span class="resumo__label">Prazo</span>
+        <span class="resumo__valor">{{ prazoMeses }} meses</span>
+      </div>
+      <div class="resumo__campo">
+        <span class="resumo__label">Taxa de Juros</span>
+        <span class="resumo__valor">{{ taxaMensal }}% a.m.</span>
+      </div>
+      <div class="resumo__campo">
+        <span class="resumo__label">Carência</span>
+        <span class="resumo__valor">{{ carenciaMeses }} meses</span>
+      </div>
+      <div class="resumo__campo resumo__campo--destaque">
+        <span class="resumo__label">Valor da Parcela</span>
+        <strong class="resumo__valor resumo__valor--grande resumo__valor--azul">{{ valorParcela | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+      </div>
+      <div class="resumo__campo">
+        <span class="resumo__label">Valor Total a Pagar</span>
+        <span class="resumo__valor">{{ valorTotalPago | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+      </div>
+      <div class="resumo__campo">
+        <span class="resumo__label">Total de Juros</span>
+        <span class="resumo__valor">{{ totalJuros | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BLOCO 3: GARANTIAS ─────────────────────────── -->
+  <div class="resumo__card">
+    <h3 class="resumo__card-titulo">
+      <span class="material-icons">security</span>
+      Garantias
+    </h3>
+    @if (garantias.length > 0) {
+      <table class="resumo__tabela">
+        <thead>
+          <tr>
+            <th>Tipo de Garantia</th>
+            <th class="col-valor">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (g of garantias; track $index) {
+            <tr>
+              <td>{{ g.tipoLabel }}</td>
+              <td class="col-valor">{{ g.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr class="resumo__tabela-total">
+            <td><strong>Total em Garantias</strong></td>
+            <td class="col-valor"><strong>{{ totalGarantias | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    } @else {
+      <p class="resumo__vazio">
+        <span class="material-icons">info</span>
+        Nenhuma garantia adicionada para esta operação.
+      </p>
+    }
+  </div>
+
+  <!-- ── BLOCO 4: SÓCIOS RESPONSÁVEIS ──────────────── -->
+  <div class="resumo__card">
+    <h3 class="resumo__card-titulo">
+      <span class="material-icons">group</span>
+      Sócios Responsáveis
+    </h3>
+    @if (vm?.socios?.length) {
+      <div class="resumo__socios">
+        @for (socio of vm.socios; track socio.cpf) {
+          <div class="resumo__socio">
+            <div class="resumo__socio-nome">{{ socio.nome }}</div>
+            <div class="resumo__socio-status"
+                 [class.resumo__socio-status--ok]="socio.status === 'Sem restrições'"
+                 [class.resumo__socio-status--nok]="socio.status !== 'Sem restrições'">
+              <span class="material-icons">{{ socio.status === 'Sem restrições' ? 'check_circle' : 'cancel' }}</span>
+              {{ socio.status }}
+            </div>
+            <div class="resumo__socio-cpf">CPF: {{ socio.cpf }}</div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- ── AVISO LEGAL ─────────────────────────────────── -->
+  <div class="resumo__aviso">
+    <span class="material-icons resumo__aviso-icone">info</span>
+    <p class="resumo__aviso-texto">
+      Este resumo é uma proposta preliminar e está sujeito à aprovação do comitê de crédito da CAIXA.
+      Os valores e condições apresentados poderão ser ajustados após análise completa da documentação.
+    </p>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer class="resumo__footer">
+    <button class="btn-voltar" (click)="voltar.emit()">
+      <span class="material-icons">arrow_back</span>
+      Voltar
+    </button>
+    <button class="btn-gerar" (click)="gerarMinuta.emit()">
+      <span class="material-icons">description</span>
+      Gerar Minuta do Contrato
+    </button>
+  </footer>
+
+</section>

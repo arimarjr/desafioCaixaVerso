@@ -1,0 +1,140 @@
+.central-pesquisas { padding: 1rem 0; }
+
+.progresso-geral {
+  background: #f4f7fa;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.progresso-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.progresso-label { font-weight: 600; color: #333; }
+.progresso-num { color: #005CA7; font-weight: 600; }
+
+.barra-progresso {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #005CA7, #0080E0);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.grupo-pesquisas {
+  margin-bottom: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grupo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #f4f7fa;
+  border-bottom: 1px solid #e0e0e0;
+
+  h3 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    flex: 1;
+  }
+
+  .material-icons { color: #005CA7; font-size: 1.125rem; }
+}
+
+.btn-copiar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: 1px solid #005CA7;
+  color: #005CA7;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  .material-icons { font-size: 0.875rem; }
+  &:hover { background: #e3f0ff; }
+}
+
+.lista-pesquisas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item-pesquisa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: #f9fbfd; }
+
+  &.concluida {
+    .item-desc {
+      text-decoration: line-through;
+      color: #9e9e9e;
+    }
+    background: #f0fdf4;
+  }
+}
+
+.item-check {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  flex: 1;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #005CA7;
+    flex-shrink: 0;
+  }
+
+  .checkmark { display: none; }
+}
+
+.item-desc {
+  font-size: 0.875rem;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.item-acoes { display: flex; gap: 0.25rem; }
+
+.btn-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: #005CA7;
+  .material-icons { font-size: 1rem; }
+  &:hover { background: #e3f0ff; }
+}
+
+.aviso-socios { padding: 0.5rem 0; }

@@ -1,0 +1,53 @@
+
+<div>
+  <section>
+    <p><span>Horizontal</span></p>
+    <dsc-stepper
+      [stepper]="stepperHorizontal">
+    </dsc-stepper>
+  </section>
+
+  <section>
+    <p><span>Vertical</span></p>
+    <dsc-stepper
+      [stepper]="stepperVertical">
+    </dsc-stepper>
+  </section>
+</div>
+
+<ng-template #firstContentTemplate>
+  <form [formGroup]="firstFormGroup">
+    <div class="col-12 col-sm-6">
+      <dsc-input label="Nome"
+                 name="nome"
+                 placeholder="Insira o nome"
+                 formControlName="nome">
+      </dsc-input>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #secondContentTemplate>
+  <form [formGroup]="secondFormGroup">
+    <div class="col-12 col-sm-6">
+      <dsc-input label="Endereço"
+                 name="endereco"
+                 placeholder="Insira o endereço"
+                 formControlName="endereco">
+      </dsc-input>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #thirdContentTemplate>
+  <form [formGroup]="thirdFormGroup">
+    <div class="col-12 col-sm-6">
+      <dsc-input label="Telefone"
+                 name="telefone"
+                 placeholder="Insira o telefone"
+                 formControlName="telefone">
+      </dsc-input>
+    </div>
+  </form>
+</ng-template>
+

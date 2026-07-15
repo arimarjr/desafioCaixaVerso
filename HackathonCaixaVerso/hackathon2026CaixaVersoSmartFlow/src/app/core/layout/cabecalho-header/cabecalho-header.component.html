@@ -1,0 +1,25 @@
+<dsc-header
+  [accessModifier]="'interno'"
+  [accessLevel]="'confidencial'"
+  [accessLevelDescription]="'#INTERNO.CONFIDENCIAL'"
+  [acronym]="''"
+  [label]="'Plataforma Pessoa Jurídica'"
+  [userName]="dadosCabecalho.user.name"
+  [userWorkUnit]="'Desenvolvedor'"
+  [additionalInfo]="''"
+  [headerButtons]="botoesCabecalho"
+  [buttonClickHandlers]="handlersBotoes"
+  [toggleButton]="true"
+  [toggleButtonLabel]="true"
+  [toggleButtonRight]="false"
+  [brandFull]="true"
+  (toggle)="toggle($event)"
+></dsc-header>
+
+<app-menu-lateral-sidenav
+  [menuAberto]="menuAberto"
+  (menuAbertoChange)="menuAberto = $event"
+></app-menu-lateral-sidenav> 
+
+
+  

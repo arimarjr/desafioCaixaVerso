@@ -1,0 +1,85 @@
+﻿<section class="simulacao-section">
+
+  <!-- CABEÇALHO DO PRODUTO -->
+  <div class="sim-header">
+    <div class="sim-titulo-bloco">
+      <span class="sim-banco">CAIXA ECONÔMICA FEDERAL</span>
+      <h3 class="sim-produto">Crédito Especial Empresa — Operação 606</h3>
+    </div>
+    <button class="btn-imprimir" (click)="imprimir()">
+      <span class="material-icons">print</span> Imprimir Simulação
+    </button>
+  </div>
+
+  <!-- DADOS DO PRODUTO -->
+  <div class="sim-card produto-info">
+    <div class="info-row"><span class="info-label">Modalidade:</span><span class="info-valor">017 – Garantia Recebíveis de Cartão de Crédito + Prestamista + Aval</span></div>
+    <div class="info-row"><span class="info-label">Segmento:</span><span class="info-valor">Expandir</span></div>
+    <div class="info-row"><span class="info-label">Garantia:</span><span class="info-valor">12,5% de Recebíveis de Faturamento de Cartão de Crédito (FCC) + Aval dos Sócios</span></div>
+    <div class="info-row"><span class="info-label">Taxa:</span><span class="info-valor">Diamante – Superintendência</span></div>
+    <div class="info-row"><span class="info-label">Carência:</span><span class="info-valor">Sem Carência</span></div>
+    @if (empresa) {
+      <div class="info-row"><span class="info-label">Empresa:</span><span class="info-valor">{{ empresa.razaoSocial }} — {{ empresa.cnpj }}</span></div>
+    }
+  </div>
+
+  @if (!limiteDisponivel) {
+    <div class="sem-limite">
+      <span class="material-icons">info</span>
+      <p>Conclua a avaliação de crédito para visualizar a simulação.</p>
+    </div>
+  }
+
+  @if (sim48 && sim36) {
+
+    <!-- OPÇÃO 48X -->
+    <div class="sim-card">
+      <h4 class="sim-opcao-titulo">Financiado em 48X — Garantia 12,5% do valor Bruto da Operação</h4>
+      <table class="sim-tabela">
+        <tbody>
+          <tr><td class="td-label">Valor Líquido</td>             <td class="td-valor">{{ sim48!.valorLiquido | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td></tr>
+          <tr><td class="td-label">Prestação</td>                 <td class="td-valor destaque">48X {{ sim48!.prestacao | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} + TR — Sem Carência</td></tr>
+          <tr><td class="td-label">Valor Bruto</td>               <td class="td-valor">{{ sim48!.valorBruto | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td></tr>
+          <tr><td class="td-label">Valor da TAC</td>              <td class="td-valor">{{ sim48!.tac | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — Valor Incorporado na Operação</td></tr>
+          <tr><td class="td-label">Prestamista</td>               <td class="td-valor">{{ sim48!.prestamista | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — Valor Incorporado e Parcelado na Operação</td></tr>
+          <tr><td class="td-label">IOF</td>                       <td class="td-valor">{{ sim48!.iof | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — Valor Incorporado na Operação — Pago a Vista</td></tr>
+          <tr><td class="td-label">Taxa</td>                      <td class="td-valor">{{ sim48!.taxa | number:'1.2-2':'pt-BR' }}% a.m. + TR</td></tr>
+          <tr><td class="td-label">CET Mensal</td>                <td class="td-valor">{{ sim48!.cetMensal | number:'1.2-2':'pt-BR' }}% a.m.</td></tr>
+          <tr><td class="td-label">CET Anual</td>                 <td class="td-valor">{{ sim48!.cetAnual | number:'1.2-2':'pt-BR' }}% a.a.</td></tr>
+          <tr><td class="td-label">Valor necessário p/ Gravame</td><td class="td-valor">{{ sim48!.gravame | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td></tr>
+          <tr><td class="td-label">Data da Simulação</td>         <td class="td-valor">{{ sim48!.dataSimulacao }}</td></tr>
+          <tr><td class="td-label">Vencimento 1ª Prestação</td>   <td class="td-valor">{{ sim48!.dataVencimento }} — O pagamento deve estar na conta um dia antes do vencimento. A cobrança é realizada no processamento noturno.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- OPÇÃO 36X -->
+    <div class="sim-card">
+      <h4 class="sim-opcao-titulo">Financiado em 36X — Garantia 12,5% do valor Bruto da Operação</h4>
+      <table class="sim-tabela">
+        <tbody>
+          <tr><td class="td-label">Valor Líquido</td>             <td class="td-valor">{{ sim36!.valorLiquido | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td></tr>
+          <tr><td class="td-label">Prestação</td>                 <td class="td-valor destaque">36X {{ sim36!.prestacao | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} + TR — Sem Carência</td></tr>
+          <tr><td class="td-label">Valor Bruto</td>               <td class="td-valor">{{ sim36!.valorBruto | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td></tr>
+          <tr><td class="td-label">Valor da TAC</td>              <td class="td-valor">{{ sim36!.tac | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — Valor Incorporado na Operação</td></tr>
+          <tr><td class="td-label">Prestamista</td>               <td class="td-valor">{{ sim36!.prestamista | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — Valor Incorporado e Parcelado na Operação</td></tr>
+          <tr><td class="td-label">IOF</td>                       <td class="td-valor">{{ sim36!.iof | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} — Valor Incorporado na Operação — Pago a Vista</td></tr>
+          <tr><td class="td-label">Taxa</td>                      <td class="td-valor">{{ sim36!.taxa | number:'1.2-2':'pt-BR' }}% a.m. + TR</td></tr>
+          <tr><td class="td-label">CET Mensal</td>                <td class="td-valor">{{ sim36!.cetMensal | number:'1.2-2':'pt-BR' }}% a.m.</td></tr>
+          <tr><td class="td-label">CET Anual</td>                 <td class="td-valor">{{ sim36!.cetAnual | number:'1.2-2':'pt-BR' }}% a.a.</td></tr>
+          <tr><td class="td-label">Valor necessário p/ Gravame</td><td class="td-valor">{{ sim36!.gravame | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td></tr>
+          <tr><td class="td-label">Data da Simulação</td>         <td class="td-valor">{{ sim36!.dataSimulacao }}</td></tr>
+          <tr><td class="td-label">Vencimento 1ª Prestação</td>   <td class="td-valor">{{ sim36!.dataVencimento }} — O pagamento deve estar na conta um dia antes do vencimento. A cobrança é realizada no processamento noturno.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- NOTAS RODAPÉ -->
+    <div class="sim-notas">
+      <p>* As Taxas e simulações poderão ter alterações a qualquer momento pela Caixa.</p>
+      <p>** Para efetuar a contratação não poderá estar antecipando. Se estiver antecipando, deverá parar de antecipar até acumular o valor necessário para a garantia.</p>
+    </div>
+
+  }
+
+</section>

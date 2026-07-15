@@ -1,0 +1,20 @@
+<div class="popup-pesquisa">
+  <h2 class="popup-titulo">Avaliação do Tomador</h2>
+
+  <div class="popup-corpo">
+    <!-- Mensagem principal -->
+    <div class="linha-msg" [class.linha-msg--em-andamento]="!mensagemSecundaria()">
+      <mat-icon class="icone-spin">sync</mat-icon>
+      <span>{{ mensagemPrincipal() }}</span>
+    </div>
+
+    <!-- Confirmação (aparece após cada fase) -->
+    @if (mensagemSecundaria()) {
+      <div class="linha-msg linha-msg--sucesso">
+        <mat-icon>check_circle</mat-icon>
+        <span>{{ mensagemSecundaria() }}</span>
+      </div>
+    }
+  </div>
+</div>
+

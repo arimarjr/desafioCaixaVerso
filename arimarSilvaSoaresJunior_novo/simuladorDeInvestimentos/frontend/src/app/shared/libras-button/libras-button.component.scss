@@ -1,0 +1,48 @@
+
+// .libras-btn {
+//   all: initial;
+//   font-family: inherit;
+//   font-size: 14px;
+//   line-height: 1;
+//   display: inline-flex;
+//   align-items: center;
+//   gap: .5rem;
+//   padding: .6rem .8rem;
+//   border-radius: 9999px;
+//   border: 1px solid #cbd5e1;
+//   background: #ffffff;
+//   color: #0f172a;
+//   cursor: pointer;
+//   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+//   transition: box-shadow .2s ease, transform .05s, background .2s ease;
+
+//   &:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.16); background: #f8fafc; }
+//   &:focus { outline: 3px solid #1a73e8; outline-offset: 3px; }
+//   &:active { transform: translateY(1px); }
+
+//   img {
+//     all: initial;
+//     display: block;
+//     width: 32px;
+//     height: 32px;
+//     border-radius: 4px;
+//   }
+// }
+
+// /* Flutuante no canto inferior direito (por cima de footer/overlays) */
+// .libras-fab {
+//   position: fixed;
+//   right: 1.25rem;
+//   bottom: 1.25rem;
+//   z-index: 2147483647; /* máximo 32-bit */
+// }
+
+// /* Apenas leitores de tela */
+// .visually-hidden {
+//   position: absolute !important;
+//   height: 1px;
+//   width: 1px;
+//   overflow: hidden;
+//   clip: rect(1px, 1px, 1px, 1px);
+//   white-space: nowrap;
+// }

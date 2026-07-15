@@ -1,0 +1,55 @@
+<div class="popup-resultado">
+  <h2 mat-dialog-title>Resultado da Avaliação de Crédito</h2>
+
+  <mat-dialog-content>
+    @if (carregando()) {
+      <div class="carregando">
+        <span class="material-icons spin">autorenew</span>
+        <p>Processando avaliação...</p>
+      </div>
+    }
+
+    @if (erro()) {
+      <dsc-alert type="error">{{ erro() }}</dsc-alert>
+    }
+
+    @if (resultado(); as res) {
+      <div class="resultado" [class.aprovado]="res.resultado === 'APROVADO'" [class.reprovado]="res.resultado === 'REPROVADO'">
+        <div class="resultado-badge">{{ res.resultado }}</div>
+
+        @if (res.resultado === 'APROVADO') {
+          <div class="limite-unico">
+            <h4 class="limite-titulo">LIMITE ÚNCO</h4>
+            <div class="limite-row">
+              <span class="limite-label">Valor Total Aprovado (Limite Global):</span>
+              <span class="limite-valor">{{ res.limiteAprovado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+            </div>
+            <div class="limite-row">
+              <span class="limite-label">(-) Valores Já Contratados Impactados:</span>
+              <span class="limite-valor">{{ res.valoresJaContratados | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+            </div>
+            <div class="limite-row destaque">
+              <span class="limite-label">(=) Disponível:</span>
+              <span class="limite-valor">{{ res.disponivel | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+            </div>
+          </div>
+
+          <div class="detalhes-extras">
+            <span>Classificação de Risco: <strong>{{ res.classificacaoRisco }}</strong></span>
+            <span>Score Interno: <strong>{{ res.scoreInterno }}</strong></span>
+            <span>Data: <strong>{{ res.dataAvaliacao }}</strong></span>
+          </div>
+        } @else {
+          <p class="justificativa">{{ res.justificativa }}</p>
+        }
+      </div>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <dsc-button variant="secondary" label="Fechar" (click)="fechar()" />
+    @if (resultado()?.resultado === 'APROVADO') {
+      <dsc-button variant="primary" label="Continuar para Simulação" (click)="continuar()" />
+    }
+  </mat-dialog-actions>
+</div>

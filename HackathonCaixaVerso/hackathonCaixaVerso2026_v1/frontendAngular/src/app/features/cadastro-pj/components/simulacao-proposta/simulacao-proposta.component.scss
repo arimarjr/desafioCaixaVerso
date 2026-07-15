@@ -1,0 +1,151 @@
+﻿.simulacao-section { padding: 1rem 0; }
+
+/* CABEÇALHO */
+.sim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #005CA7;
+}
+
+.sim-titulo-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sim-banco {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #005CA7;
+  text-transform: uppercase;
+}
+
+.sim-produto {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.btn-imprimir {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: #005CA7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  .material-icons { font-size: 1.1rem; }
+
+  &:hover { background: #004a8a; }
+}
+
+/* CARDS */
+.sim-card {
+  background: #fff;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.produto-info {
+  .info-row {
+    display: flex;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #f0f2f5;
+
+    &:last-child { border-bottom: none; }
+  }
+
+  .info-label {
+    min-width: 110px;
+    font-weight: 600;
+    color: #444;
+    flex-shrink: 0;
+  }
+
+  .info-valor { color: #222; }
+}
+
+.sim-opcao-titulo {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #005CA7;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e8f4;
+}
+
+/* TABELA */
+.sim-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  tr { border-bottom: 1px solid #f0f2f5; }
+  tr:last-child { border-bottom: none; }
+
+  .td-label {
+    padding: 6px 8px 6px 0;
+    color: #555;
+    width: 220px;
+    vertical-align: top;
+    font-weight: 500;
+  }
+
+  .td-valor {
+    padding: 6px 0;
+    color: #222;
+
+    &.destaque {
+      font-weight: 700;
+      color: #005CA7;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+/* SEM LIMITE */
+.sem-limite {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 1.25rem;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  color: #795548;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+
+  .material-icons { color: #f9a825; }
+  p { margin: 0; }
+}
+
+/* NOTAS */
+.sim-notas {
+  font-size: 0.8rem;
+  color: #666;
+  padding: 0.5rem 0;
+  border-top: 1px dashed #ccc;
+
+  p { margin: 4px 0; }
+}
+
+/* IMPRESSÃO */
+@media print {
+  .btn-imprimir { display: none; }
+  .sim-card { border: 1px solid #999; page-break-inside: avoid; }
+}

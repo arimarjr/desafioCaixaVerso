@@ -1,0 +1,141 @@
+.popup-resultado {
+  padding: 8px;
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  .carregando {
+    text-align: center;
+    padding: 24px 0;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    .spin {
+      animation: spin 1.2s linear infinite;
+      font-size: 2rem;
+      color: #005CA7;
+    }
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .resultado {
+    border-radius: 8px;
+    padding: 20px;
+    margin: 8px 0;
+
+    &.aprovado {
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+
+      .resultado-badge {
+        background: #2e7d32;
+      }
+    }
+
+    &.reprovado {
+      background: #fce4e4;
+      border: 1px solid #ef9a9a;
+
+      .resultado-badge {
+        background: #c62828;
+      }
+    }
+  }
+
+  .resultado-badge {
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .detalhe-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+
+    .detalhe-label {
+      color: #555;
+    }
+
+    .detalhe-valor {
+      font-weight: 600;
+      color: #222;
+    }
+  }
+
+  .justificativa {
+    font-size: 0.85rem;
+    color: #444;
+    font-style: italic;
+    margin-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+  }
+
+  .limite-unico {
+    margin: 8px 0 12px;
+    border: 1px solid #a5d6a7;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .limite-titulo {
+    margin: 0;
+    padding: 6px 14px;
+    background: #2e7d32;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .limite-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 14px;
+    font-size: 0.875rem;
+    border-top: 1px solid #c8e6c9;
+
+    &.destaque {
+      background: #f1f8e9;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #1b5e20;
+    }
+  }
+
+  .limite-label { color: #333; }
+  .limite-valor { font-weight: 600; color: #222; white-space: nowrap; }
+
+  .detalhes-extras {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+}

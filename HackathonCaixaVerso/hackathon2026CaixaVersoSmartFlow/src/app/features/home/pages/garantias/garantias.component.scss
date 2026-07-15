@@ -1,0 +1,650 @@
+// ── Variáveis ─────────────────────────────────────────────────────────────────
+$azul-primario:   #005ca9;
+$azul-destaque:   #006fe6;
+$laranja:         #d97706;
+$cinza-borda:     #d1d5db;
+$cinza-divisor:   #e5e7eb;
+$cinza-fundo:     #f3f4f6;
+$cinza-texto-sec: #6b7280;
+$texto-principal: #1f2937;
+$fundo-pagina:    #f5f7fa;
+$fundo-card:      #ffffff;
+$vermelho-erro:   #dc2626;
+
+// ── Container ─────────────────────────────────────────────────────────────────
+.garantias-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  background: $fundo-pagina;
+  box-sizing: border-box;
+}
+
+// ── Cabeçalho ──────────────────────────────────────────────────────────────────
+.page-header {
+  margin-bottom: 4px;
+}
+
+.page-titulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 12px 0;
+}
+
+.operacao-info {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 14px 20px;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    .operacao-info-divisor { display: none; }
+  }
+}
+
+.operacao-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 20px;
+
+  &:first-child { padding-left: 0; }
+  &:last-child  { padding-right: 0; }
+
+  @media (max-width: 480px) {
+    padding: 8px 0;
+
+    &:first-child { padding-top: 0; }
+    &:last-child  { padding-bottom: 0; }
+  }
+}
+
+.operacao-info-divisor {
+  width: 1px;
+  height: 36px;
+  background: $cinza-borda;
+  flex-shrink: 0;
+}
+
+.operacao-info-label {
+  font-size: 0.73rem;
+  color: $cinza-texto-sec;
+  font-weight: 400;
+}
+
+.operacao-info-valor {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: $texto-principal;
+}
+
+// ── Card Adicionar Garantia ────────────────────────────────────────────────────
+.adicionar-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.adicionar-titulo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 18px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $cinza-divisor;
+}
+
+// ── Grid do formulário ─────────────────────────────────────────────────────────
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &.form-field--full {
+    grid-column: 1 / -1;
+    margin-bottom: 16px;
+  }
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: $cinza-texto-sec;
+}
+
+.form-label-hint {
+  font-size: 0.72rem;
+  color: $azul-destaque;
+  font-weight: 400;
+}
+
+.form-input-hint {
+  font-size: 0.72rem;
+  color: $azul-destaque;
+  font-weight: 400;
+  margin-top: 3px;
+  display: block;
+}
+
+// ── Select ─────────────────────────────────────────────────────────────────────
+.form-select {
+  height: 42px;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 0.9rem;
+  color: $texto-principal;
+  background: $fundo-card;
+  cursor: pointer;
+  outline: none;
+  appearance: auto;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: $azul-primario; }
+  &.form-select--error { border-color: $vermelho-erro; background: #fff5f5; }
+
+  option[value=""] { color: $cinza-texto-sec; }
+}
+
+// ── Input com prefixo ──────────────────────────────────────────────────────────
+.input-prefix-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  background: $fundo-card;
+  overflow: hidden;
+  transition: border-color 0.15s;
+
+  &:focus-within { border-color: $azul-primario; }
+  &.input-wrapper--error { border-color: $vermelho-erro; }
+}
+
+.input-prefix {
+  padding: 0 10px;
+  font-size: 0.82rem;
+  color: $cinza-texto-sec;
+  background: $cinza-fundo;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid $cinza-borda;
+  flex-shrink: 0;
+}
+
+.form-input {
+  height: 42px;
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  font-size: 0.9rem;
+  color: $texto-principal;
+  background: $fundo-card;
+  min-width: 0;
+
+  &::placeholder { color: #b0b7c3; }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  &[type="number"] { -moz-appearance: textfield; }
+}
+
+// ── Textarea ───────────────────────────────────────────────────────────────────
+.form-textarea {
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  color: $texto-principal;
+  background: $fundo-card;
+  resize: vertical;
+  outline: none;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+  font-family: inherit;
+
+  &:focus { border-color: $azul-primario; }
+  &.form-textarea--error { border-color: $vermelho-erro; background: #fff5f5; }
+}
+
+.form-error {
+  font-size: 0.75rem;
+  color: $vermelho-erro;
+  margin-top: 2px;
+}
+
+// ── Ações do formulário ────────────────────────────────────────────────────────
+.form-acoes {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 4px;
+}
+
+// ── Botão Adicionar ────────────────────────────────────────────────────────────
+.btn-adicionar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 22px;
+  background: $azul-primario;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s;
+
+  .material-icons { font-size: 18px; }
+  &:hover { filter: brightness(0.88); }
+  &:focus-visible { outline: 2px solid $azul-primario; outline-offset: 2px; }
+}
+
+// ── Card lista de garantias ────────────────────────────────────────────────────
+.garantias-lista-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.lista-titulo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 14px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lista-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background: $azul-primario;
+  color: #ffffff;
+  border-radius: 11px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+// ── Tabela ─────────────────────────────────────────────────────────────────────
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 4px;
+  border: 1px solid $cinza-borda;
+}
+
+.garantias-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+
+  thead tr { background: $cinza-fundo; }
+
+  th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: $texto-principal;
+    border-bottom: 2px solid $cinza-borda;
+    white-space: nowrap;
+
+    &.col-acao { text-align: center; }
+  }
+
+  td {
+    padding: 10px 14px;
+    color: $texto-principal;
+    border-bottom: 1px solid $cinza-divisor;
+    vertical-align: middle;
+  }
+
+  tbody tr {
+    transition: background 0.1s;
+    &:hover { background: #f0f7ff; }
+    &:last-child td { border-bottom: none; }
+  }
+
+  .col-num   { text-align: center; font-weight: 600; color: $azul-primario; width: 40px; }
+  .col-valor { white-space: nowrap; font-weight: 600; }
+  .col-desc  { color: $cinza-texto-sec; font-size: 0.8rem; }
+  .col-acao  { text-align: center; width: 56px; }
+}
+
+// ── Botão Remover ──────────────────────────────────────────────────────────────
+.btn-remover {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  color: $vermelho-erro;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+
+  .material-icons { font-size: 18px; }
+  &:hover { background: #fff5f5; border-color: $vermelho-erro; }
+  &:focus-visible { outline: 2px solid $vermelho-erro; outline-offset: 2px; }
+}
+
+// ── Rodapé de Ações ────────────────────────────────────────────────────────────
+.acoes-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  gap: 12px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    .acoes-direita { width: 100%; justify-content: flex-end; }
+    .btn-secundario, .btn-primario { width: 100%; justify-content: center; }
+  }
+}
+
+.acoes-direita {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 20px;
+  background: $fundo-card;
+  color: $texto-principal;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+
+  &:hover { border-color: $azul-primario; color: $azul-primario; }
+  &:focus-visible { outline: 2px solid $azul-primario; outline-offset: 2px; }
+}
+
+.btn-primario {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 24px;
+  background: $azul-primario;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover { filter: brightness(0.88); }
+  &:focus-visible { outline: 2px solid $azul-primario; outline-offset: 2px; }
+}
+
+// ── Impressão ──────────────────────────────────────────────────────────────────
+@media print {
+  .acoes-footer, .btn-adicionar, .btn-remover { display: none !important; }
+  .garantias-page { background: #ffffff !important; }
+}
+
+// ── Seção de Bandeiras ─────────────────────────────────────────────────────────
+.bandeiras-section {
+  background: $cinza-fundo;
+  border: 1px solid $cinza-borda;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.bandeiras-titulo {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 4px 0;
+}
+
+.bandeiras-instrucao {
+  font-size: 0.78rem;
+  color: $cinza-texto-sec;
+  margin: 0 0 14px 0;
+  line-height: 1.5;
+
+  strong { color: $azul-primario; }
+}
+
+.bandeiras-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  overflow: hidden;
+  background: $fundo-card;
+}
+
+.bandeira-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid $cinza-divisor;
+  transition: background 0.1s;
+
+  &:last-child { border-bottom: none; }
+  &.bandeira-row--ativa { background: #f0f7ff; }
+}
+
+.bandeira-check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.bandeira-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: $azul-primario;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.bandeira-nome {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: $texto-principal;
+}
+
+.bandeira-percentual-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.15s;
+
+  &.bandeira-percentual-wrapper--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.input-percentual {
+  width: 64px;
+  height: 34px;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  padding: 0 8px;
+  font-size: 0.88rem;
+  color: $texto-principal;
+  text-align: right;
+  outline: none;
+  background: $fundo-card;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: $azul-primario; }
+  &.input-percentual--error { border-color: $vermelho-erro; background: #fff5f5; }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  &[type='number'] { -moz-appearance: textfield; }
+}
+
+.percentual-simbolo {
+  font-size: 0.85rem;
+  color: $cinza-texto-sec;
+  font-weight: 500;
+}
+
+.bandeiras-total-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid $cinza-divisor;
+}
+
+.bandeiras-total-label {
+  font-size: 0.8rem;
+  color: $cinza-texto-sec;
+}
+
+.bandeiras-total-valor {
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: $texto-principal;
+
+  &.bandeiras-total--ok    { color: #16a34a; }
+  &.bandeiras-total--parcial { color: $laranja; }
+  &.bandeiras-total--excesso { color: $vermelho-erro; }
+
+  .total-check { font-size: 18px; color: #16a34a; }
+}
+
+.bandeiras-erro {
+  display: block;
+  margin-top: 6px;
+}
+
+// ── Resumo de Cobertura ────────────────────────────────────────────────────────
+.cobertura-resumo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 16px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .cobertura-divisor { display: none; }
+  }
+}
+
+.cobertura-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 24px;
+
+  &:first-child { padding-left: 0; }
+  &:last-child  { padding-right: 0; }
+
+  @media (max-width: 600px) {
+    padding: 8px 0;
+    &:first-child { padding-top: 0; }
+    &:last-child  { padding-bottom: 0; }
+  }
+}
+
+.cobertura-divisor {
+  width: 1px;
+  height: 44px;
+  background: $cinza-borda;
+  flex-shrink: 0;
+}
+
+.cobertura-label {
+  font-size: 0.73rem;
+  color: $cinza-texto-sec;
+  font-weight: 400;
+}
+
+.cobertura-valor {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $texto-principal;
+
+  &.cobertura-valor--ok  { color: #16a34a; }
+  &.cobertura-valor--nok { color: $laranja; }
+}
+
+.cobertura-valor-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cobertura-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  &.cobertura-badge--ok {
+    background: #dcfce7;
+    color: #16a34a;
+    .material-icons { font-size: 13px; }
+  }
+
+  &.cobertura-badge--pendente {
+    background: #fef9c3;
+    color: #92400e;
+  }
+}

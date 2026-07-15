@@ -1,0 +1,18 @@
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { PesquisasListaComponent } from '../../../pesquisas/components/pesquisas-lista/pesquisas-lista.component';
+import { ItemPesquisa } from '../../models/item-pesquisa.model';
+
+export type { ItemPesquisa };
+
+@Component({
+  selector: 'app-central-pesquisas',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [PesquisasListaComponent],
+  templateUrl: './central-pesquisas.component.html',
+  styleUrl: './central-pesquisas.component.scss',
+})
+export class CentralPesquisasComponent {
+  @Input() cnpj = '';
+  @Input() cpfsSocios: { nome: string; cpf: string }[] = [];
+}

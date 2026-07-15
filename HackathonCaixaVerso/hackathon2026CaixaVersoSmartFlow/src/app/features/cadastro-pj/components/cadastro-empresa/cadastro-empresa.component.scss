@@ -1,0 +1,60 @@
+.form-empresa {
+  padding: 1rem 0;
+}
+
+.alerta-receita {
+  margin-bottom: 1.5rem;
+}
+
+.secao {
+  margin-bottom: 2rem;
+}
+
+.secao-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dsc-color-blue-70, #005CA7);
+  border-bottom: 2px solid var(--dsc-color-blue-70, #005CA7);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.campo { min-width: 0; }
+.campo-lg { grid-column: span 2; }
+.campo-xl { grid-column: span 3; }
+.campo-cnpj { min-width: 180px; }
+.campo-cep { min-width: 140px; }
+.campo-numero { max-width: 100px; }
+.campo-uf { max-width: 80px; }
+
+.mat-field-full {
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.cep-loading {
+  font-size: 0.75rem;
+  color: var(--dsc-color-blue-70, #005CA7);
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.acoes-form {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .campo-lg, .campo-xl { grid-column: span 1; }
+  .grid-form { grid-template-columns: 1fr; }
+}

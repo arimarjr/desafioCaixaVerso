@@ -1,0 +1,15 @@
+﻿<div class="card">
+  @if (icone || titulo) {
+    <div class="card-cabecalho">
+      @if (icone) {
+        <span class="material-icons card-icone">{{ icone }}</span>
+      }
+      @if (titulo) {
+        <h3 class="card-titulo">{{ titulo }}</h3>
+      }
+    </div>
+  }
+  <div class="card-corpo">
+    <ng-content />
+  </div>
+</div>

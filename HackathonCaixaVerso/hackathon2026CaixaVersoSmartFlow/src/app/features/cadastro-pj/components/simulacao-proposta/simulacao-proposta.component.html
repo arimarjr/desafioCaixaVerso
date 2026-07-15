@@ -1,0 +1,150 @@
+<section class="simulacao-section">
+
+  @if (!propostaGerada()) {
+    <!-- FORMULÁRIO DE SIMULAÇÃO -->
+    <form [formGroup]="form" class="form-simulacao">
+      <h3 class="secao-titulo">Simulação da Operação de Crédito</h3>
+
+      <div class="grid-form">
+        <div class="campo campo-xl">
+          <mat-form-field appearance="outline" class="mat-field-full">
+            <mat-label>Linha de Crédito *</mat-label>
+            <mat-select formControlName="linhaCredito">
+              @for (l of linhasCredito; track l) {
+                <mat-option [value]="l">{{ l }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="campo">
+          <dsc-input-currency label="Valor Solicitado (R$) *" formControlName="valorSolicitado" />
+        </div>
+
+        <div class="campo">
+          <dsc-input label="Prazo (meses) *" formControlName="prazo"
+            placeholder="Ex: 36" type="number" />
+        </div>
+
+        <div class="campo">
+          <dsc-input label="Taxa de Juros (% a.m.) *" formControlName="taxaJuros"
+            placeholder="Ex: 1,5" />
+        </div>
+
+        <div class="campo">
+          <div class="valor-parcela-box">
+            <span class="vp-label">Parcela Estimada (Price)</span>
+            <span class="vp-valor">
+              {{ valorParcelaCalculado() | currency:'BRL':'symbol':'1.2-2' }}
+            </span>
+            <span class="vp-info">ao mês</span>
+          </div>
+        </div>
+
+        <div class="campo campo-xl">
+          <dsc-input label="Garantias" formControlName="garantias"
+            placeholder="Alienação, caução, aval, hipoteca..." />
+        </div>
+
+        <div class="campo campo-xl">
+          <dsc-input label="Observações" formControlName="observacoes"
+            placeholder="Informações complementares da proposta" />
+        </div>
+
+        <div class="campo">
+          <dsc-input label="Validade da Simulação (dias)" formControlName="validadeSimulacao"
+            placeholder="30" />
+        </div>
+      </div>
+
+      <div class="acoes-form">
+        <dsc-button label="Gerar Proposta para o Cliente" (click)="gerarProposta()" />
+      </div>
+    </form>
+
+  } @else {
+    <!-- PROPOSTA GERADA -->
+    <div class="proposta-wrapper">
+      <div class="proposta-header">
+        <div class="proposta-logo">CAIXA ECONÔMICA FEDERAL</div>
+        <div class="proposta-subtitulo">Proposta de Crédito — Pessoa Jurídica</div>
+      </div>
+
+      <div class="proposta-body">
+        <div class="proposta-secao">
+          <div class="prop-titulo">Dados da Empresa</div>
+          <div class="prop-grid">
+            <div class="prop-item">
+              <span class="prop-label">Razão Social</span>
+              <span class="prop-valor">{{ empresa?.razaoSocial || '—' }}</span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-label">CNPJ</span>
+              <span class="prop-valor">{{ empresa?.cnpj || '—' }}</span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-label">Segmento</span>
+              <span class="prop-valor">{{ empresa?.segmento || '—' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proposta-secao">
+          <div class="prop-titulo">Condições da Operação</div>
+          <div class="prop-grid">
+            <div class="prop-item">
+              <span class="prop-label">Linha de Crédito</span>
+              <span class="prop-valor">{{ form.get('linhaCredito')?.value }}</span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-label">Valor Solicitado</span>
+              <span class="prop-valor destaque">
+                {{ form.get('valorSolicitado')?.value | currency:'BRL':'symbol':'1.2-2' }}
+              </span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-label">Prazo</span>
+              <span class="prop-valor">{{ form.get('prazo')?.value }} meses</span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-label">Taxa de Juros</span>
+              <span class="prop-valor">{{ form.get('taxaJuros')?.value }}% a.m.</span>
+            </div>
+            <div class="prop-item destaque-box">
+              <span class="prop-label">Parcela Estimada (Price)</span>
+              <span class="prop-valor destaque">
+                {{ valorParcelaCalculado() | currency:'BRL':'symbol':'1.2-2' }}/mês
+              </span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-label">Garantias</span>
+              <span class="prop-valor">{{ form.get('garantias')?.value || 'A definir' }}</span>
+            </div>
+          </div>
+        </div>
+
+        @if (form.get('observacoes')?.value) {
+          <div class="proposta-secao">
+            <div class="prop-titulo">Observações</div>
+            <p class="prop-obs">{{ form.get('observacoes')?.value }}</p>
+          </div>
+        }
+
+        <div class="proposta-validade">
+          <span class="material-icons">schedule</span>
+          Esta proposta é válida até <strong>{{ dataValidade }}</strong>
+        </div>
+
+        <div class="proposta-disclaimer">
+          * Simulação de caráter informativo. Valores sujeitos a análise e aprovação de crédito.
+          Taxas, prazos e condições podem variar conforme políticas vigentes da CAIXA.
+        </div>
+      </div>
+
+      <div class="proposta-acoes">
+        <dsc-button label="Nova Simulação" variant="secondary-outlined" (click)="novaProposta()" />
+        <dsc-button label="Imprimir / Salvar PDF" iconPrefix="print" (click)="imprimirPdf()" />
+      </div>
+    </div>
+  }
+</section>

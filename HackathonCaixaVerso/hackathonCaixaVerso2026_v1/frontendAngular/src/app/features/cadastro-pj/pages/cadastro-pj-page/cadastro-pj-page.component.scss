@@ -1,0 +1,305 @@
+.cadastro-pj-page {
+  min-height: 100vh;
+  background: #f4f7fa;
+  padding-bottom: 2rem;
+}
+
+/* PAGE HEADER */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #005CA7;
+  color: #fff;
+  padding: 0.875rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-voltar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background 0.2s;
+  .material-icons { font-size: 1rem; }
+  &:hover { background: rgba(255,255,255,0.25); }
+}
+
+.page-titulo-area {
+  flex: 1;
+}
+
+.page-titulo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.page-subtitulo {
+  font-size: 0.8125rem;
+  opacity: 0.8;
+}
+
+.empresa-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(255,255,255,0.15);
+  padding: 0.375rem 0.875rem;
+  border-radius: 6px;
+}
+
+.emp-nome { font-size: 0.875rem; font-weight: 600; }
+.emp-cnpj { font-size: 0.75rem; opacity: 0.8; font-family: monospace; }
+
+/* LOADING */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: #005CA7;
+  font-size: 0.9375rem;
+
+  .material-icons { font-size: 1.5rem; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 1s linear infinite; }
+
+.erro-container {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 0 1.5rem;
+}
+
+/* STEPPER CONTAINER */
+.stepper-container {
+  background: #fff;
+  border-radius: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin: 0;
+}
+
+/* ETAPA CONTEÚDO */
+.etapa-conteudo {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* TABS DENTRO DO CADASTRO */
+.cadastro-tabs {
+  width: 100%;
+}
+
+.tab-body {
+  padding: 1rem 0.5rem;
+}
+
+/* PLACEHOLDER ETAPAS */
+.etapa-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #555;
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0.75rem 0 0.5rem;
+  }
+
+  p { font-size: 0.9375rem; max-width: 600px; margin: 0; line-height: 1.5; }
+
+  .placeholder-detalhe {
+    color: #757575;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.placeholder-icon {
+  font-size: 3.5rem;
+  color: #005CA7;
+  opacity: 0.6;
+}
+
+.placeholder-items {
+  margin-top: 1.5rem;
+  text-align: left;
+  background: #f4f7fa;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.placeholder-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #444;
+  border-bottom: 1px solid #e0e0e0;
+  &:last-child { border-bottom: none; }
+  .material-icons { font-size: 1.125rem; color: #005CA7; }
+}
+
+/* RESTRIÇÃO CADASTRAL */
+.restricao-impeditiva {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #ffebee;
+  border: 1px solid #ef9a9a;
+  border-left: 4px solid #c62828;
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  color: #b71c1c;
+
+  .restricao-icone {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .restricao-texto {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    strong { display: block; margin-bottom: 4px; font-size: 0.95rem; }
+  }
+}
+
+/* AÇÕES ETAPA 1 */
+.acoes-etapa {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin-top: 8px;
+  border-top: 1px solid #e0e0e0;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    .material-icons { font-size: 18px; }
+  }
+}
+
+/* RESUMO AVALIAÇÃO — Step 2 */
+.resumo-avaliacao {
+  background: #e8f0fc;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+
+  .resumo-linha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .resumo-icone {
+    font-size: 32px;
+    color: #1565c0;
+  }
+
+  .resumo-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resumo-razao {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #003d7c;
+  }
+
+  .resumo-detalhe {
+    font-size: 0.85rem;
+    color: #555;
+  }
+}
+
+/* AÇÕES AVALIAÇÃO — botão "Efetuar Avaliação do Tomador" */
+.acoes-avaliacao {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    padding: 10px 28px;
+    .material-icons { font-size: 20px; }
+  }
+}
+
+/* FINALIZADO */
+.cl-nova-op-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.etapa-finalizado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.finalizado-icon {
+  font-size: 5rem;
+  color: #2e7d32;
+}
+
+.finalizado-titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin: 0.5rem 0;
+}
+
+.finalizado-texto {
+  font-size: 1rem;
+  color: #555;
+  max-width: 500px;
+  margin-bottom: 1.5rem;
+}
+
+.finalizado-info {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background: #e8f5e9;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}
+
+.fi-item { display: flex; flex-direction: column; }
+.fi-label { font-size: 0.75rem; color: #666; }
+.fi-valor { font-size: 0.9375rem; font-weight: 600; color: #333; }
+
+@media (max-width: 768px) {
+  .page-header { padding: 0.75rem 1rem; }
+  .etapa-conteudo { padding: 1rem; }
+  .finalizado-info { flex-direction: column; gap: 0.75rem; }
+}

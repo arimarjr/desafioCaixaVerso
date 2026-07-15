@@ -1,0 +1,6 @@
+@backend-smart-flow-pj-back_HostAddress = http://localhost:5059
+
+GET {{backend-smart-flow-pj-back_HostAddress}}/
+Accept: application/json
+
+###

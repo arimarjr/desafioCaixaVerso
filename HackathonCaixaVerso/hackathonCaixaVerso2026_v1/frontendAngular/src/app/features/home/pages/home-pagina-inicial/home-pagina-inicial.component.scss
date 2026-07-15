@@ -1,0 +1,50 @@
+.home-page {
+  min-height: calc(100vh - 64px);
+  background: #f4f7fa;
+}
+
+.hero-busca {
+  background: linear-gradient(135deg, #005CA7 0%, #0080E0 100%);
+  padding: 3rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-conteudo {
+  width: 100%;
+  max-width: 640px;
+  text-align: center;
+}
+
+.hero-titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.hero-subtitulo {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  margin: 0 0 2rem;
+}
+
+.busca-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.oportunidades-section {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .hero-busca { padding: 2rem 1rem; }
+  .busca-wrapper { padding: 1rem; }
+  .hero-titulo { font-size: 1.375rem; }
+}

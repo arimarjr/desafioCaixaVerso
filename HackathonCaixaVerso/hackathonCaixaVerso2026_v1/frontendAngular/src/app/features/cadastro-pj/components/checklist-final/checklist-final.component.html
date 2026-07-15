@@ -1,0 +1,74 @@
+<div class="checklist-final">
+
+  <!-- ── Cabeçalho + Progresso ── -->
+  <div class="cl-header">
+    <div class="cl-header-texto">
+      <h2 class="cl-titulo">
+        <span class="material-icons cl-titulo-icon">checklist</span>
+        Confira o Checklist
+      </h2>
+      <p class="cl-desc">Verifique todos os documentos e pesquisas antes de finalizar a operação. Itens já realizados no sistema estão marcados automaticamente.</p>
+    </div>
+
+    <div class="cl-progresso">
+      <div class="cl-prog-info">
+        <span>{{ totalMarcados() }} / {{ totalItens() }} concluídos</span>
+        <span class="cl-prog-pct">{{ percentualConcluido() }}%</span>
+      </div>
+      <div class="cl-prog-track">
+        <div class="cl-prog-fill" [style.width.%]="percentualConcluido()"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Seções ── -->
+  @for (secao of secoes(); track secao.id) {
+    <div class="cl-secao" [ngClass]="secao.colorClass">
+
+      <!-- Header da seção (clicável para expandir/recolher) -->
+      <button class="cl-secao-header" type="button" (click)="toggleSecao(secao.id)">
+        <span class="material-icons cl-sec-icon">{{ secao.icon }}</span>
+        <div class="cl-sec-titulo">
+          <span class="cl-sec-nome">{{ secao.title }}</span>
+          @if (secao.subtitle) {
+            <span class="cl-sec-sub">{{ secao.subtitle }}</span>
+          }
+        </div>
+        <span class="cl-sec-count" [class.cl-count-ok]="marcados(secao) === secao.items.length">
+          {{ marcados(secao) }}/{{ secao.items.length }}
+        </span>
+        <span class="material-icons cl-sec-arrow">
+          {{ secao.expandida ? 'expand_less' : 'expand_more' }}
+        </span>
+      </button>
+
+      <!-- Itens da seção -->
+      @if (secao.expandida) {
+        <div class="cl-secao-body">
+          @for (item of secao.items; track item.id) {
+            <label class="cl-item" [class.cl-item-ok]="item.checked">
+              <input
+                class="cl-chk-native"
+                type="checkbox"
+                [checked]="item.checked"
+                (change)="toggle(secao.id, item.id)" />
+              <span class="cl-chk-box">
+                @if (item.checked) {
+                  <span class="material-icons cl-chk-icon">check</span>
+                }
+              </span>
+              <div class="cl-item-content">
+                <span class="cl-item-label">{{ item.label }}</span>
+                @if (item.subtext) {
+                  <span class="cl-item-sub">{{ item.subtext }}</span>
+                }
+              </div>
+            </label>
+          }
+        </div>
+      }
+
+    </div>
+  }
+
+</div>

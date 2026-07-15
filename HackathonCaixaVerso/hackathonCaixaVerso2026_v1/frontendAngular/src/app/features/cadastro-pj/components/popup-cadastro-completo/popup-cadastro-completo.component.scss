@@ -1,0 +1,28 @@
+.popup-cadastro-completo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 40px;
+  text-align: center;
+
+  .icone-sucesso {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    color: #2e7d32;
+  }
+
+  .mensagem {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1b5e20;
+  }
+
+  .submensagem {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #555;
+  }
+}

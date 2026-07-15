@@ -1,0 +1,21 @@
+.popup-avaliando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 36px 48px;
+  text-align: center;
+
+  .mensagem {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #003d7c;
+  }
+
+  .submensagem {
+    margin: 0;
+    font-size: 0.86rem;
+    color: #666;
+  }
+}

@@ -1,0 +1,71 @@
+.oportunidades { padding: 0.5rem 0; }
+
+.oport-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+  .oport-titulo { font-size: 1.25rem; font-weight: 600; color: #1a3a5c; margin: 0; }
+  .oport-total { font-size: 0.85rem; color: #6b7280; }
+}
+
+/* RESUMO CARDS */
+.resumo-grid {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+}
+.resumo-card {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: #fff; border: 2px solid #e5e7eb; border-radius: 10px;
+  padding: 0.75rem 1rem; cursor: pointer; flex: 1; min-width: 130px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  &:hover { border-color: #005CA7; box-shadow: 0 2px 8px rgba(0,92,167,0.12); }
+  &.ativo { border-color: #005CA7; background: #e9f2fc; }
+}
+.rc-icon { font-size: 1.75rem; }
+.rc-todos { color: #6b7280; }
+.rc-andamento { color: #2563eb; }
+.rc-conformidade { color: #d97706; }
+.rc-pendencia { color: #dc2626; }
+.rc-contrato { color: #059669; }
+.rc-info { display: flex; flex-direction: column; }
+.rc-num { font-size: 1.5rem; font-weight: 700; line-height: 1; color: #1a3a5c; }
+.rc-label { font-size: 0.75rem; color: #6b7280; }
+
+/* LISTA VAZIA */
+.lista-vazia {
+  text-align: center; padding: 3rem;
+  span.material-icons { font-size: 3rem; color: #d1d5db; display: block; margin-bottom: 0.5rem; }
+  p { color: #9ca3af; }
+}
+
+/* GRID DE OPERAÇÕES */
+.operacoes-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+.operacao-card {
+  background: #fff; border-radius: 12px; border-left: 5px solid #6b7280;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 1rem;
+  cursor: pointer; transition: box-shadow 0.15s, transform 0.1s;
+  &:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  &.op-em-andamento { border-left-color: #2563eb; }
+  &.op-aguardando-conformidade { border-left-color: #d97706; }
+  &.op-com-pendencia { border-left-color: #dc2626; }
+  &.op-pronto-contrato { border-left-color: #059669; }
+  &.op-finalizado { border-left-color: #6b7280; }
+}
+.op-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem; }
+.op-empresa { display: flex; flex-direction: column; }
+.op-nome { font-weight: 600; color: #1a3a5c; font-size: 0.95rem; }
+.op-cnpj { font-size: 0.75rem; color: #6b7280; margin-top: 2px; }
+.op-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 999px; white-space: nowrap;
+  &.badge-em-andamento { background: #dbeafe; color: #1d4ed8; }
+  &.badge-aguardando-conformidade { background: #fef3c7; color: #92400e; }
+  &.badge-com-pendencia { background: #fee2e2; color: #991b1b; }
+  &.badge-pronto-contrato { background: #d1fae5; color: #065f46; }
+  &.badge-finalizado { background: #f3f4f6; color: #374151; }
+}
+.op-body { margin-bottom: 0.75rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.op-info { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: #374151; }
+.op-info-icon { font-size: 1rem; color: #9ca3af; }
+.op-data { color: #9ca3af; }
+.op-footer { display: flex; justify-content: flex-end; }

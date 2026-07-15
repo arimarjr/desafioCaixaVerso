@@ -1,0 +1,203 @@
+<div class="cadastro-pj-page">
+
+  <!-- CABEÇALHO DA PÁGINA -->
+  <div class="page-header">
+    <button class="btn-voltar" (click)="voltarHome()">
+      <span class="material-icons">arrow_back</span>
+      Voltar
+    </button>
+    <div class="page-titulo-area">
+      <h1 class="page-titulo">Plataforma Pessoa Jurídica</h1>
+      <span class="page-subtitulo">Jornada Única de Crédito PJ</span>
+    </div>
+    @if (empresa()) {
+      <div class="empresa-badge">
+        <span class="emp-nome">{{ empresa()!.razaoSocial }}</span>
+        <span class="emp-cnpj">{{ cnpj() }}</span>
+      </div>
+    }
+  </div>
+
+  <!-- CARREGANDO -->
+  @if (carregando()) {
+    <div class="loading-container">
+      <span class="material-icons spin">cached</span>
+      <span>Buscando dados na Receita Federal...</span>
+    </div>
+  }
+
+  <!-- ERRO -->
+  @if (possuiErro() && !carregando()) {
+    <div class="erro-container">
+      <dsc-alert
+        title="Atenção"
+        [message]="erro()!"
+        showIcon="true"
+        variant="warning">
+      </dsc-alert>
+    </div>
+  }
+
+  <!-- STEPPER PRINCIPAL -->
+  @if (stepper && !carregando()) {
+    <div class="stepper-container">
+      <dsc-stepper [stepper]="stepper" />
+    </div>
+  }
+
+  <!-- TEMPLATES DAS ETAPAS -->
+
+  <!-- ETAPA 1: CADASTRO (somente leitura) -->
+  <ng-template #tplCadastro>
+    <div class="etapa-conteudo">
+
+      <!-- Alerta de restrição cadastral -->
+      @if (empresa()?.restricaoCadastral) {
+        <div class="restricao-impeditiva">
+          <span class="material-icons restricao-icone">block</span>
+          <div class="restricao-texto">
+            <strong>Empresa com restrições impeditivas para avaliação.</strong>
+            Informe ao cliente e solicite a regularização.
+            Após regularizado poderá ser avaliado.
+          </div>
+        </div>
+      }
+
+      <!-- Abas com dados pré-preenchidos (somente leitura) -->
+      <mat-tab-group animationDuration="150ms" class="cadastro-tabs">
+
+        <mat-tab label="Dados da Empresa">
+          <div class="tab-body">
+            <app-cadastro-empresa [cnpj]="cnpj()" />
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Representantes Legais">
+          <div class="tab-body">
+            <app-lista-socios />
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Faturamento e Patrimônio">
+          <div class="tab-body">
+            <app-faturamento-patrimonio />
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+
+      <!-- Botão Seguir para avaliação -->
+      <div class="acoes-etapa">
+        <button mat-raised-button color="primary"
+          [disabled]="empresa()?.restricaoCadastral === true"
+          (click)="seguirParaAvaliacao()">
+          <span class="material-icons">arrow_forward</span>
+          Seguir para avaliação
+        </button>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <!-- ETAPA 2: AVALIAÇÃO DO CRÉDITO -->
+  <ng-template #tplAvaliacao>
+    @if (empresa()) {
+      <div class="etapa-conteudo">
+
+        <!-- Resumo da empresa -->
+        <div class="resumo-avaliacao">
+          <div class="resumo-linha">
+            <span class="material-icons resumo-icone">business</span>
+            <div class="resumo-info">
+              <span class="resumo-razao">{{ empresa()!.razaoSocial }}</span>
+              <span class="resumo-detalhe">CNPJ: {{ empresa()!.cnpj }} &nbsp;|&nbsp; Porte: {{ empresa()!.porteCaixa }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Dados Administrativos -->
+        <app-dados-administrativos
+          [empresa]="empresa()!"
+          [socios]="facade.socios()"
+          (avaliacaoSolicitada)="iniciarFluxoAvaliacao($event)"
+        />
+
+      </div>
+    } @else {
+      <div class="etapa-conteudo etapa-placeholder">
+        <span class="material-icons placeholder-icon">analytics</span>
+        <h3>Avaliação do Crédito</h3>
+        <p>Conclua o cadastro da empresa na etapa anterior para prosseguir com a avaliação.</p>
+      </div>
+    }
+  </ng-template>
+
+  <!-- ETAPA 3: PESQUISAS -->
+  <ng-template #tplPesquisas>
+    <div class="etapa-conteudo">
+      <app-central-pesquisas
+        [cnpj]="cnpj()"
+        [cpfsSocios]="cpfsSociosParaPesquisa" />
+    </div>
+  </ng-template>
+
+  <!-- ETAPA 4: SIMULAÇÃO -->
+  <ng-template #tplSimulacao>
+    <div class="etapa-conteudo">
+      <app-simulacao-proposta [limiteDisponivel]="resultadoAvaliacao()?.disponivel ?? null" />
+    </div>
+  </ng-template>
+
+  <!-- ETAPA 5: CONTRATO E ASSINATURA -->
+  <ng-template #tplContrato>
+    <div class="etapa-conteudo etapa-placeholder">
+      <span class="material-icons placeholder-icon">description</span>
+      <h3>Geração do Contrato e Assinatura</h3>
+      <p>Esta etapa gerencia a geração, envio, assinatura e protocolo do contrato de crédito.</p>
+      <div class="placeholder-items">
+        <div class="placeholder-item">
+          <span class="material-icons">radio_button_unchecked</span>
+          <span>Gerar contrato</span>
+        </div>
+        <div class="placeholder-item">
+          <span class="material-icons">radio_button_unchecked</span>
+          <span>Marcar como impresso</span>
+        </div>
+        <div class="placeholder-item">
+          <span class="material-icons">radio_button_unchecked</span>
+          <span>Registrar assinatura do cliente</span>
+        </div>
+        <div class="placeholder-item">
+          <span class="material-icons">radio_button_unchecked</span>
+          <span>Registrar assinatura do gerente</span>
+        </div>
+        <div class="placeholder-item">
+          <span class="material-icons">radio_button_unchecked</span>
+          <span>Upload do contrato assinado</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- ETAPA 6: CONFORMIDADE -->
+  <ng-template #tplConformidade>
+    <div class="etapa-conteudo">
+      <app-acompanhamento-conformidade />
+    </div>
+  </ng-template>
+
+  <!-- ETAPA 7: CHECKLIST FINAL -->
+  <ng-template #tplFinalizado>
+    <div class="etapa-conteudo">
+      <app-checklist-final
+        [empresa]="empresa()"
+        [socios]="facade.socios()"
+        [avaliacaoFeita]="resultadoAvaliacao() !== null"
+      />
+      <div class="cl-nova-op-bar">
+        <dsc-button label="Nova Operação" iconPrefix="add" (click)="voltarHome()" />
+      </div>
+    </div>
+  </ng-template>
+
+</div>

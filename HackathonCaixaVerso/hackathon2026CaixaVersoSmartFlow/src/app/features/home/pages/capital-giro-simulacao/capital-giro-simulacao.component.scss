@@ -1,0 +1,888 @@
+// ── Variáveis ────────────────────────────────────────────────────────────────
+$azul-primario:    #005ca9;
+$azul-destaque:    #006fe6;
+$laranja-calcular: #d97706;
+$laranja-hover:    #b85f00;
+$cinza-borda:      #d1d5db;
+$cinza-divisor:    #e5e7eb;
+$cinza-fundo:      #f3f4f6;
+$cinza-texto-sec:  #6b7280;
+$texto-principal:  #1f2937;
+$fundo-pagina:     #f5f7fa;
+$fundo-card:       #ffffff;
+$verde-check:      #16a34a;
+
+// ── Container principal ───────────────────────────────────────────────────────
+.capital-giro-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  background: $fundo-pagina;
+  box-sizing: border-box;
+}
+
+// ── Cabeçalho da página ───────────────────────────────────────────────────────
+.page-header {
+  margin-bottom: 4px;
+}
+
+.page-titulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 6px 0;
+}
+
+.page-empresa {
+  font-size: 0.82rem;
+  color: $cinza-texto-sec;
+  margin: 0;
+}
+
+// ── Card da Linha de Crédito ──────────────────────────────────────────────────
+.linha-credito-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.linha-credito-header {
+  margin-bottom: 8px;
+}
+
+.linha-credito-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: $azul-primario;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:focus-visible {
+      outline: 2px solid $azul-primario;
+      outline-offset: 2px;
+    }
+  }
+
+  .linha-icone {
+    font-size: 20px;
+    color: $azul-primario;
+  }
+
+  .linha-nome {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $texto-principal;
+  }
+}
+
+.linha-descricao {
+  font-size: 0.83rem;
+  color: $cinza-texto-sec;
+  margin: 0 0 16px 0;
+}
+
+// ── Grid de informações da linha ──────────────────────────────────────────────
+.linha-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+}
+
+.linha-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.linha-info-label {
+  font-size: 0.75rem;
+  color: $cinza-texto-sec;
+  font-weight: 400;
+}
+
+.linha-info-valor {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: $texto-principal;
+}
+
+// ── Garantias ─────────────────────────────────────────────────────────────────
+.garantias {
+  border-top: 1px solid $cinza-divisor;
+  padding-top: 14px;
+  margin-top: 4px;
+}
+
+.garantias-titulo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: $texto-principal;
+  margin: 0 0 8px 0;
+}
+
+.garantias-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.83rem;
+    color: $texto-principal;
+  }
+
+  .garantia-icone {
+    font-size: 16px;
+    color: $verde-check;
+  }
+}
+
+// ── Card de Simulação ─────────────────────────────────────────────────────────
+.simulacao-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.simulacao-titulo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 16px 0;
+}
+
+// ── Grid do formulário ────────────────────────────────────────────────────────
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: $cinza-texto-sec;
+}
+
+.input-prefix-wrapper,
+.input-suffix-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  background: $fundo-card;
+  overflow: hidden;
+  transition: border-color 0.15s;
+
+  &:focus-within { border-color: $azul-primario; }
+
+  &.input-wrapper--error { border-color: #dc2626; }
+}
+
+.input-prefix,
+.input-suffix {
+  padding: 0 10px;
+  font-size: 0.82rem;
+  color: $cinza-texto-sec;
+  background: $cinza-fundo;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.input-prefix { border-right: 1px solid $cinza-borda; }
+.input-suffix  { border-left:  1px solid $cinza-borda; }
+
+.form-input {
+  height: 42px;
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  font-size: 0.9rem;
+  color: $texto-principal;
+  background: $fundo-card;
+  min-width: 0;
+
+  &::placeholder { color: #b0b7c3; }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  &[type="number"] { -moz-appearance: textfield; }
+}
+
+.form-error {
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+// ── Botão Calcular ────────────────────────────────────────────────────────────
+.btn-calcular {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 24px;
+  background: $laranja-calcular;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: $laranja-hover; }
+  &:focus-visible { outline: 2px solid $laranja-hover; outline-offset: 2px; }
+}
+
+// ── Card de Resultado ─────────────────────────────────────────────────────────
+.resultado-card {
+  background: $fundo-card;
+  border: 2px solid $azul-destaque;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.resultado-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+
+  @media (max-width: 480px) { flex-direction: column; align-items: flex-start; }
+}
+
+.resultado-titulo {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0;
+}
+
+.btn-imprimir {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 12px;
+  background: $fundo-card;
+  color: $cinza-texto-sec;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+
+  .material-icons { font-size: 16px; }
+  &:hover { border-color: $azul-destaque; color: $azul-destaque; }
+  &:focus-visible { outline: 2px solid $azul-destaque; outline-offset: 2px; }
+}
+
+.resultado-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @media (max-width: 600px) { grid-template-columns: 1fr; }
+}
+
+.resultado-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resultado-label {
+  font-size: 0.75rem;
+  color: $cinza-texto-sec;
+}
+
+.resultado-valor {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: $texto-principal;
+
+  &.resultado-valor--azul { color: $azul-destaque; }
+}
+
+// ── Taxas e Encargos ──────────────────────────────────────────────────────────
+.taxas-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.taxas-titulo {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 14px 0;
+}
+
+.taxas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.taxas-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid $cinza-divisor;
+  gap: 12px;
+
+  @media (max-width: 600px) { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+
+.taxas-label {
+  font-size: 0.83rem;
+  color: $cinza-texto-sec;
+  font-weight: 400;
+}
+
+.taxas-valor {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: $texto-principal;
+  text-align: right;
+
+  &.taxas-valor--deducao { color: #dc2626; }
+}
+
+.cet-obs {
+  font-size: 0.74rem;
+  color: $cinza-texto-sec;
+  margin: 8px 0 16px 0;
+  font-style: italic;
+}
+
+.valor-liberado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  gap: 12px;
+
+  @media (max-width: 600px) { flex-direction: column; align-items: flex-start; }
+}
+
+.valor-liberado-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: $azul-primario;
+}
+
+.valor-liberado-valor {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $azul-primario;
+}
+
+// ── Planilha de Evolução ──────────────────────────────────────────────────────
+.evolucao-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.evolucao-titulo {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $texto-principal;
+  margin: 0 0 14px 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 4px;
+  border: 1px solid $cinza-borda;
+}
+
+.evolucao-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  white-space: nowrap;
+
+  thead tr {
+    background: $cinza-fundo;
+  }
+
+  th {
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 600;
+    color: $texto-principal;
+    border-bottom: 2px solid $cinza-borda;
+
+    &:first-child { text-align: center; }
+  }
+
+  td {
+    padding: 9px 14px;
+    text-align: right;
+    color: $texto-principal;
+    border-bottom: 1px solid $cinza-divisor;
+
+    &:first-child { text-align: center; font-weight: 600; color: $azul-primario; }
+  }
+
+  tbody tr {
+    transition: background 0.1s;
+    &:hover { background: #f0f7ff; }
+    &:last-child td { border-bottom: none; }
+  }
+}
+
+// ── Rodapé de Ações ───────────────────────────────────────────────────────────
+.acoes-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  gap: 12px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    .acoes-direita { width: 100%; justify-content: flex-end; }
+
+    .btn-secundario,
+    .btn-primario { width: 100%; justify-content: center; }
+  }
+}
+
+.acoes-direita {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 20px;
+  background: $fundo-card;
+  color: $texto-principal;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s;
+
+  &:hover { border-color: $azul-primario; color: $azul-primario; }
+  &:focus-visible { outline: 2px solid $azul-primario; outline-offset: 2px; }
+}
+
+.btn-primario {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 24px;
+  background: $azul-primario;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { filter: brightness(0.88); }
+  &:focus-visible { outline: 2px solid $azul-primario; outline-offset: 2px; }
+}
+
+// ── Impressão ─────────────────────────────────────────────────────────────────
+@media print {
+  .btn-imprimir,
+  .btn-calcular,
+  .acoes-footer { display: none !important; }
+
+  .capital-giro-page { background: #ffffff !important; }
+
+  .resultado-card { border-color: #000000 !important; }
+}
+
+// ── Container principal ───────────────────────────────────────────────────────
+.capital-giro-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  background: $fundo-pagina;
+  box-sizing: border-box;
+}
+
+// ── Card de seleção de produto ────────────────────────────────────────────────
+.produto-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 6px;
+  padding: 16px 20px;
+}
+
+.produto-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: $azul-primario;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:focus-visible {
+      outline: 2px solid $azul-primario;
+      outline-offset: 2px;
+    }
+  }
+
+  .produto-icone {
+    font-size: 20px;
+    color: $azul-primario;
+  }
+
+  .produto-nome {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $texto-principal;
+  }
+}
+
+// ── Card de simulação ─────────────────────────────────────────────────────────
+.simulacao-card {
+  background: $fundo-card;
+  border: 1px solid $cinza-borda;
+  border-radius: 6px;
+  padding: 20px 24px;
+}
+
+.simulacao-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $texto-principal;
+  margin: 0 0 16px 0;
+}
+
+// ── Grid de campos ────────────────────────────────────────────────────────────
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $cinza-texto-sec;
+  display: block;
+}
+
+.input-prefix-wrapper,
+.input-suffix-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  background: $fundo-card;
+  overflow: hidden;
+  transition: border-color 0.15s;
+
+  &:focus-within {
+    border-color: $azul-primario;
+    outline: 0;
+  }
+}
+
+.input-prefix,
+.input-suffix {
+  padding: 0 10px;
+  font-size: 0.85rem;
+  color: $cinza-texto-sec;
+  background: #f3f4f6;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  border-right: 1px solid $cinza-borda;
+  border-left: none;
+  flex-shrink: 0;
+}
+
+.input-suffix {
+  border-right: none;
+  border-left: 1px solid $cinza-borda;
+}
+
+.form-input {
+  height: 42px;
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  font-size: 0.9rem;
+  color: $texto-principal;
+  background: $fundo-card;
+  min-width: 0;
+
+  &::placeholder {
+    color: #b0b7c3;
+  }
+
+  // Remove setas de number input
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  &.form-input--error {
+    background: #fff5f5;
+  }
+}
+
+.form-error {
+  font-size: 0.76rem;
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+// ── Botão Calcular ────────────────────────────────────────────────────────────
+.btn-calcular {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 20px;
+  background: $laranja-calcular;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: $laranja-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $laranja-hover;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: #c5a47e;
+    cursor: not-allowed;
+  }
+}
+
+// ── Card de Resultado ─────────────────────────────────────────────────────────
+.resultado-card {
+  background: $fundo-card;
+  border: 2px solid $azul-primario;
+  border-radius: 6px;
+  padding: 16px 20px;
+}
+
+.resultado-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.resultado-titulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $texto-principal;
+  margin: 0;
+}
+
+// ── Botão Imprimir ────────────────────────────────────────────────────────────
+.btn-imprimir {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 12px;
+  background: $fundo-card;
+  color: $cinza-texto-sec;
+  border: 1px solid $cinza-borda;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+
+  .material-icons {
+    font-size: 16px;
+  }
+
+  &:hover {
+    border-color: $azul-primario;
+    color: $azul-primario;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $azul-primario;
+    outline-offset: 2px;
+  }
+}
+
+// ── Grid de resultados ────────────────────────────────────────────────────────
+.resultado-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resultado-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resultado-label {
+  font-size: 0.76rem;
+  color: $cinza-texto-sec;
+  font-weight: 400;
+}
+
+.resultado-valor {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $texto-principal;
+
+  &.resultado-valor--azul {
+    color: $azul-primario;
+  }
+}
+
+// ── Divisor ───────────────────────────────────────────────────────────────────
+.resultado-divisor {
+  border: none;
+  border-top: 1px solid $cinza-divisor;
+  margin: 0 0 12px 0;
+}
+
+// ── Link Taxas e Encargos ─────────────────────────────────────────────────────
+.taxas-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  color: $azul-primario;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $azul-primario;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .taxas-icone {
+    font-size: 16px;
+    color: $azul-primario;
+  }
+}
+
+// ── Impressão ─────────────────────────────────────────────────────────────────
+@media print {
+  .btn-calcular,
+  .btn-imprimir,
+  .produto-card {
+    display: none !important;
+  }
+
+  .capital-giro-page,
+  .resultado-card,
+  .simulacao-card {
+    background: #ffffff !important;
+    border-color: #000 !important;
+  }
+}

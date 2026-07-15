@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relatório de Segurança JWT — Plataforma PJ</title>
+  <style>
+    @page { size: A4; margin: 2cm 2cm 2.5cm 2cm; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      color: #1a2a3a;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ── CAPA ─────────────────────────────────────────── */
+    .capa {
+      background: linear-gradient(135deg, #005CA7 0%, #0080e0 100%);
+      color: #fff;
+      padding: 3cm 2cm;
+      min-height: 12cm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      border-radius: 0 0 20px 20px;
+    }
+    .capa-logo {
+      font-size: 13pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 1.5cm;
+    }
+    .capa-titulo {
+      font-size: 26pt;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.5cm;
+    }
+    .capa-subtitulo {
+      font-size: 13pt;
+      opacity: 0.85;
+      margin-bottom: 2cm;
+    }
+    .capa-meta {
+      font-size: 10pt;
+      opacity: 0.75;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 0.5cm;
+      display: flex;
+      gap: 2cm;
+    }
+    .capa-meta span { display: block; }
+    .capa-meta strong { display: block; font-size: 11pt; opacity: 1; }
+
+    .badge-confidencial {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 9pt;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1cm;
+    }
+
+    /* ── CONTEÚDO ─────────────────────────────────────── */
+    .conteudo { padding: 1cm 0; }
+
+    h1 {
+      font-size: 18pt;
+      color: #005CA7;
+      font-weight: 800;
+      margin: 1.2cm 0 0.4cm;
+      padding-bottom: 6px;
+      border-bottom: 3px solid #005CA7;
+    }
+    h2 {
+      font-size: 13pt;
+      color: #003d73;
+      font-weight: 700;
+      margin: 0.8cm 0 0.3cm;
+      padding-left: 10px;
+      border-left: 4px solid #005CA7;
+    }
+    h3 {
+      font-size: 11pt;
+      color: #1a2a3a;
+      font-weight: 700;
+      margin: 0.5cm 0 0.2cm;
+    }
+    p { margin-bottom: 0.35cm; }
+
+    /* ── TABELAS ──────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.4cm 0 0.6cm;
+      font-size: 10pt;
+    }
+    thead tr { background: #005CA7; color: #fff; }
+    thead th {
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    tbody tr:nth-child(even) { background: #f0f6ff; }
+    tbody tr:nth-child(odd)  { background: #fff; }
+    tbody td { padding: 7px 12px; border-bottom: 1px solid #dde4ef; vertical-align: top; }
+    tfoot tr { background: #e9f2fc; }
+    tfoot td { padding: 7px 12px; font-weight: 700; color: #005CA7; }
+
+    /* ── BADGES DE SEVERIDADE ────────────────────────── */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .badge-alta    { background: #fee2e2; color: #991b1b; }
+    .badge-media   { background: #fef3c7; color: #92400e; }
+    .badge-baixa   { background: #dbeafe; color: #1d4ed8; }
+    .badge-ok      { background: #d1fae5; color: #065f46; }
+    .badge-ativo   { background: #fee2e2; color: #991b1b; }
+    .badge-mitigado{ background: #d1fae5; color: #065f46; }
+
+    /* ── CODE BLOCKS ─────────────────────────────────── */
+    pre {
+      background: #1a2a3a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 9.5pt;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      margin: 0.3cm 0 0.5cm;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+    code {
+      background: #e9f2fc;
+      color: #003d73;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 9.5pt;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    pre code { background: none; color: inherit; padding: 0; }
+
+    /* ── ALERTAS ─────────────────────────────────────── */
+    .alerta {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 0.4cm 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 10pt;
+    }
+    .alerta-icon { font-size: 14pt; flex-shrink: 0; margin-top: 1px; }
+    .alerta-risco { background: #fee2e2; border-left: 4px solid #dc2626; }
+    .alerta-risco .alerta-icon { color: #dc2626; }
+    .alerta-ok    { background: #d1fae5; border-left: 4px solid #059669; }
+    .alerta-ok .alerta-icon  { color: #059669; }
+    .alerta-info  { background: #fffbeb; border-left: 4px solid #d97706; }
+    .alerta-info .alerta-icon{ color: #d97706; }
+
+    /* ── SEÇÃO DESTACADA ─────────────────────────────── */
+    .card {
+      border: 1px solid #dde4ef;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 0.4cm 0;
+      background: #fafdff;
+    }
+    .card h3 { margin-top: 0; color: #005CA7; }
+
+    /* ── RODAPÉ ──────────────────────────────────────── */
+    .rodape {
+      border-top: 2px solid #dde4ef;
+      padding-top: 0.4cm;
+      margin-top: 1cm;
+      font-size: 9pt;
+      color: #6b7a90;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── PRINT ───────────────────────────────────────── */
+    @media print {
+      .capa { border-radius: 0; }
+      h1, h2 { page-break-after: avoid; }
+      table, pre, .card { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     CAPA
+══════════════════════════════════════════════════ -->
+<div class="capa">
+  <div class="capa-logo">🏦 Plataforma PJ — CAIXA Hackathon 2026</div>
+  <div class="badge-confidencial">🔒 Confidencial — Uso Interno</div>
+  <div class="capa-titulo">Relatório de Segurança JWT</div>
+  <div class="capa-subtitulo">Modelagem de Ameaças — Autenticação e Autorização</div>
+  <div class="capa-meta">
+    <div>
+      <span>Data</span>
+      <strong>21/05/2026</strong>
+    </div>
+    <div>
+      <span>Versão</span>
+      <strong>1.0</strong>
+    </div>
+    <div>
+      <span>Stack</span>
+      <strong>ASP.NET Core 9 + Angular 17</strong>
+    </div>
+    <div>
+      <span>Método</span>
+      <strong>STRIDE / Revisão de Código</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     CONTEÚDO
+══════════════════════════════════════════════════ -->
+<div class="conteudo">
+
+  <!-- ─────────────────────────── -->
+  <h1>1. Armazenamento do Token</h1>
+
+  <p>
+    A arquitetura utiliza dois tokens com estratégias de armazenamento distintas,
+    seguindo o padrão <em>Split Token</em>:
+  </p>
+
+  <div class="card">
+    <h3>Access Token — sessionStorage</h3>
+    <p>O access token JWT é armazenado em <code>sessionStorage</code> via <code>AutenticacaoStore</code>:</p>
+<pre><code>// autenticacao.store.ts
+const SESSION_KEY_TOKEN = 'pj_access_token';
+sessionStorage.setItem(SESSION_KEY_TOKEN, token);</code></pre>
+    <ul style="padding-left:1.2em; margin-top:6px;">
+      <li>Escopo da aba — desaparece ao fechar o browser</li>
+      <li><strong>Acessível via JavaScript</strong> — vulnerável a XSS</li>
+      <li>Não persiste entre abas ou após reinicialização</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Refresh Token — HttpOnly Cookie</h3>
+    <p>O refresh token opaco é gerenciado exclusivamente pelo backend:</p>
+<pre><code>// CookieHelper.cs
+new CookieOptions {
+    HttpOnly = true,
+    Secure   = !env.IsDevelopment(),     // HTTPS em produção
+    SameSite = SameSiteMode.Strict,      // bloqueia cross-site em prod
+    Expires  = DateTimeOffset.UtcNow.AddDays(7),
+}</code></pre>
+    <ul style="padding-left:1.2em; margin-top:6px;">
+      <li>Inacessível ao JavaScript — protegido contra XSS</li>
+      <li>Enviado automaticamente pelo browser em todas as requisições</li>
+      <li><code>SameSite=Strict</code> em produção bloqueia CSRF</li>
+    </ul>
+  </div>
+
+  <div class="alerta alerta-risco">
+    <span class="alerta-icon">⚠</span>
+    <div>
+      <strong>Risco R1 — Alta:</strong> O access token em <code>sessionStorage</code> é legível por qualquer
+      script JavaScript na mesma origem. Um ataque XSS bem-sucedido pode exfiltrar o token e usá-lo
+      por até 1 hora (tempo de expiração).
+    </div>
+  </div>
+
+  <!-- ─────────────────────────── -->
+  <h1>2. Content Security Policy (CSP)</h1>
+
+  <p>
+    O <code>index.html</code> não contém <code>&lt;meta http-equiv="Content-Security-Policy"&gt;</code>
+    e o backend não emite o header <code>Content-Security-Policy</code> nas respostas HTTP.
+  </p>
+
+  <div class="alerta alerta-risco">
+    <span class="alerta-icon">⚠</span>
+    <div>
+      <strong>Risco R2 — Alta:</strong> Sem CSP, um XSS injetado pode carregar scripts externos,
+      acessar <code>sessionStorage</code> e exfiltrar o access token para um servidor remoto
+      sem qualquer restrição de origem.
+    </div>
+  </div>
+
+  <h3>Recomendação</h3>
+  <p>Adicionar ao backend (middleware) ou ao <code>index.html</code>:</p>
+<pre><code>// backend.cs — adicionar no pipeline
+app.Use(async (ctx, next) => {
+    ctx.Response.Headers["Content-Security-Policy"] =
+        "default-src 'self'; " +
+        "script-src 'self'; " +
+        "style-src 'self' https://fonts.googleapis.com; " +
+        "font-src 'self' https://fonts.gstatic.com; " +
+        "connect-src 'self'; " +
+        "frame-ancestors 'none';";
+    await next();
+});</code></pre>
+
+  <!-- ─────────────────────────── -->
+  <h1>3. Configuração do JWT</h1>
+
+  <h2>3.1 Algoritmo e Criptografia</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Aspecto</th>
+        <th>Valor Atual</th>
+        <th>Observação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tipo</td>
+        <td>JWS (apenas assinado)</td>
+        <td>Payload <strong>não criptografado</strong> — legível por qualquer um com o token</td>
+      </tr>
+      <tr>
+        <td>Algoritmo</td>
+        <td><code>HS256</code> (HMAC-SHA256)</td>
+        <td>Chave simétrica — mesmo segredo para assinar e validar</td>
+      </tr>
+      <tr>
+        <td>Comprimento mínimo da chave</td>
+        <td>32 caracteres (verificado no código)</td>
+        <td>Aceito, mas recomenda-se ≥ 64 bytes aleatórios</td>
+      </tr>
+      <tr>
+        <td>Armazenamento do Secret</td>
+        <td>User Secrets (dev) / Variável de ambiente (prod)</td>
+        <td>Correto — nunca versionado no repositório</td>
+      </tr>
+    </tbody>
+  </table>
+
+<pre><code>// JwtService.cs
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
+_signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);</code></pre>
+
+  <div class="alerta alerta-info">
+    <span class="alerta-icon">ℹ</span>
+    <div>
+      <strong>Risco R3 — Média:</strong> HS256 usa chave simétrica. Se o <code>Jwt:Secret</code>
+      vazar (logs, dump de memória, variável de ambiente exposta), qualquer pessoa pode forjar
+      tokens arbitrários. RS256 (assimétrico) isolaria a capacidade de assinatura da de validação.
+    </div>
+  </div>
+
+  <h2>3.2 Validações do Token</h2>
+
+  <table>
+    <thead>
+      <tr><th>Claim</th><th>Validado?</th><th>Valor esperado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>exp</code> (expiração)</td><td><span class="badge badge-ok">✅ Sim</span></td><td>Verificado — <code>ValidateLifetime = true</code></td></tr>
+      <tr><td><code>iss</code> (emissor)</td><td><span class="badge badge-ok">✅ Sim</span></td><td><code>plataforma-pj</code></td></tr>
+      <tr><td><code>aud</code> (audiência)</td><td><span class="badge badge-ok">✅ Sim</span></td><td><code>plataforma-pj-client</code></td></tr>
+      <tr><td>Clock Skew</td><td><span class="badge badge-ok">✅ Zero</span></td><td><code>TimeSpan.Zero</code> — sem tolerância</td></tr>
+      <tr><td>Assinatura</td><td><span class="badge badge-ok">✅ Sim</span></td><td><code>ValidateIssuerSigningKey = true</code></td></tr>
+    </tbody>
+  </table>
+
+<pre><code>// backend.cs
+options.TokenValidationParameters = new TokenValidationParameters {
+    ValidateIssuer           = true,
+    ValidateAudience         = true,
+    ValidateLifetime         = true,
+    ValidateIssuerSigningKey = true,
+    ValidIssuer              = jwtIssuer,
+    ValidAudience            = jwtAudience,
+    IssuerSigningKey         = signingKey,
+    ClockSkew                = TimeSpan.Zero,
+};</code></pre>
+
+  <!-- ─────────────────────────── -->
+  <h1>4. Tempo de Vida e Renovação</h1>
+
+  <table>
+    <thead>
+      <tr><th>Token</th><th>TTL (appsettings.json)</th><th>Comportamento</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Access Token</td>
+        <td><strong>1 hora</strong></td>
+        <td>JWT assinado, válido imediatamente após emissão</td>
+      </tr>
+      <tr>
+        <td>Refresh Token</td>
+        <td><strong>7 dias</strong></td>
+        <td>Opaco (64 bytes aleatórios), armazenado em memória no servidor</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Fluxo de Renovação</h2>
+
+  <div class="card">
+    <ol style="padding-left:1.2em; line-height:2;">
+      <li>Access token expira → interceptor Angular recebe <code>HTTP 401</code></li>
+      <li>Interceptor chama automaticamente <code>POST /auth/refresh</code></li>
+      <li>Browser envia o refresh token via HttpOnly Cookie (sem acesso JavaScript)</li>
+      <li>Backend valida o refresh token, <strong>revoga o antigo</strong> e emite novo (rotação)</li>
+      <li>Novo access token retorna no body JSON → salvo em <code>sessionStorage</code></li>
+      <li>Requisição original é repetida com o novo token</li>
+      <li>Se refresh falhou → <code>store.limpar()</code> + redirect para <code>/login</code></li>
+    </ol>
+  </div>
+
+<pre><code>// autenticacao.interceptor.ts — lógica de retry após 401
+catchError((erro: HttpErrorResponse) => {
+  if (erro.status === 401 && !isAuthEndpoint) {
+    return authService.refresh().pipe(
+      switchMap(response => {
+        const reqRetry = req.clone({
+          withCredentials: true,
+          setHeaders: { Authorization: `Bearer ${response.accessToken}` },
+        });
+        return next(reqRetry);
+      }),
+      catchError(erroRefresh => {
+        store.limpar();
+        router.navigate(['/login']);
+        return throwError(() => erroRefresh);
+      }),
+    );
+  }
+  return throwError(() => erro);
+})</code></pre>
+
+  <div class="alerta alerta-ok">
+    <span class="alerta-icon">✅</span>
+    <div>
+      <strong>Controle P1 — Mitigado:</strong> A rotação de refresh token está implementada.
+      Cada uso do refresh token emite um novo e invalida o anterior, mitigando
+      ataques de replay se o token for interceptado.
+    </div>
+  </div>
+
+  <!-- ─────────────────────────── -->
+  <h1>5. Revogação de Tokens</h1>
+
+  <h2>Access Token</h2>
+  <p>
+    O access token JWT <strong>não possui mecanismo de revogação antecipada</strong>.
+    Uma vez emitido, permanece válido até seu <code>exp</code> (1 hora),
+    independentemente de logout ou comprometimento da conta.
+  </p>
+
+  <div class="alerta alerta-risco">
+    <span class="alerta-icon">⚠</span>
+    <div>
+      <strong>Risco R4 — Média:</strong> Um access token roubado pode ser usado por até 1 hora
+      sem possibilidade de bloqueio imediato. Não existe blacklist ou JTI denylist implementado.
+    </div>
+  </div>
+
+  <h2>Refresh Token</h2>
+  <p>
+    O refresh token possui revogação imediata via <code>RefreshTokenStore.Revogar()</code>:
+  </p>
+
+  <table>
+    <thead><tr><th>Cenário</th><th>Mecanismo</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Logout voluntário</td>
+        <td><code>POST /auth/logout</code> revoga token + deleta cookie</td>
+        <td><span class="badge badge-ok">✅ Implementado</span></td>
+      </tr>
+      <tr>
+        <td>Uso do refresh token</td>
+        <td>Token antigo revogado antes de emitir novo (rotação)</td>
+        <td><span class="badge badge-ok">✅ Implementado</span></td>
+      </tr>
+      <tr>
+        <td>Token expirado</td>
+        <td>Verificação de <code>entry.Expiracao &lt; DateTime.UtcNow</code></td>
+        <td><span class="badge badge-ok">✅ Implementado</span></td>
+      </tr>
+      <tr>
+        <td>Reinicialização do processo</td>
+        <td>Store in-memory — todos os tokens são perdidos</td>
+        <td><span class="badge badge-media">⚠ Gap</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alerta alerta-info">
+    <span class="alerta-icon">ℹ</span>
+    <div>
+      <strong>Risco R5 — Média:</strong> O <code>RefreshTokenStore</code> é in-memory
+      (<code>ConcurrentDictionary</code>). Um restart do processo invalida todas as sessões ativas
+      (logout involuntário de todos os usuários). Em produção, substituir por Redis ou tabela
+      de banco com TTL, conforme indicado no próprio código-fonte.
+    </div>
+  </div>
+
+  <!-- ─────────────────────────── -->
+  <h1>6. Transporte</h1>
+
+  <table>
+    <thead><tr><th>Token</th><th>Mecanismo de Transporte</th><th>Proteção</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Access Token</td>
+        <td>Header <code>Authorization: Bearer &lt;token&gt;</code></td>
+        <td>TLS (HTTPS em produção)</td>
+      </tr>
+      <tr>
+        <td>Refresh Token</td>
+        <td>HttpOnly Cookie (automático pelo browser)</td>
+        <td>HttpOnly + Secure + SameSite=Strict</td>
+      </tr>
+      <tr>
+        <td>Credenciais de cookies</td>
+        <td><code>withCredentials: true</code> em todas as requisições</td>
+        <td>Necessário para envio do cookie HttpOnly</td>
+      </tr>
+    </tbody>
+  </table>
+
+<pre><code>// backend.cs — HTTPS obrigatório em produção
+if (!app.Environment.IsDevelopment()) {
+    app.UseHttpsRedirection();
+    app.UseHsts();     // Header Strict-Transport-Security
+}</code></pre>
+
+  <div class="alerta alerta-ok">
+    <span class="alerta-icon">✅</span>
+    <div>
+      <strong>Controle P2 — Mitigado:</strong> HSTS ativado em produção e
+      <code>UseHttpsRedirection()</code> garante que toda comunicação seja sobre TLS.
+      CORS configurado com <code>AllowCredentials()</code> e origens restritas.
+    </div>
+  </div>
+
+  <!-- ─────────────────────────── -->
+  <h1>7. Escopo, Permissões e Dados Sensíveis</h1>
+
+  <h2>Payload do Access Token (decodificável sem a chave secreta)</h2>
+
+<pre><code>{
+  "sub":                  "12345",           // matrícula do funcionário
+  "jti":                  "uuid-v4",         // ID único do token (não validado em blacklist)
+  "http://...nameid":     "12345",           // ClaimTypes.NameIdentifier
+  "http://...name":       "João da Silva",   // ClaimTypes.Name
+  "http://...role":       "GERENTE",         // ClaimTypes.Role — EXPOSTO
+  "nbf": 1747872000,
+  "exp": 1747875600,                         // +1 hora
+  "iss": "plataforma-pj",
+  "aud": "plataforma-pj-client"
+}</code></pre>
+
+  <table>
+    <thead><tr><th>Claim</th><th>Conteúdo</th><th>Risco</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>sub</code></td>
+        <td>Matrícula do funcionário</td>
+        <td><span class="badge badge-baixa">Baixo</span></td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td>Nome completo do funcionário</td>
+        <td><span class="badge badge-baixa">Baixo</span></td>
+      </tr>
+      <tr>
+        <td><code>role</code></td>
+        <td>Perfil de acesso (ex: GERENTE)</td>
+        <td><span class="badge badge-media">Médio — enumeração de perfis</span></td>
+      </tr>
+      <tr>
+        <td>Dados de cliente</td>
+        <td>Nenhum (CPF, CNPJ, saldo — não incluídos)</td>
+        <td><span class="badge badge-ok">✅ Correto</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alerta alerta-info">
+    <span class="alerta-icon">ℹ</span>
+    <div>
+      <strong>Risco R6 — Baixo:</strong> O campo <code>role</code> (perfil do funcionário)
+      é visível por qualquer pessoa que possua o token, bastando decodificar o payload em Base64.
+      Não há dados sensíveis de clientes no token — o que é correto.
+    </div>
+  </div>
+
+  <!-- ─────────────────────────── -->
+  <h1>8. Controles Adicionais Identificados</h1>
+
+  <div class="alerta alerta-ok">
+    <span class="alerta-icon">✅</span>
+    <div>
+      <strong>Rate Limiting no Login:</strong> 5 requisições por minuto por IP.
+      Mitiga força bruta e credential stuffing.
+    </div>
+  </div>
+  <div class="alerta alerta-ok">
+    <span class="alerta-icon">✅</span>
+    <div>
+      <strong>Bcrypt nas Senhas:</strong> Work factor 12 em produção (4 em dev).
+      Passwords nunca armazenadas em texto claro.
+    </div>
+  </div>
+  <div class="alerta alerta-ok">
+    <span class="alerta-icon">✅</span>
+    <div>
+      <strong>Audit Log:</strong> Logins bem-sucedidos, inválidos e rotações de refresh token
+      são registrados com matrícula e IP (<code>[AUDIT]</code>).
+    </div>
+  </div>
+  <div class="alerta alerta-ok">
+    <span class="alerta-icon">✅</span>
+    <div>
+      <strong>Sem enumeração de usuários:</strong> Login inválido retorna mensagem genérica
+      "Credenciais inválidas" sem indicar qual campo está errado.
+    </div>
+  </div>
+
+  <!-- ─────────────────────────── -->
+  <h1>9. Resumo Executivo de Riscos</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Risco</th>
+        <th>Severidade</th>
+        <th>Status</th>
+        <th>Recomendação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>R1</td>
+        <td>Access token em <code>sessionStorage</code> — vulnerável a XSS</td>
+        <td><span class="badge badge-alta">Alta</span></td>
+        <td><span class="badge badge-ativo">Ativo</span></td>
+        <td>Migrar para cookie HttpOnly ou reduzir TTL para ≤ 15 min com CSP</td>
+      </tr>
+      <tr>
+        <td>R2</td>
+        <td>Sem Content Security Policy — XSS pode exfiltrar token</td>
+        <td><span class="badge badge-alta">Alta</span></td>
+        <td><span class="badge badge-ativo">Ativo</span></td>
+        <td>Implementar CSP restritivo no backend (header) e no <code>index.html</code></td>
+      </tr>
+      <tr>
+        <td>R3</td>
+        <td>HS256 (chave simétrica) — vazamento do secret compromete tudo</td>
+        <td><span class="badge badge-media">Média</span></td>
+        <td><span class="badge badge-ativo">Ativo</span></td>
+        <td>Avaliar migração para RS256; rotacionar secret periodicamente</td>
+      </tr>
+      <tr>
+        <td>R4</td>
+        <td>Access token irrevogável — válido por até 1h após comprometimento</td>
+        <td><span class="badge badge-media">Média</span></td>
+        <td><span class="badge badge-ativo">Ativo</span></td>
+        <td>Implementar JTI denylist (Redis) ou reduzir TTL para 15 min</td>
+      </tr>
+      <tr>
+        <td>R5</td>
+        <td>RefreshTokenStore in-memory — não sobrevive restart</td>
+        <td><span class="badge badge-media">Média</span></td>
+        <td><span class="badge badge-ativo">Ativo</span></td>
+        <td>Substituir por Redis ou banco de dados com TTL em produção</td>
+      </tr>
+      <tr>
+        <td>R6</td>
+        <td><code>role</code> exposto no payload do token (legível sem a chave)</td>
+        <td><span class="badge badge-baixa">Baixa</span></td>
+        <td><span class="badge badge-ativo">Ativo</span></td>
+        <td>Avaliar uso de JWE (criptografia do payload) ou remover claim de role</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5">Controles mitigados: Rotação de refresh token ✅ | HTTPS + HSTS ✅ | Rate limiting ✅ | Bcrypt ✅ | CORS restrito ✅ | Audit log ✅</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- ─────────────────────────── -->
+  <h1>10. Plano de Ação Prioritário</h1>
+
+  <table>
+    <thead>
+      <tr><th>Prioridade</th><th>Ação</th><th>Esforço</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🔴 P0</td>
+        <td>Implementar CSP restritivo no middleware do backend</td>
+        <td>Baixo (1 dia)</td>
+      </tr>
+      <tr>
+        <td>🔴 P0</td>
+        <td>Reduzir TTL do access token de 1h para 15 minutos</td>
+        <td>Baixo (1 linha de config)</td>
+      </tr>
+      <tr>
+        <td>🟡 P1</td>
+        <td>Migrar RefreshTokenStore para Redis com TTL automático</td>
+        <td>Médio (2–3 dias)</td>
+      </tr>
+      <tr>
+        <td>🟡 P1</td>
+        <td>Implementar JTI denylist para revogação imediata de access tokens</td>
+        <td>Médio (2 dias)</td>
+      </tr>
+      <tr>
+        <td>🟢 P2</td>
+        <td>Avaliar migração de HS256 para RS256</td>
+        <td>Alto (configuração de certificados)</td>
+      </tr>
+      <tr>
+        <td>🟢 P2</td>
+        <td>Remover claim <code>role</code> do JWT e buscar permissões por endpoint</td>
+        <td>Médio (refatoração de autorização)</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- ── RODAPÉ ─────────────────────────────────────── -->
+<div class="rodape">
+  <span>Plataforma PJ — CAIXA Hackathon 2026 | Confidencial</span>
+  <span>Gerado em: 21/05/2026 | Versão 1.0</span>
+</div>
+
+<script>
+  // Abre o diálogo de impressão automaticamente ao carregar
+  window.addEventListener('load', () => {
+    // Pequeno delay para garantir renderização completa
+    setTimeout(() => window.print(), 800);
+  });
+</script>
+
+</body>
+</html>

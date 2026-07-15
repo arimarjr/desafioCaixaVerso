@@ -1,0 +1,58 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="titulo">Login</h2>
+    <!-- <p class="subtitulo">Acesso Corporativo</p> -->
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+
+      <label for="matricula">Matrícula</label>
+      <input
+        id="matricula"
+        type="text"
+        formControlName="matricula"
+        placeholder="c000000"
+        autocomplete="username"
+        aria-required="true"
+        [attr.aria-invalid]="form.get('matricula')?.invalid && form.get('matricula')?.touched"
+      />
+      @if (form.get('matricula')?.invalid && form.get('matricula')?.touched) {
+        <span class="campo-erro" role="alert">
+          Matrícula inválida. Use o formato c000000.
+        </span>
+      }
+
+      <label for="senha">Senha</label>
+      <input
+        id="senha"
+        type="password"
+        formControlName="senha"
+        placeholder="Digite sua senha"
+        autocomplete="current-password"
+        aria-required="true"
+        [attr.aria-invalid]="form.get('senha')?.invalid && form.get('senha')?.touched"
+      />
+      @if (form.get('senha')?.invalid && form.get('senha')?.touched) {
+        <span class="campo-erro" role="alert">
+          Senha obrigatória.
+        </span>
+      }
+
+      <button
+        type="submit"
+        [disabled]="carregando()"
+        aria-live="polite"
+      >
+        @if (carregando()) {
+          Autenticando…
+        } @else {
+          Entrar
+        }
+      </button>
+
+      @if (erro()) {
+        <p class="erro" role="alert">{{ erro() }}</p>
+      }
+
+    </form>
+  </div>
+</div>

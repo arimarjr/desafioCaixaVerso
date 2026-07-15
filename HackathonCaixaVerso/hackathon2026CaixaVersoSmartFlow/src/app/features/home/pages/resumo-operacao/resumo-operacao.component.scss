@@ -1,0 +1,351 @@
+// ─── Tokens ──────────────────────────────────────────────────────────────
+$azul:        #005CA7;
+$azul-escuro: #003d73;
+$verde:       #1a7a40;
+$verde-claro: #e6f4ec;
+$vermelho:    #c0392b;
+$verm-claro:  #fdf0ef;
+$cinza-bd:    #e5e7eb;
+$cinza-label: #6b7a90;
+$cinza-bg:    #f4f7fa;
+
+// ─── Container ───────────────────────────────────────────────────────────
+.resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// ─── Cabeçalho ───────────────────────────────────────────────────────────
+.resumo__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: linear-gradient(135deg, $azul 0%, #0080e0 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.resumo__header-esq {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.resumo__header-icone { font-size: 2.25rem; opacity: 0.9; }
+
+.resumo__titulo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.resumo__subtitulo {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin: 0.1rem 0 0;
+}
+
+.resumo__data-proposta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  .material-icons { font-size: 1.25rem; opacity: 0.9; }
+}
+
+.resumo__data-label {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.resumo__data-valor {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+// ─── Cards ───────────────────────────────────────────────────────────────
+.resumo__card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid $cinza-bd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem 1.5rem;
+}
+
+.resumo__card-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $azul;
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e9f2fc;
+  .material-icons { font-size: 1.2rem; }
+}
+
+// ─── Grids ───────────────────────────────────────────────────────────────
+.resumo__grid {
+  display: grid;
+  gap: 1rem;
+
+  &--3 { grid-template-columns: repeat(3, 1fr); }
+  &--4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 768px) {
+    &--3, &--4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    &--3, &--4 { grid-template-columns: 1fr; }
+  }
+}
+
+.resumo__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  &--destaque {
+    background: #e9f2fc;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+  }
+}
+
+.resumo__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: $cinza-label;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.resumo__valor {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2a3a;
+
+  &--verde   { color: $verde; }
+  &--azul    { color: $azul; }
+  &--deducao { color: $vermelho; }
+  &--grande  { font-size: 1.15rem; }
+}
+
+// ─── Rating badge ─────────────────────────────────────────────────────────
+.resumo__rating-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  width: fit-content;
+
+  &--ok  { background: $verde-claro; color: $verde; }
+  &--nok { background: $verm-claro;  color: $vermelho; }
+}
+
+// ─── Crédito: strip de destaques ──────────────────────────────────────────
+.resumo__credito-strip {
+  display: flex;
+  background: $cinza-bg;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+
+  @media (max-width: 600px) { flex-direction: column; }
+}
+
+.resumo__credito-strip-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 1.25rem;
+  border-right: 1px solid $cinza-bd;
+
+  &:last-child { border-right: none; }
+
+  &--destaque { background: #e9f2fc; }
+}
+
+.resumo__credito-nome {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a2a3a;
+}
+
+.resumo__credito-valor {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a2a3a;
+}
+
+.resumo__credito-liberado {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: $verde;
+}
+
+// ─── Tabela de garantias ──────────────────────────────────────────────────
+.resumo__tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+
+  th {
+    background: $cinza-bg;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: $cinza-label;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid $cinza-bd;
+  }
+
+  td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid $cinza-bd;
+    color: #1a2a3a;
+  }
+
+  .col-valor {
+    text-align: right;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}
+
+.resumo__tabela-total {
+  background: #e9f2fc;
+  td { border-bottom: none; color: $azul; }
+}
+
+.resumo__vazio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $cinza-label;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  .material-icons { font-size: 1.1rem; }
+}
+
+// ─── Sócios ───────────────────────────────────────────────────────────────
+.resumo__socios {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resumo__socio {
+  flex: 1;
+  min-width: 220px;
+  background: $cinza-bg;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.resumo__socio-nome {
+  font-weight: 700;
+  color: #1a2a3a;
+  font-size: 0.95rem;
+}
+
+.resumo__socio-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  width: fit-content;
+  .material-icons { font-size: 1rem; }
+
+  &--ok  { background: $verde-claro; color: $verde; }
+  &--nok { background: $verm-claro;  color: $vermelho; }
+}
+
+.resumo__socio-cpf {
+  font-size: 0.8rem;
+  color: $cinza-label;
+}
+
+// ─── Aviso legal ──────────────────────────────────────────────────────────
+.resumo__aviso {
+  display: flex;
+  gap: 0.75rem;
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  align-items: flex-start;
+}
+
+.resumo__aviso-icone {
+  color: #d97706;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.resumo__aviso-texto {
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.55;
+  margin: 0;
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────
+.resumo__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-voltar,
+.btn-gerar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  &:active { transform: scale(0.98); }
+}
+
+.btn-voltar {
+  background: #f0f4f8;
+  color: #374151;
+  &:hover { background: #e2e8f0; }
+}
+
+.btn-gerar {
+  background: $azul;
+  color: #fff;
+  &:hover { background: $azul-escuro; }
+}

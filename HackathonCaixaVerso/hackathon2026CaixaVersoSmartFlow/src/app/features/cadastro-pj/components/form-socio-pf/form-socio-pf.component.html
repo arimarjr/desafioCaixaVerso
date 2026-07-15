@@ -1,0 +1,346 @@
+<div class="dialog-wrapper" [formGroup]="form">
+  <!-- Cabeçalho -->
+  <div class="dialog-header">
+    <h2 class="dialog-titulo">
+      {{ modoEdicao() ? 'Editar Sócio / Representante' : 'Incluir Sócio / Representante' }}
+    </h2>
+    <button class="btn-fechar" (click)="cancelar()" title="Fechar">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+
+  <!-- Corpo em abas -->
+  <mat-tab-group class="dialog-tabs" animationDuration="150ms">
+
+    <!-- ABA 1: Dados da Participação -->
+    <mat-tab label="Participação">
+      <div class="aba-conteudo">
+        <div class="grid-form">
+          <div class="campo campo-lg">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Função *</mat-label>
+              <mat-select formControlName="funcao">
+                @for (f of funcoes; track f) {
+                  <mat-option [value]="f">{{ f }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo">
+            <dsc-input label="Data de Ingresso" formControlName="dataIngresso"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+          <div class="campo">
+            <dsc-input label="% Participação Societária *" formControlName="participacaoPercentual"
+              [errorMessage]="erro('participacaoPercentual')" placeholder="0,0000" />
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ABA 2: Dados Pessoais -->
+    <mat-tab label="Dados Pessoais">
+      <div class="aba-conteudo">
+        <div class="grid-form">
+          <div class="campo">
+            <dsc-input label="CPF *" formControlName="cpf"
+              mask="000.000.000-00" placeholder="000.000.000-00"
+              [errorMessage]="erro('cpf')" />
+          </div>
+          <div class="campo campo-xl">
+            <dsc-input label="Nome *" formControlName="nome"
+              placeholder="Nome completo" [errorMessage]="erro('nome')" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Data de Nascimento" formControlName="dataNascimento"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="Nome da Mãe" formControlName="nomeMae" placeholder="Nome da mãe" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="Nome do Pai" formControlName="nomePai" placeholder="Nome do pai" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="Nome Social" formControlName="nomeSocial" placeholder="Nome social (opcional)" />
+          </div>
+          <div class="campo">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Sexo</mat-label>
+              <mat-select formControlName="sexo">
+                @for (s of sexos; track s.value) {
+                  <mat-option [value]="s.value">{{ s.label }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Nacionalidade</mat-label>
+              <mat-select formControlName="nacionalidade">
+                @for (n of nacionalidades; track n) {
+                  <mat-option [value]="n">{{ n }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo">
+            <dsc-input label="Naturalidade" formControlName="naturalidade" placeholder="Cidade natal" />
+          </div>
+          <div class="campo">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Segmento</mat-label>
+              <mat-select formControlName="segmento">
+                @for (s of segmentosPf; track s) {
+                  <mat-option [value]="s">{{ s }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo campo-lg">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Grau de Instrução</mat-label>
+              <mat-select formControlName="grauInstrucao">
+                @for (g of grausInstrucao; track g) {
+                  <mat-option [value]="g">{{ g }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Estado Civil</mat-label>
+              <mat-select formControlName="estadoCivil">
+                @for (e of estadosCivis; track e) {
+                  <mat-option [value]="e">{{ e }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="subsecao-titulo">Cônjuge</div>
+        <div class="grid-form">
+          <div class="campo">
+            <dsc-input label="CPF do Cônjuge" formControlName="cpfConjuge"
+              mask="000.000.000-00" placeholder="000.000.000-00" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="Nome do Cônjuge" formControlName="nomeConjuge"
+              placeholder="Nome do cônjuge" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Cônjuge - Nasc." formControlName="nascimentoConjuge"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ABA 3: Documentos -->
+    <mat-tab label="Documentos">
+      <div class="aba-conteudo">
+        <div class="grid-form">
+          <div class="campo">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Tipo de Documento</mat-label>
+              <mat-select formControlName="tipoDocumento">
+                @for (d of tiposDocumento; track d.value) {
+                  <mat-option [value]="d.value">{{ d.label }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo">
+            <dsc-input label="Número" formControlName="numeroDocumento" placeholder="Número do documento" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Emissor" formControlName="emissorDocumento" placeholder="Órgão emissor" />
+          </div>
+          <div class="campo campo-uf">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>UF</mat-label>
+              <mat-select formControlName="ufDocumento">
+                @for (uf of ufs; track uf) {
+                  <mat-option [value]="uf">{{ uf }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="campo">
+            <dsc-input label="Órgão Emissor" formControlName="orgaoEmissorDocumento"
+              placeholder="SSP, DETRAN..." />
+          </div>
+          <div class="campo">
+            <dsc-input label="Data de Emissão" formControlName="dataEmissaoDocumento"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Data de Validade" formControlName="dataValidadeDocumento"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ABA 4: Contato e Endereço -->
+    <mat-tab label="Contato e Endereço">
+      <div class="aba-conteudo">
+        <div class="subsecao-titulo">Contato</div>
+        <div class="grid-form">
+          <div class="campo">
+            <dsc-input label="Telefone" formControlName="telefone"
+              mask="(00) 00000-0000" placeholder="(00) 00000-0000" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="E-mail" formControlName="email"
+              placeholder="email@exemplo.com" [errorMessage]="erro('email')" />
+          </div>
+        </div>
+
+        <div class="subsecao-titulo">Endereço</div>
+        <div class="grid-form">
+          <div class="campo campo-cep">
+            <dsc-input label="CEP" formControlName="cep"
+              mask="00000-000" placeholder="00000-000" (blur)="buscarCep()" />
+            @if (carregandoCep()) {
+              <span class="cep-loading">Buscando CEP...</span>
+            }
+          </div>
+          <div class="campo campo-xl">
+            <dsc-input label="Logradouro" formControlName="logradouro" placeholder="Rua, Avenida..." />
+          </div>
+          <div class="campo campo-numero">
+            <dsc-input label="Número" formControlName="numero" placeholder="Nº" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Complemento" formControlName="complemento" placeholder="Apto, Sala..." />
+          </div>
+          <div class="campo">
+            <dsc-input label="Bairro" formControlName="bairro" placeholder="Bairro" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="Cidade" formControlName="cidade" placeholder="Cidade" />
+          </div>
+          <div class="campo campo-uf">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>UF</mat-label>
+              <mat-select formControlName="uf">
+                @for (uf of ufs; track uf) {
+                  <mat-option [value]="uf">{{ uf }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ABA 5: Renda e Patrimônio -->
+    <mat-tab label="Renda e Patrimônio">
+      <div class="aba-conteudo">
+
+        <!-- RENDA -->
+        <div class="subsecao-header">
+          <div class="subsecao-titulo">Renda</div>
+          <button class="btn-adicionar" (click)="adicionarRenda()">
+            <span class="material-icons">add_circle_outline</span> Incluir Renda
+          </button>
+        </div>
+
+        @for (renda of rendasArray.controls; track $index; let i = $index) {
+          <div class="card-renda" [formGroupName]="i" formArrayName="rendas">
+            <div class="card-renda-header">
+              <strong>Renda {{ i + 1 }}</strong>
+              <button class="btn-icone btn-excluir" (click)="removerRenda(i)">
+                <span class="material-icons">delete_outline</span>
+              </button>
+            </div>
+            <div class="grid-form" [formGroup]="$any(renda)">
+              <div class="campo campo-lg">
+                <dsc-input label="Fonte Pagadora" formControlName="fontePagadora"
+                  placeholder="Empresa/Fonte" />
+              </div>
+              <div class="campo">
+                <dsc-input label="Profissão" formControlName="profissao" placeholder="Profissão" />
+              </div>
+              <div class="campo">
+                <dsc-input label="Documento (CNPJ/CPF)" formControlName="documento"
+                  placeholder="Documento" />
+              </div>
+              <div class="campo">
+                <dsc-input label="Mês/Ano Ref." formControlName="mesAno"
+                  mask="00/0000" placeholder="MM/AAAA" />
+              </div>
+              <div class="campo">
+                <mat-form-field appearance="outline" class="mat-field-full">
+                  <mat-label>Origem</mat-label>
+                  <mat-select formControlName="origem">
+                    @for (o of origensRenda; track o) {
+                      <mat-option [value]="o">{{ o }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="campo">
+                <dsc-input-currency label="Renda Bruta (R$)" formControlName="rendaBruta" />
+              </div>
+              <div class="campo">
+                <dsc-input-currency label="Renda Líquida (R$)" formControlName="rendaLiquida" />
+              </div>
+              <div class="campo">
+                <dsc-input-currency label="IRPF (R$)" formControlName="irpf" />
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (rendasArray.length === 0) {
+          <p class="texto-vazio">Nenhuma renda informada. Clique em "Incluir Renda" para adicionar.</p>
+        }
+
+        <!-- PATRIMÔNIO -->
+        <div class="subsecao-header" style="margin-top: 1.5rem">
+          <div class="subsecao-titulo">Patrimônio</div>
+          <button class="btn-adicionar" (click)="adicionarPatrimonio()">
+            <span class="material-icons">add_circle_outline</span> Incluir Patrimônio
+          </button>
+        </div>
+
+        @for (pat of patrimoniosArray.controls; track $index; let i = $index) {
+          <div class="card-renda" [formGroupName]="i" formArrayName="patrimonios">
+            <div class="card-renda-header">
+              <strong>Patrimônio {{ i + 1 }}</strong>
+              <button class="btn-icone btn-excluir" (click)="removerPatrimonio(i)">
+                <span class="material-icons">delete_outline</span>
+              </button>
+            </div>
+            <div class="grid-form" [formGroup]="$any(pat)">
+              <div class="campo campo-lg">
+                <dsc-input label="Descrição" formControlName="descricao" placeholder="Imóvel, veículo..." />
+              </div>
+              <div class="campo">
+                <dsc-input-currency label="Valor (R$)" formControlName="valor" />
+              </div>
+              <div class="campo">
+                <dsc-input label="Data de Atualização" formControlName="atualizacao"
+                  mask="00/00/0000" placeholder="DD/MM/AAAA" />
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (patrimoniosArray.length === 0) {
+          <p class="texto-vazio">Nenhum patrimônio informado.</p>
+        }
+
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Rodapé do dialog -->
+  <div class="dialog-footer">
+    <dsc-button label="Cancelar" variant="secondary-outlined" (click)="cancelar()" />
+    <dsc-button label="Salvar Sócio" (click)="salvar()" />
+  </div>
+</div>

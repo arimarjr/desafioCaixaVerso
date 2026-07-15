@@ -1,0 +1,19 @@
+<div class="popup-resultado">
+  <h3>Resultado da Avaliação</h3>
+  <p>CNPJ: {{ data.cnpj }}</p>
+
+  <p *ngIf="data.erro" class="erro-avaliacao">{{ data.erro }}</p>
+
+  <div *ngIf="data.resultadoAvaliacao as resultado">
+    <p>Resultado: {{ resultado.resultado }}</p>
+    <p>Classificação de risco: {{ resultado.classificacaoRisco }}</p>
+    <p>Score interno: {{ resultado.scoreInterno }}</p>
+    <p *ngIf="resultado.limiteAprovado !== null">Limite aprovado: {{ resultado.limiteAprovado | number:'1.2-2' }}</p>
+    <p *ngIf="resultado.justificativa">Justificativa: {{ resultado.justificativa }}</p>
+  </div>
+
+  <div class="popup-resultado-acoes">
+    <button class="btn-secundario" (click)="fechar()">Cancelar</button>
+    <button class="btn-primario" (click)="continuar()" [disabled]="!podeContinuar">Continuar para Simulação</button>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<section class="lista-socios">
+  <div class="lista-socios-header">
+    <h3 class="secao-titulo">Representantes Legais / Sócios</h3>
+    <dsc-button label="+ Incluir Sócio" variant="secondary" (click)="incluirSocio()" />
+  </div>
+
+  @if (!participacaoValida() && socios().length > 0) {
+    <div class="alerta-participacao">
+      <dsc-alert
+        title="Participação societária incompleta"
+        [message]="'Total atual: ' + totalParticipacao().toFixed(4) + '%. O total deve ser 100%.'"
+        showIcon="true"
+        variant="warning">
+      </dsc-alert>
+    </div>
+  }
+
+  @if (socios().length === 0) {
+    <div class="estado-vazio">
+      <span class="material-icons icone-vazio">people_outline</span>
+      <p>Nenhum sócio ou representante cadastrado.</p>
+      <p>Clique em <strong>+ Incluir Sócio</strong> para adicionar.</p>
+    </div>
+  } @else {
+    <div class="tabela-container">
+      <table class="tabela-socios">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Função</th>
+            <th class="col-num">% Participação</th>
+            <th>Data de Ingresso</th>
+            <th class="col-acoes">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (socio of socios(); track socio.id) {
+            <tr>
+              <td>{{ socio.nome }}</td>
+              <td class="cpf-cell">{{ socio.cpf | slice:0:3 }}.***.***-{{ socio.cpf | slice:-2 }}</td>
+              <td>{{ socio.funcao }}</td>
+              <td class="col-num">{{ socio.participacaoPercentual | number:'1.4-4' }}%</td>
+              <td>{{ socio.dataIngresso }}</td>
+              <td class="col-acoes">
+                <button class="btn-icone btn-editar" (click)="editarSocio(socio)" title="Editar">
+                  <span class="material-icons">edit</span>
+                </button>
+                <button class="btn-icone btn-excluir" (click)="removerSocio(socio.id)" title="Excluir">
+                  <span class="material-icons">delete_outline</span>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr class="linha-total">
+            <td colspan="3"><strong>Total de Participação</strong></td>
+            <td class="col-num">
+              <strong [class.participacao-ok]="participacaoValida()" [class.participacao-erro]="!participacaoValida()">
+                {{ totalParticipacao().toFixed(4) }}%
+              </strong>
+            </td>
+            <td colspan="2"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  }
+</section>

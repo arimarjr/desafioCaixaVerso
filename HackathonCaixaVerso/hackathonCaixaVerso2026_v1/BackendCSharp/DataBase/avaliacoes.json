@@ -1,0 +1,30 @@
+{
+  "avaliacoes": [
+    {
+      "id": "939fd971-dce7-4821-95c3-87c3dd9910dc",
+      "cnpj": "90000001000211",
+      "razaoSocial": "Alfa Tecnologia Ltda 001",
+      "porteEmpresa": "Pequena Empresa",
+      "segmento": "EF",
+      "matriculaGerente": "c128661",
+      "dataAvaliacaoIso": "2026-05-21T14:32:44.3438002Z",
+      "resultado": "APROVADO",
+      "justificativa": "Empresa aprovada com Rating A. Score: 721. Limite corresponde a 30% do faturamento anual. Empresa aprovada com rating A. Limite equivale a 30% do faturamento anual.",
+      "limiteAprovado": 659700,
+      "valoresJaContratados": 0,
+      "classificacaoRisco": "A",
+      "scoreInterno": 721,
+      "dadosAdministrativos": {
+        "documentoFaturamento": "1",
+        "dataUltimaAtualizacaoContratual": "2021-05-10",
+        "alterouSociosMaior50": false,
+        "excluiuAdministradoresAnteriores": false,
+        "alterouObjetoSocial": false,
+        "alterouCnaePrincipal": false,
+        "alterouMunicipio": false,
+        "deixouSerSociedadeSimples": false,
+        "pvResponsavel": "c128661"
+      }
+    }
+  ]
+}

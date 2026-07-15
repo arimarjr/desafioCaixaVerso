@@ -1,0 +1,509 @@
+@use 'sass:color';
+
+$azul: #005CA9;
+$azul-escuro: color.adjust($azul, $lightness: -10%);
+$cinza-fundo: #f5f7f9;
+$borda: #dde0e5;
+
+// ─── utilitários de botões ────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+
+  &--primario {
+    background: $azul;
+    color: #fff;
+    &:hover:not(:disabled) { background: $azul-escuro; }
+    &:disabled { opacity: 0.5; cursor: not-allowed; }
+  }
+
+  &--secundario {
+    background: #f0f0f0;
+    color: #333;
+    &:hover { background: #e0e0e0; }
+  }
+
+  &--neutro {
+    background: #fff;
+    color: $azul;
+    border: 1.5px solid $azul;
+    &:hover { background: $cinza-fundo; }
+  }
+
+  &--assinatura {
+    background: #1b5e20;
+    color: #fff;
+    &:hover { background: color.adjust(#1b5e20, $lightness: -8%); }
+  }
+}
+
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+// ─── wrapper principal ────────────────────────────────────────────────────────
+.contrato-minuta {
+  padding: 32px;
+  max-width: 920px;
+  margin: 0 auto;
+  font-family: sans-serif;
+  color: #111;
+  position: relative;
+
+  &__pre-geracao {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  &__icone-doc {
+    .material-icons {
+      font-size: 64px;
+      color: $azul;
+      opacity: 0.8;
+    }
+  }
+
+  &__pre-header {
+    margin: 16px 0 32px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: $azul;
+      margin: 0 0 4px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+      margin: 0 0 8px;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    background: #e8f4fd;
+    color: $azul;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px solid $azul;
+    letter-spacing: 0.5px;
+  }
+
+  &__resumo-simulacao {
+    background: $cinza-fundo;
+    border: 1px solid $borda;
+    border-radius: 8px;
+    padding: 24px 32px;
+    text-align: left;
+    margin-bottom: 32px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: $azul;
+      margin: 0 0 16px;
+    }
+  }
+
+  &__resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  &__resumo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__resumo-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 0.5px;
+  }
+
+  &__resumo-valor {
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+
+    &--destaque {
+      font-size: 17px;
+      font-weight: 700;
+      color: $azul;
+    }
+  }
+
+  &__erro {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff3e0;
+    border: 1px solid #e65100;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    color: #bf360c;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  &__acoes {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid $borda;
+  }
+}
+
+// ─── CCB (Cédula de Crédito Bancário) ────────────────────────────────────────
+.ccb {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  color: #111;
+  border: 1px solid $borda;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+
+  &__cabecalho {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    background: $azul;
+    color: #fff;
+    padding: 16px 24px;
+  }
+
+  &__cabecalho-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    img { height: 40px; filter: brightness(10); }
+  }
+
+  &__cabecalho-banco {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &__cabecalho-titulo {
+    text-align: center;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 12px;
+      margin: 0;
+      opacity: 0.85;
+    }
+  }
+
+  &__sigilo {
+    text-align: right;
+  }
+
+  &__sigilo-badge {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 1px;
+  }
+
+  &__tabela-id {
+    width: 100%;
+    border-collapse: collapse;
+    background: $cinza-fundo;
+
+    td {
+      padding: 10px 20px;
+      border: 1px solid $borda;
+      vertical-align: top;
+    }
+  }
+
+  &__campo-label {
+    display: block;
+    font-size: 10px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: #666;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  &__campo-valor {
+    font-size: 14px;
+
+    &--destaque {
+      font-size: 16px;
+      font-weight: 700;
+      color: $azul;
+    }
+  }
+
+  &__secao {
+    padding: 16px 24px;
+    border-top: 1px solid $borda;
+  }
+
+  &__secao-titulo {
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $azul;
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid $borda;
+  }
+
+  &__campo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  &__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    &--full { grid-column: 1 / -1; }
+
+    .ccb__campo-valor { font-size: 13px; }
+  }
+
+  &__tabela-financeira {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+
+    th {
+      background: $azul;
+      color: #fff;
+      padding: 8px 10px;
+      text-align: center;
+      font-family: sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    td {
+      padding: 8px 10px;
+      text-align: center;
+      border: 1px solid $borda;
+      background: #fff;
+    }
+  }
+
+  &__secao--clausulas {
+    background: #fafafa;
+
+    .ccb__clausula {
+      line-height: 1.7;
+      margin: 0 0 8px;
+      font-size: 12px;
+      text-align: justify;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  &__secao--hash {
+    background: $cinza-fundo;
+    font-family: sans-serif;
+  }
+
+  &__hash-linha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  &__hash-label {
+    font-weight: 600;
+    color: #555;
+    min-width: 100px;
+  }
+
+  &__hash-valor {
+    color: #333;
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  &__aviso-simulacao {
+    font-size: 10px;
+    color: #c62828;
+    margin-top: 8px;
+    font-style: italic;
+    text-align: justify;
+    line-height: 1.5;
+  }
+
+  &__assinaturas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 24px;
+    border-top: 1px solid $borda;
+  }
+
+  &__assinatura-bloco {
+    text-align: center;
+    font-size: 11px;
+
+    p { margin: 2px 0; }
+  }
+
+  &__assinatura-linha {
+    border-bottom: 1px solid #333;
+    height: 48px;
+    margin-bottom: 8px;
+  }
+
+  &__assinatura-cargo {
+    color: #666;
+    font-style: italic;
+  }
+}
+
+// ─── Overlay Assinatura Digital ────────────────────────────────────────────────
+.assinatura-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.assinatura-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 440px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-top: 4px solid $azul;
+  transition: border-color 0.4s;
+
+  &--assinado {
+    border-top-color: #1b5e20;
+  }
+
+  &__icone {
+    font-size: 56px;
+    color: $azul;
+    margin-bottom: 12px;
+
+    .assinatura-card--assinado & {
+      color: #1b5e20;
+    }
+  }
+
+  &__titulo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 8px;
+  }
+
+  &__texto {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 24px;
+  }
+
+  &__barra {
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  &__barra-progresso {
+    height: 100%;
+    background: $azul;
+    border-radius: 2px;
+    animation: progresso 5s linear forwards;
+  }
+
+  &__detalhes {
+    background: #f5f7f9;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+    margin-bottom: 24px;
+    font-size: 12px;
+
+    dt {
+      font-weight: 700;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 8px;
+      &:first-child { margin-top: 0; }
+    }
+
+    dd { margin: 2px 0 0; color: #222; }
+  }
+
+  &__hash {
+    font-family: monospace;
+    font-size: 11px;
+    word-break: break-all;
+  }
+}
+
+@keyframes progresso {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+// ─── Print ────────────────────────────────────────────────────────────────────
+@media print {
+  .no-print { display: none !important; }
+  .ccb { border: none; border-radius: 0; }
+  .ccb__cabecalho { background: $azul !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

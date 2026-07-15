@@ -1,0 +1,286 @@
+<section class="capital-giro-page">
+
+  <!-- ══ CABEÇALHO ══════════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <h1 class="page-titulo">Linhas de Crédito Disponíveis</h1>
+    <p class="page-empresa">
+      Empresa: EMPRESA EXEMPLO LTDA&nbsp;&nbsp;|&nbsp;&nbsp;Rating: BB&nbsp;&nbsp;|&nbsp;&nbsp;Faturamento: R$&nbsp;2.500.000,00
+    </p>
+  </header>
+
+  <!-- ══ CARD DA LINHA CAPITAL DE GIRO ══════════════════════════════════════ -->
+  <article class="linha-credito-card">
+
+    <div class="linha-credito-header">
+      <label class="linha-credito-checkbox">
+        <input
+          type="checkbox"
+          [checked]="capitalGiroSelecionado()"
+          (change)="onSelecionarCapitalGiro($event)"
+          aria-label="Selecionar linha Capital de Giro"
+        />
+        <span class="material-icons linha-icone" aria-hidden="true">payments</span>
+        <span class="linha-nome">Capital de Giro</span>
+      </label>
+    </div>
+
+    <p class="linha-descricao">
+      Crédito para aquisição de máquinas, equipamentos e expansão
+    </p>
+
+    <div class="linha-info-grid">
+      <div class="linha-info-item">
+        <span class="linha-info-label">Limite</span>
+        <strong class="linha-info-valor">R$ 50.000,00 – R$ 5.000.000,00</strong>
+      </div>
+      <div class="linha-info-item">
+        <span class="linha-info-label">Prazo</span>
+        <strong class="linha-info-valor">6 – 36 meses</strong>
+      </div>
+      <div class="linha-info-item">
+        <span class="linha-info-label">Taxa a.m.</span>
+        <strong class="linha-info-valor">1.2% – 2.5%</strong>
+      </div>
+      <div class="linha-info-item">
+        <span class="linha-info-label">Carência</span>
+        <strong class="linha-info-valor">3 meses</strong>
+      </div>
+    </div>
+
+    <div class="garantias">
+      <h2 class="garantias-titulo">Garantias Aceitas:</h2>
+      <ul class="garantias-lista">
+        <li>
+          <span class="material-icons garantia-icone" aria-hidden="true">check_circle</span>
+          Aval dos sócios
+        </li>
+        <li>
+          <span class="material-icons garantia-icone" aria-hidden="true">check_circle</span>
+          Faturamento da maquineta
+        </li>
+      </ul>
+    </div>
+
+  </article>
+
+  <!-- ══ SIMULAÇÃO DE CRÉDITO ═══════════════════════════════════════════════ -->
+  @if (capitalGiroSelecionado()) {
+    <section class="simulacao-card" aria-labelledby="titulo-simulacao">
+      <h2 class="simulacao-titulo" id="titulo-simulacao">Simulação de Crédito</h2>
+
+      <form [formGroup]="form" (ngSubmit)="onCalcular()" novalidate>
+        <div class="form-grid">
+
+          <!-- Valor Solicitado -->
+          <div class="form-field">
+            <label class="form-label" for="valorSolicitado">Valor Solicitado</label>
+            <div class="input-prefix-wrapper"
+                 [class.input-wrapper--error]="valorSolicitado.invalid && valorSolicitado.touched">
+              <span class="input-prefix">R$</span>
+              <input
+                #inputValor
+                id="valorSolicitado"
+                class="form-input"
+                type="text"
+                inputmode="numeric"
+                placeholder="100.000,00"
+                (input)="aoDigitarValor($event)"
+                (blur)="aoSairValor()"
+                aria-describedby="erro-valor"
+              />
+            </div>
+            @if (valorSolicitado.invalid && valorSolicitado.touched) {
+              <span id="erro-valor" class="form-error" role="alert">
+                @if (valorSolicitado.hasError('required')) { Valor Solicitado é obrigatório. }
+                @else if (valorSolicitado.hasError('min')) { O valor mínimo é R$ 50.000,00. }
+                @else if (valorSolicitado.hasError('max')) { O valor máximo é R$ 5.000.000,00. }
+              </span>
+            }
+          </div>
+
+          <!-- Prazo -->
+          <div class="form-field">
+            <label class="form-label" for="prazoMeses">Prazo (meses)</label>
+            <div class="input-suffix-wrapper"
+                 [class.input-wrapper--error]="prazoMeses.invalid && prazoMeses.touched">
+              <input
+                id="prazoMeses"
+                class="form-input"
+                type="number"
+                formControlName="prazoMeses"
+                placeholder="12"
+                min="6"
+                max="36"
+                step="1"
+                aria-describedby="erro-prazo"
+              />
+              <span class="input-suffix">meses</span>
+            </div>
+            @if (prazoMeses.invalid && prazoMeses.touched) {
+              <span id="erro-prazo" class="form-error" role="alert">
+                @if (prazoMeses.hasError('required')) { Prazo é obrigatório. }
+                @else if (prazoMeses.hasError('min')) { O prazo mínimo é de 6 meses. }
+                @else if (prazoMeses.hasError('max')) { O prazo máximo é de 36 meses. }
+              </span>
+            }
+          </div>
+
+          <!-- Taxa Mensal -->
+          <div class="form-field">
+            <label class="form-label" for="taxaMensal">Taxa a.m. (%)</label>
+            <div class="input-suffix-wrapper"
+                 [class.input-wrapper--error]="taxaMensal.invalid && taxaMensal.touched">
+              <input
+                id="taxaMensal"
+                class="form-input"
+                type="number"
+                formControlName="taxaMensal"
+                placeholder="1"
+                min="0"
+                step="0.01"
+                aria-describedby="erro-taxa"
+              />
+              <span class="input-suffix">%</span>
+            </div>
+            @if (taxaMensal.invalid && taxaMensal.touched) {
+              <span id="erro-taxa" class="form-error" role="alert">
+                @if (taxaMensal.hasError('required')) { Taxa a.m. é obrigatória. }
+                @else if (taxaMensal.hasError('min')) { Informe uma taxa válida. }
+              </span>
+            }
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn-calcular">
+          Calcular Simulação
+        </button>
+      </form>
+    </section>
+  }
+
+  <!-- ══ RESULTADO + TAXAS + PLANILHA ══════════════════════════════════════ -->
+  @if (simulacaoCalculada() && resultado(); as res) {
+
+    <!-- Resultado da Simulação -->
+    <section class="resultado-card" aria-labelledby="titulo-resultado">
+
+      <div class="resultado-header">
+        <h2 class="resultado-titulo" id="titulo-resultado">Resultado da Simulação</h2>
+        <button
+          type="button"
+          class="btn-imprimir"
+          (click)="onImprimir()"
+          aria-label="Imprimir resultado">
+          <span class="material-icons" aria-hidden="true">print</span>
+          Imprimir
+        </button>
+      </div>
+
+      <div class="resultado-grid">
+        <div class="resultado-item resultado-item--destaque">
+          <span class="resultado-label">Valor da Parcela</span>
+          <strong class="resultado-valor resultado-valor--azul">
+            {{ res.valorParcela | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+          </strong>
+        </div>
+        <div class="resultado-item">
+          <span class="resultado-label">Valor Total</span>
+          <strong class="resultado-valor">
+            {{ res.valorTotal | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+          </strong>
+        </div>
+        <div class="resultado-item">
+          <span class="resultado-label">Total de Juros</span>
+          <strong class="resultado-valor">
+            {{ res.totalJuros | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+          </strong>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Taxas e Encargos -->
+    <section class="taxas-card" aria-labelledby="titulo-taxas">
+      <h3 class="taxas-titulo" id="titulo-taxas">Taxas e Encargos</h3>
+
+      <dl class="taxas-lista">
+        <div class="taxas-item">
+          <dt class="taxas-label">Valor Solicitado:</dt>
+          <dd class="taxas-valor">{{ res.valorSolicitado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</dd>
+        </div>
+        <div class="taxas-item">
+          <dt class="taxas-label">CET Mensal:</dt>
+          <dd class="taxas-valor">{{ res.cetMensal | number:'1.2-2' }}%</dd>
+        </div>
+        <div class="taxas-item">
+          <dt class="taxas-label">(-) IOF (0,38% + 0,0082% a.d.):</dt>
+          <dd class="taxas-valor taxas-valor--deducao">
+            -{{ res.valorIof | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+          </dd>
+        </div>
+        <div class="taxas-item">
+          <dt class="taxas-label">CET Anual:</dt>
+          <dd class="taxas-valor">{{ res.cetAnual | number:'1.2-2' }}%</dd>
+        </div>
+        <div class="taxas-item">
+          <dt class="taxas-label">(-) TAC (1,5%):</dt>
+          <dd class="taxas-valor taxas-valor--deducao">
+            -{{ res.valorTac | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+          </dd>
+        </div>
+      </dl>
+
+      <p class="cet-obs">
+        * CET: Custo Efetivo Total (inclui juros, IOF, TAC e demais encargos)
+      </p>
+
+      <div class="valor-liberado">
+        <span class="valor-liberado-label">Valor a ser Liberado:</span>
+        <strong class="valor-liberado-valor">
+          {{ res.valorLiberado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+        </strong>
+      </div>
+    </section>
+
+    <!-- Planilha de Evolução do Saldo Devedor -->
+    <section class="evolucao-card" aria-labelledby="titulo-evolucao">
+      <h3 class="evolucao-titulo" id="titulo-evolucao">Planilha de Evolução do Saldo Devedor</h3>
+
+      <div class="table-wrapper">
+        <table class="evolucao-table" aria-label="Planilha de evolução do saldo devedor">
+          <thead>
+            <tr>
+              <th scope="col">Parcela</th>
+              <th scope="col">Saldo Inicial</th>
+              <th scope="col">Juros</th>
+              <th scope="col">Amortização</th>
+              <th scope="col">Valor da Parcela</th>
+              <th scope="col">Saldo Final</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (linha of res.evolucaoSaldoDevedor; track linha.parcela) {
+              <tr>
+                <td>{{ linha.parcela }}</td>
+                <td>{{ linha.saldoInicial | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+                <td>{{ linha.juros | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+                <td>{{ linha.amortizacao | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+                <td>{{ linha.valorParcela | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+                <td>{{ linha.saldoFinal | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  }
+
+  <!-- ══ RODAPÉ DE AÇÕES ═════════════════════════════════════════════════════ -->
+  <footer class="acoes-footer">
+    <button type="button" class="btn-secundario" (click)="onVoltar()">Voltar</button>
+  </footer>
+
+</section>
+

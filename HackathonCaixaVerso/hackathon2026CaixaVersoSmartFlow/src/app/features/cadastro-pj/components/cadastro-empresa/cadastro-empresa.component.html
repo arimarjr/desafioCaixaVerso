@@ -1,0 +1,190 @@
+<form [formGroup]="form" class="form-empresa">
+
+  <!-- BANNER VERDE: dados encontrados no backend -->
+  @if (empresaPreenchidaAutomaticamente()) {
+    <div class="alerta-receita alerta-receita--sucesso">
+      <dsc-alert
+        title="Dados da empresa encontrados."
+        message="Os campos preenchidos automaticamente estão bloqueados. Complemente as informações editáveis e avance."
+        showIcon="true"
+        variant="success">
+      </dsc-alert>
+    </div>
+  }
+
+  <!-- BANNER VERMELHO: CNPJ não encontrado -->
+  @if (cnpjNaoEncontrado()) {
+    <div class="alerta-receita alerta-receita--erro">
+      <dsc-alert
+        title="CNPJ não encontrado"
+        message="Não foi possível localizar a empresa na base de dados. Preencha os dados manualmente."
+        showIcon="true"
+        variant="danger">
+      </dsc-alert>
+    </div>
+  }
+
+  <!-- SEÇÃO: Dados Principais -->
+  <section class="secao">
+    <h3 class="secao-titulo">Dados da Empresa</h3>
+    <div class="grid-form">
+      <div class="campo campo-cnpj">
+        <dsc-input label="CNPJ" formControlName="cnpj" mask="00.000.000/0000-00" [disabled]="true" />
+      </div>
+      <div class="campo campo-lg">
+        <dsc-input label="Razão Social *" formControlName="razaoSocial"
+          placeholder="Razão social da empresa" [errorMessage]="erro('razaoSocial')" />
+      </div>
+      <div class="campo campo-lg">
+        <dsc-input label="Nome Fantasia" formControlName="nomeFantasia"
+          placeholder="Nome fantasia" />
+      </div>
+      <div class="campo">
+        <dsc-input label="CNAE Principal" formControlName="cnaePrincipal"
+          placeholder="Código CNAE" />
+      </div>
+      <div class="campo campo-lg">
+        <dsc-input label="Descrição CNAE" formControlName="cnaeDescricao"
+          placeholder="Descrição do CNAE" />
+      </div>
+
+      <div class="campo">
+        <mat-form-field appearance="outline" class="mat-field-full">
+          <mat-label>Porte CAIXA *</mat-label>
+          <mat-select formControlName="porteCaixa">
+            @for (p of portesOptions; track p) {
+              <mat-option [value]="p">{{ p }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="campo campo-lg">
+        <mat-form-field appearance="outline" class="mat-field-full">
+          <mat-label>Natureza Jurídica *</mat-label>
+          <mat-select formControlName="naturezaJuridica">
+            @for (n of naturezasOptions; track n) {
+              <mat-option [value]="n">{{ n }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="campo">
+        <mat-form-field appearance="outline" class="mat-field-full">
+          <mat-label>Regime Tributário *</mat-label>
+          <mat-select formControlName="regimeTributario">
+            @for (r of regimesOptions; track r) {
+              <mat-option [value]="r">{{ r }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="campo">
+        <mat-form-field appearance="outline" class="mat-field-full">
+          <mat-label>Segmento *</mat-label>
+          <mat-select formControlName="segmento">
+            @for (s of segmentosOptions; track s) {
+              <mat-option [value]="s">{{ s }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="campo">
+        <dsc-input label="Data de Constituição" formControlName="dataConstituicao"
+          mask="00/00/0000" placeholder="DD/MM/AAAA" />
+      </div>
+      <div class="campo">
+        <mat-form-field appearance="outline" class="mat-field-full">
+          <mat-label>Tipo de Empresa</mat-label>
+          <mat-select formControlName="tipoEmpresa">
+            @for (t of tiposEmpresaOptions; track t) {
+              <mat-option [value]="t">{{ t }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="campo">
+        <dsc-input label="Data Demonstração Contábil" formControlName="dataDemonstracao"
+          mask="00/00/0000" placeholder="DD/MM/AAAA" />
+      </div>
+      <div class="campo">
+        <dsc-input label="Gerente Responsável" formControlName="gerenteResponsavel"
+          placeholder="Nome do gerente" />
+      </div>
+      <div class="campo">
+        <dsc-input label="Perfil" formControlName="perfil" placeholder="Perfil do cliente" />
+      </div>
+      <div class="campo">
+        <dsc-input label="Capital Social (R$)" formControlName="capitalSocial"
+          mask="separator.2" thousandSeparator="." placeholder="0,00" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: Documento Constitutivo -->
+  <section class="secao">
+    <h3 class="secao-titulo">Documento Constitutivo</h3>
+    <div class="grid-form">
+      <div class="campo campo-lg">
+        <dsc-input label="Documento Constitutivo" formControlName="documentoConstitutivo"
+          placeholder="Tipo do documento" />
+      </div>
+      <div class="campo">
+        <dsc-input label="Última Alteração" formControlName="ultimaAlteracao"
+          mask="00/00/0000" placeholder="DD/MM/AAAA" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: Endereço -->
+  <section class="secao">
+    <h3 class="secao-titulo">Endereço</h3>
+    <div class="grid-form">
+      <div class="campo campo-cep">
+        <dsc-input label="CEP" formControlName="cep"
+          mask="00000-000" placeholder="00000-000" />
+        @if (carregandoCep()) {
+          <span class="cep-loading">Buscando...</span>
+        }
+      </div>
+      <div class="campo campo-xl">
+        <dsc-input label="Logradouro" formControlName="logradouro" placeholder="Rua, Avenida..." />
+      </div>
+      <div class="campo campo-numero">
+        <dsc-input label="Número" formControlName="numero" placeholder="Nº" />
+      </div>
+      <div class="campo">
+        <dsc-input label="Complemento" formControlName="complemento" placeholder="Apto, Sala..." />
+      </div>
+      <div class="campo">
+        <dsc-input label="Bairro" formControlName="bairro" placeholder="Bairro" />
+      </div>
+      <div class="campo campo-lg">
+        <dsc-input label="Cidade" formControlName="cidade" placeholder="Cidade" />
+      </div>
+      <div class="campo campo-uf">
+        <dsc-input label="UF" formControlName="uf" placeholder="UF" maxlength="2" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO: Contato -->
+  <section class="secao">
+    <h3 class="secao-titulo">Contato</h3>
+    <div class="grid-form">
+      <div class="campo">
+        <dsc-input label="Telefone" formControlName="telefone"
+          mask="(00) 00000-0000" placeholder="(00) 00000-0000" />
+      </div>
+      <div class="campo campo-lg">
+        <dsc-input label="E-mail" formControlName="email"
+          placeholder="email@empresa.com.br" [errorMessage]="erro('email')" />
+      </div>
+    </div>
+  </section>
+
+  <!-- AÇÕES -->
+  <div class="acoes-form">
+    <dsc-button label="Salvar Dados da Empresa" (click)="salvar()" />
+  </div>
+</form>

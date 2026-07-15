@@ -1,0 +1,84 @@
+<section class="conformidade-section">
+
+  <!-- Status principal -->
+  <div class="status-card" [class]="'status-' + statusAtual()">
+    <div class="status-icon">
+      @switch (statusAtual()) {
+        @case ('aguardando') { <span class="material-icons">hourglass_empty</span> }
+        @case ('em-analise') { <span class="material-icons">manage_search</span> }
+        @case ('pendencia') { <span class="material-icons">warning</span> }
+        @case ('aprovado') { <span class="material-icons">check_circle</span> }
+        @case ('reprovado') { <span class="material-icons">cancel</span> }
+      }
+    </div>
+    <div class="status-info">
+      <div class="status-titulo">{{ textoStatus }}</div>
+      @if (statusAtual() === 'em-analise' || statusAtual() === 'aguardando') {
+        <div class="status-detalhe">
+          Posição na fila: <strong>{{ posicaoFila() }}º</strong> &nbsp;|&nbsp;
+          Enviado em: <strong>{{ dataEnvio() }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Pendências -->
+  @if (pendencias().length > 0) {
+    <div class="pendencias-box">
+      <dsc-alert
+        title="Pendências identificadas pela conformidade"
+        message="Regularize as pendências abaixo e reenvie a operação."
+        showIcon="true"
+        variant="danger">
+      </dsc-alert>
+      <ul class="lista-pendencias">
+        @for (p of pendencias(); track p) {
+          <li>
+            <span class="material-icons">error_outline</span>
+            {{ p }}
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+  <!-- Histórico de movimentações -->
+  <div class="historico-section">
+    <h3 class="secao-titulo">Histórico da Operação</h3>
+    <div class="timeline">
+      @for (evento of historico; track evento.data) {
+        <div class="timeline-item" [class]="'timeline-' + evento.tipo">
+          <div class="timeline-dot">
+            @switch (evento.tipo) {
+              @case ('aprovado') { <span class="material-icons">check_circle</span> }
+              @case ('pendencia') { <span class="material-icons">warning</span> }
+              @case ('reprovado') { <span class="material-icons">cancel</span> }
+              @default { <span class="material-icons">info</span> }
+            }
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-desc">{{ evento.descricao }}</div>
+            <div class="timeline-meta">
+              <span>{{ evento.data }}</span>
+              <span>{{ evento.usuario }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Simulação de ações (MVP Demo) -->
+  <div class="demo-acoes">
+    <div class="demo-label">
+      <span class="material-icons">info</span>
+      Simulação de fluxo (MVP Demo)
+    </div>
+    <div class="demo-botoes">
+      <dsc-button label="Simular: Em Análise" variant="secondary" (click)="simularEnvio()" />
+      <dsc-button label="Simular: Pendência" variant="danger-outlined" (click)="simularPendencia()" />
+      <dsc-button label="Simular: Aprovado" (click)="simularAprovacao()" />
+    </div>
+  </div>
+
+</section>

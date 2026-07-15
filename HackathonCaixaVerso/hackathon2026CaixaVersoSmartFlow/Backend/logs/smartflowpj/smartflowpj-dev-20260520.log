@@ -1,0 +1,540 @@
+[2026-05-20 16:37:35.015 -04:00 INF] (Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager) User profile is available. Using 'C:\Users\c128363\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2026-05-20 16:37:35.576 -04:00 INF] (Microsoft.Hosting.Lifetime) Now listening on: https://localhost:7001
+[2026-05-20 16:37:35.581 -04:00 INF] (Microsoft.Hosting.Lifetime) Application started. Press Ctrl+C to shut down.
+[2026-05-20 16:37:35.584 -04:00 INF] (Microsoft.Hosting.Lifetime) Hosting environment: Development
+[2026-05-20 16:37:35.587 -04:00 INF] (Microsoft.Hosting.Lifetime) Content root path: C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back
+[2026-05-20 16:38:07.758 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 POST https://localhost:7001/login - application/json 53
+[2026-05-20 16:38:07.902 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'HTTP: POST /login'
+[2026-05-20 16:38:07.969 -04:00 INF] (Microsoft.AspNetCore.Http.Result.OkObjectResult) Setting HTTP status code 200.
+[2026-05-20 16:38:07.975 -04:00 INF] (Microsoft.AspNetCore.Http.Result.OkObjectResult) Writing value of type 'LoginResponse' as Json.
+[2026-05-20 16:38:07.999 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'HTTP: POST /login'
+[2026-05-20 16:38:08.005 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP POST /login responded 200 in 205.5898 ms
+[2026-05-20 16:38:08.017 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 POST https://localhost:7001/login - 200 null application/json; charset=utf-8 281.8421ms
+[2026-05-20 16:38:35.642 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/ - null null
+[2026-05-20 16:38:35.706 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'Controllers.ClienteController.GetAsync (backend-smart-flow-pj-back)'
+[2026-05-20 16:38:35.736 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Route matched with {action = "Get", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[Application.DTOs.ClienteResponse]] GetAsync() on controller Controllers.ClienteController (backend-smart-flow-pj-back).
+[2026-05-20 16:38:35.746 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executing action method Controllers.ClienteController.GetAsync (backend-smart-flow-pj-back) - Validation state: "Valid"
+[2026-05-20 16:38:35.758 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action method Controllers.ClienteController.GetAsync (backend-smart-flow-pj-back), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.362ms.
+[2026-05-20 16:38:35.769 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor) Executing ObjectResult, writing value of type 'Application.DTOs.ClienteResponse[]'.
+[2026-05-20 16:38:35.815 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action Controllers.ClienteController.GetAsync (backend-smart-flow-pj-back) in 72.1321ms
+[2026-05-20 16:38:35.819 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'Controllers.ClienteController.GetAsync (backend-smart-flow-pj-back)'
+[2026-05-20 16:38:35.822 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET / responded 200 in 174.9937 ms
+[2026-05-20 16:38:35.827 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/ - 200 null application/json; charset=utf-8 185.7542ms
+[2026-05-20 16:38:58.894 -04:00 INF] (Microsoft.Hosting.Lifetime) Application is shutting down...
+[2026-05-20 20:22:30.679 -04:00 INF] (Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager) User profile is available. Using 'C:\Users\c128363\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2026-05-20 20:22:31.686 -04:00 INF] (Microsoft.Hosting.Lifetime) Now listening on: https://localhost:7001
+[2026-05-20 20:22:31.691 -04:00 INF] (Microsoft.Hosting.Lifetime) Application started. Press Ctrl+C to shut down.
+[2026-05-20 20:22:31.693 -04:00 INF] (Microsoft.Hosting.Lifetime) Hosting environment: Development
+[2026-05-20 20:22:31.693 -04:00 INF] (Microsoft.Hosting.Lifetime) Content root path: C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back
+[2026-05-20 20:22:32.350 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger - null null
+[2026-05-20 20:22:32.408 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger responded 301 in 17.9408 ms
+[2026-05-20 20:22:32.415 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger - 301 0 null 113.204ms
+[2026-05-20 20:22:32.425 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/index.html - null null
+[2026-05-20 20:22:32.557 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/index.html responded 200 in 129.1456 ms
+[2026-05-20 20:22:32.561 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/index.html - 200 null text/html;charset=utf-8 138.2278ms
+[2026-05-20 20:22:32.587 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/swagger-ui.css - null null
+[2026-05-20 20:22:32.587 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/swagger-ui-bundle.js - null null
+[2026-05-20 20:22:32.619 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/swagger-ui-standalone-preset.js - null null
+[2026-05-20 20:22:32.632 -04:00 INF] (Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware) Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2026-05-20 20:22:32.633 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/swagger-ui.css responded 200 in 44.8256 ms
+[2026-05-20 20:22:32.633 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/swagger-ui.css - 200 152034 text/css 46.7437ms
+[2026-05-20 20:22:32.636 -04:00 INF] (Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware) Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2026-05-20 20:22:32.637 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 17.3302 ms
+[2026-05-20 20:22:32.638 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 19.3212ms
+[2026-05-20 20:22:32.674 -04:00 INF] (Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware) Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2026-05-20 20:22:32.674 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 86.2541 ms
+[2026-05-20 20:22:32.674 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 86.9905ms
+[2026-05-20 20:22:32.912 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - null null
+[2026-05-20 20:22:32.915 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/favicon-32x32.png - null null
+[2026-05-20 20:22:32.917 -04:00 INF] (Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware) Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2026-05-20 20:22:32.917 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/favicon-32x32.png responded 200 in 1.6195 ms
+[2026-05-20 20:22:32.918 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/favicon-32x32.png - 200 628 image/png 3.5695ms
+[2026-05-20 20:22:33.163 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/v1/swagger.json responded 200 in 249.9889 ms
+[2026-05-20 20:22:33.164 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 253.134ms
+[2026-05-20 20:22:49.527 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 POST https://localhost:7001/login - application/json 53
+[2026-05-20 20:22:49.632 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'HTTP: POST /login'
+[2026-05-20 20:22:49.688 -04:00 INF] (Microsoft.AspNetCore.Http.Result.OkObjectResult) Setting HTTP status code 200.
+[2026-05-20 20:22:49.690 -04:00 INF] (Microsoft.AspNetCore.Http.Result.OkObjectResult) Writing value of type 'LoginResponse' as Json.
+[2026-05-20 20:22:49.710 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'HTTP: POST /login'
+[2026-05-20 20:22:49.710 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP POST /login responded 200 in 182.2222 ms
+[2026-05-20 20:22:49.711 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 POST https://localhost:7001/login - 200 null application/json; charset=utf-8 184.4523ms
+[2026-05-20 20:23:38.248 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/ - null null
+[2026-05-20 20:23:38.308 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET / responded 404 in 59.7542 ms
+[2026-05-20 20:23:38.309 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/ - 404 0 null 60.6384ms
+[2026-05-20 20:23:38.310 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7001/, Response status code: 404
+[2026-05-20 20:24:29.681 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/ - null null
+[2026-05-20 20:24:29.685 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET / responded 404 in 3.9425 ms
+[2026-05-20 20:24:29.686 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/ - 404 0 null 5.0771ms
+[2026-05-20 20:24:29.686 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7001/, Response status code: 404
+[2026-05-20 20:25:18.303 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/Clientes - null null
+[2026-05-20 20:25:18.308 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 20:25:18.334 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Route matched with {action = "Listar", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Application.DTOs.ListaClientesResponse]] ListarAsync(System.String, System.String, Int32, Int32, System.Threading.CancellationToken) on controller Controllers.ClienteController (backend-smart-flow-pj-back).
+[2026-05-20 20:25:18.556 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executing action method Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) - Validation state: "Valid"
+[2026-05-20 20:42:05.583 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) in 1007239.7447ms
+[2026-05-20 20:42:05.585 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 20:42:05.586 -04:00 ERR] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /Clientes responded 500 in 1007275.7531 ms
+System.InvalidOperationException: Converter for model type 'Money' cannot be used for 'Cliente.FaturamentoValor' because its type is 'decimal'.
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.Property.SetValueConverter(ValueConverter converter, ConfigurationSource configurationSource)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder.HasConversion(ValueConverter converter, ConfigurationSource configurationSource)
+   at Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.HasConversion(ValueConverter converter, ValueComparer valueComparer, ValueComparer providerComparer)
+   at Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.HasConversion(ValueConverter converter)
+   at Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder`1.HasConversion(ValueConverter converter)
+   at Infra.Data.DbContextBase`1.<>c__DisplayClass17_0.<OnModelCreating>b__8(EntityTypeBuilder`1 entity) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Data\DbContextBase.cs:line 144
+   at Microsoft.EntityFrameworkCore.ModelBuilder.Entity[TEntity](Action`1 buildAction)
+   at Infra.Data.DbContextBase`1.OnModelCreating(ModelBuilder modelBuilder) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Data\DbContextBase.cs:line 34
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer.Customize(ModelBuilder modelBuilder, DbContext context)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, IConventionSetBuilder conventionSetBuilder, ModelDependencies modelDependencies)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infra.Repository.ClienteRepository.ListAsync(String razaoSocial, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Repository\ClienteRepository.cs:line 37
+   at Application.Services.ClienteService.ListarClientesAsync(String nome, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Application\Services\ClienteService.cs:line 42
+   at Controllers.ClienteController.ListarAsync(String nome, String cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Controllers\ClienteController.cs:line 40
+   at lambda_method8(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-05-20 20:42:05.637 -04:00 ERR] (Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Converter for model type 'Money' cannot be used for 'Cliente.FaturamentoValor' because its type is 'decimal'.
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.Property.SetValueConverter(ValueConverter converter, ConfigurationSource configurationSource)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.InternalPropertyBuilder.HasConversion(ValueConverter converter, ConfigurationSource configurationSource)
+   at Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.HasConversion(ValueConverter converter, ValueComparer valueComparer, ValueComparer providerComparer)
+   at Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.HasConversion(ValueConverter converter)
+   at Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder`1.HasConversion(ValueConverter converter)
+   at Infra.Data.DbContextBase`1.<>c__DisplayClass17_0.<OnModelCreating>b__8(EntityTypeBuilder`1 entity) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Data\DbContextBase.cs:line 144
+   at Microsoft.EntityFrameworkCore.ModelBuilder.Entity[TEntity](Action`1 buildAction)
+   at Infra.Data.DbContextBase`1.OnModelCreating(ModelBuilder modelBuilder) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Data\DbContextBase.cs:line 34
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer.Customize(ModelBuilder modelBuilder, DbContext context)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, IConventionSetBuilder conventionSetBuilder, ModelDependencies modelDependencies)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infra.Repository.ClienteRepository.ListAsync(String razaoSocial, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Repository\ClienteRepository.cs:line 37
+   at Application.Services.ClienteService.ListarClientesAsync(String nome, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Application\Services\ClienteService.cs:line 42
+   at Controllers.ClienteController.ListarAsync(String nome, String cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Controllers\ClienteController.cs:line 40
+   at lambda_method8(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-05-20 20:42:05.737 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/Clientes - 499 null application/problem+json; charset=utf-8 1007428.1899ms
+[2026-05-20 20:49:54.208 -04:00 INF] (Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager) User profile is available. Using 'C:\Users\c128363\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2026-05-20 20:49:54.727 -04:00 INF] (Microsoft.Hosting.Lifetime) Now listening on: https://localhost:7001
+[2026-05-20 20:49:54.738 -04:00 INF] (Microsoft.Hosting.Lifetime) Application started. Press Ctrl+C to shut down.
+[2026-05-20 20:49:54.743 -04:00 INF] (Microsoft.Hosting.Lifetime) Hosting environment: Development
+[2026-05-20 20:49:54.744 -04:00 INF] (Microsoft.Hosting.Lifetime) Content root path: C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back
+[2026-05-20 20:49:55.223 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/index.html - null null
+[2026-05-20 20:49:55.333 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/index.html responded 200 in 81.2220 ms
+[2026-05-20 20:49:55.344 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/index.html - 200 null text/html;charset=utf-8 151.9595ms
+[2026-05-20 20:49:55.591 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - null null
+[2026-05-20 20:49:55.733 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/v1/swagger.json responded 200 in 139.6657 ms
+[2026-05-20 20:49:55.734 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 144.3014ms
+[2026-05-20 20:50:30.387 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/Clientes - null null
+[2026-05-20 20:50:30.517 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 20:50:30.545 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Route matched with {action = "Listar", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Application.DTOs.ListaClientesResponse]] ListarAsync(System.String, System.String, Int32, Int32, System.Threading.CancellationToken) on controller Controllers.ClienteController (backend-smart-flow-pj-back).
+[2026-05-20 20:50:30.746 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executing action method Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) - Validation state: "Valid"
+[2026-05-20 20:50:31.212 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+[2026-05-20 20:50:31.259 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) No store type was specified for the decimal property 'TotalParticipacao' on entity type 'Cliente'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2026-05-20 20:50:31.259 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) No store type was specified for the decimal property 'PercentualParticipacaoSocietaria' on entity type 'Representante'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2026-05-20 20:50:31.783 -04:00 ERR] (Microsoft.EntityFrameworkCore.Database.Connection) An error occurred using the connection to database 'db-smartflowpj' on server 'tcp:mssqlsrv-hackaton-sandbox.database.windows.net,1433'.
+[2026-05-20 20:50:31.800 -04:00 ERR] (Microsoft.EntityFrameworkCore.Query) An exception occurred while iterating over the results of a query for context type 'Infra.Data.LeituraContext'.
+System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')
+en-us is an invalid culture identifier.
+   at System.Globalization.CultureInfo.GetCultureInfo(String name)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')
+en-us is an invalid culture identifier.
+   at System.Globalization.CultureInfo.GetCultureInfo(String name)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-05-20 20:50:31.960 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) in 1411.7263ms
+[2026-05-20 20:50:31.962 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 20:50:31.963 -04:00 ERR] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /Clientes responded 500 in 1574.2159 ms
+System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')
+en-us is an invalid culture identifier.
+   at System.Globalization.CultureInfo.GetCultureInfo(String name)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Infra.Repository.ClienteRepository.ListAsync(String razaoSocial, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Repository\ClienteRepository.cs:line 37
+   at Application.Services.ClienteService.ListarClientesAsync(String nome, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Application\Services\ClienteService.cs:line 42
+   at Controllers.ClienteController.ListarAsync(String nome, String cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Controllers\ClienteController.cs:line 40
+   at lambda_method8(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-05-20 20:50:31.974 -04:00 ERR] (Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) An unhandled exception has occurred while executing the request.
+System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')
+en-us is an invalid culture identifier.
+   at System.Globalization.CultureInfo.GetCultureInfo(String name)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Infra.Repository.ClienteRepository.ListAsync(String razaoSocial, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Repository\ClienteRepository.cs:line 37
+   at Application.Services.ClienteService.ListarClientesAsync(String nome, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Application\Services\ClienteService.cs:line 42
+   at Controllers.ClienteController.ListarAsync(String nome, String cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Controllers\ClienteController.cs:line 40
+   at lambda_method8(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-05-20 20:50:32.056 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/Clientes - 500 null application/problem+json; charset=utf-8 1668.8623ms
+[2026-05-20 20:52:04.186 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/Clientes - null null
+[2026-05-20 20:52:04.195 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 20:52:04.195 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Route matched with {action = "Listar", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Application.DTOs.ListaClientesResponse]] ListarAsync(System.String, System.String, Int32, Int32, System.Threading.CancellationToken) on controller Controllers.ClienteController (backend-smart-flow-pj-back).
+[2026-05-20 20:52:04.197 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executing action method Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) - Validation state: "Valid"
+[2026-05-20 20:52:16.561 -04:00 ERR] (Microsoft.EntityFrameworkCore.Database.Connection) An error occurred using the connection to database 'db-smartflowpj' on server 'tcp:mssqlsrv-hackaton-sandbox.database.windows.net,1433'.
+[2026-05-20 20:52:16.564 -04:00 ERR] (Microsoft.EntityFrameworkCore.Query) An exception occurred while iterating over the results of a query for context type 'Infra.Data.LeituraContext'.
+System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')
+en-us is an invalid culture identifier.
+   at System.Globalization.CultureInfo.GetCultureInfo(String name)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.Globalization.CultureNotFoundException: Only the invariant culture is supported in globalization-invariant mode. See https://aka.ms/GlobalizationInvariantMode for more information. (Parameter 'name')
+en-us is an invalid culture identifier.
+   at System.Globalization.CultureInfo.GetCultureInfo(String name)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.InternalOpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-05-20 21:09:57.785 -04:00 INF] (Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager) User profile is available. Using 'C:\Users\c128363\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2026-05-20 21:09:58.394 -04:00 INF] (Microsoft.Hosting.Lifetime) Now listening on: https://localhost:7001
+[2026-05-20 21:09:58.400 -04:00 INF] (Microsoft.Hosting.Lifetime) Application started. Press Ctrl+C to shut down.
+[2026-05-20 21:09:58.402 -04:00 INF] (Microsoft.Hosting.Lifetime) Hosting environment: Development
+[2026-05-20 21:09:58.402 -04:00 INF] (Microsoft.Hosting.Lifetime) Content root path: C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back
+[2026-05-20 21:09:58.863 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/index.html - null null
+[2026-05-20 21:09:59.083 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/index.html responded 200 in 165.2151 ms
+[2026-05-20 21:09:59.096 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/index.html - 200 null text/html;charset=utf-8 286.3241ms
+[2026-05-20 21:09:59.274 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - null null
+[2026-05-20 21:09:59.600 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/v1/swagger.json responded 200 in 321.1402 ms
+[2026-05-20 21:09:59.601 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 329.1249ms
+[2026-05-20 21:10:10.898 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 POST https://localhost:7001/login - application/json 53
+[2026-05-20 21:10:11.089 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'HTTP: POST /login'
+[2026-05-20 21:10:11.178 -04:00 INF] (Microsoft.AspNetCore.Http.Result.OkObjectResult) Setting HTTP status code 200.
+[2026-05-20 21:10:11.180 -04:00 INF] (Microsoft.AspNetCore.Http.Result.OkObjectResult) Writing value of type 'LoginResponse' as Json.
+[2026-05-20 21:10:11.208 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'HTTP: POST /login'
+[2026-05-20 21:10:11.208 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP POST /login responded 200 in 307.9996 ms
+[2026-05-20 21:10:11.209 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 POST https://localhost:7001/login - 200 null application/json; charset=utf-8 311.8624ms
+[2026-05-20 21:10:29.715 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/Clientes - null null
+[2026-05-20 21:10:29.753 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 21:10:29.778 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Route matched with {action = "Listar", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Application.DTOs.ListaClientesResponse]] ListarAsync(System.String, System.String, Int32, Int32, System.Threading.CancellationToken) on controller Controllers.ClienteController (backend-smart-flow-pj-back).
+[2026-05-20 21:10:30.002 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executing action method Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) - Validation state: "Valid"
+[2026-05-20 21:10:34.999 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+[2026-05-20 21:10:35.055 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) No store type was specified for the decimal property 'TotalParticipacao' on entity type 'Cliente'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2026-05-20 21:10:35.055 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) No store type was specified for the decimal property 'PercentualParticipacaoSocietaria' on entity type 'Representante'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2026-05-20 21:10:36.345 -04:00 INF] (Microsoft.EntityFrameworkCore.Database.Command) Executed DbCommand (105ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cliente] AS [c]
+[2026-05-20 21:10:36.636 -04:00 INF] (Microsoft.EntityFrameworkCore.Database.Command) Executed DbCommand (144ms) [Parameters=[@__p_0='0', @__p_1='20'], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[AvaliacaoCreditoClassificacaoRisco], [c].[AvaliacaoCreditoLimiteSugerido], [c].[AvaliacaoCreditoObservacao], [c].[AvaliacaoCreditoScoreInterno], [c].[CapitalSocial], [c].[CnaePrincipal], [c].[Cnpj], [c].[DataConstituicao], [c].[DataDemonstracaoContabil], [c].[DataUltimaAlteracao], [c].[DescricaoCnaePrincipal], [c].[DocumentoConstitutivo], [c].[EmailFinanceiro], [c].[EmailPrincipal], [c].[FaturamentoCaracterizacao], [c].[FaturamentoDataAtualizacao], [c].[FaturamentoMedioMensal], [c].[FaturamentoOrigemDados], [c].[FaturamentoQuantidadeMeses], [c].[FaturamentoValor], [c].[NaturezaJuridica], [c].[NomeFantasia], [c].[PatrimonioDataAtualizacao], [c].[PatrimonioDescricao], [c].[PatrimonioPossui], [c].[PatrimonioValor], [c].[PorteCaixa], [c].[RazaoSocial], [c].[RegimeTributario], [c].[RestricaoCadastral], [c].[Site], [c].[TelefoneCelular], [c].[TelefoneComercial], [c].[TipoEmpresa], [c].[TotalParticipacao], [c].[EnderecoBairro], [c].[EnderecoCep], [c].[EnderecoComplemento], [c].[EnderecoLogradouro], [c].[EnderecoMunicipio], [c].[EnderecoNumero], [c].[EnderecoUf]
+FROM [Cliente] AS [c]
+ORDER BY [c].[RazaoSocial]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2026-05-20 21:11:00.204 -04:00 ERR] (Microsoft.EntityFrameworkCore.Query) An exception occurred while iterating over the results of a query for context type 'Infra.Data.LeituraContext'.
+System.InvalidOperationException: Cannot access Value on a failed Result: cnpj.check-digits: CNPJ inválido (dígitos verificadores não conferem).
+   at Infra.Abstractions.Result`1.get_Value() in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Abstractions\Result.cs:line 41
+   at lambda_method152(Closure, String)
+   at lambda_method135(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: Cannot access Value on a failed Result: cnpj.check-digits: CNPJ inválido (dígitos verificadores não conferem).
+   at Infra.Abstractions.Result`1.get_Value() in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Abstractions\Result.cs:line 41
+   at lambda_method152(Closure, String)
+   at lambda_method135(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-05-20 21:11:00.338 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) in 30552.8822ms
+[2026-05-20 21:11:00.340 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 21:11:00.342 -04:00 ERR] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /Clientes responded 500 in 30625.7533 ms
+System.InvalidOperationException: Cannot access Value on a failed Result: cnpj.check-digits: CNPJ inválido (dígitos verificadores não conferem).
+   at Infra.Abstractions.Result`1.get_Value() in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Abstractions\Result.cs:line 41
+   at lambda_method152(Closure, String)
+   at lambda_method135(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infra.Repository.ClienteRepository.ListAsync(String razaoSocial, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Repository\ClienteRepository.cs:line 38
+   at Application.Services.ClienteService.ListarClientesAsync(String nome, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Application\Services\ClienteService.cs:line 42
+   at Controllers.ClienteController.ListarAsync(String nome, String cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Controllers\ClienteController.cs:line 40
+   at lambda_method8(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[2026-05-20 21:11:00.353 -04:00 ERR] (Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Cannot access Value on a failed Result: cnpj.check-digits: CNPJ inválido (dígitos verificadores não conferem).
+   at Infra.Abstractions.Result`1.get_Value() in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Abstractions\Result.cs:line 41
+   at lambda_method152(Closure, String)
+   at lambda_method135(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infra.Repository.ClienteRepository.ListAsync(String razaoSocial, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Infra\Repository\ClienteRepository.cs:line 38
+   at Application.Services.ClienteService.ListarClientesAsync(String nome, Nullable`1 cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Application\Services\ClienteService.cs:line 42
+   at Controllers.ClienteController.ListarAsync(String nome, String cnpj, Int32 page, Int32 size, CancellationToken ct) in C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back\Controllers\ClienteController.cs:line 40
+   at lambda_method8(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+[2026-05-20 21:11:00.427 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/Clientes - 500 null application/problem+json; charset=utf-8 30711.3283ms
+[2026-05-20 21:13:11.691 -04:00 INF] (Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager) User profile is available. Using 'C:\Users\c128363\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2026-05-20 21:13:12.136 -04:00 INF] (Microsoft.Hosting.Lifetime) Now listening on: https://localhost:7001
+[2026-05-20 21:13:12.141 -04:00 INF] (Microsoft.Hosting.Lifetime) Application started. Press Ctrl+C to shut down.
+[2026-05-20 21:13:12.142 -04:00 INF] (Microsoft.Hosting.Lifetime) Hosting environment: Development
+[2026-05-20 21:13:12.143 -04:00 INF] (Microsoft.Hosting.Lifetime) Content root path: C:\Desenvolvimento\hackathon-backend-smart-flow-pj-back
+[2026-05-20 21:13:12.513 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/index.html - null null
+[2026-05-20 21:13:12.678 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/index.html responded 200 in 128.3232 ms
+[2026-05-20 21:13:12.687 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/index.html - 200 null text/html;charset=utf-8 215.6531ms
+[2026-05-20 21:13:12.795 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - null null
+[2026-05-20 21:13:12.971 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /swagger/v1/swagger.json responded 200 in 173.7890 ms
+[2026-05-20 21:13:12.972 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/2 GET https://localhost:7001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 177.7267ms
+[2026-05-20 21:13:19.413 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request starting HTTP/1.1 GET https://localhost:7001/Clientes - null null
+[2026-05-20 21:13:19.668 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executing endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 21:13:19.710 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Route matched with {action = "Listar", controller = "Cliente"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Application.DTOs.ListaClientesResponse]] ListarAsync(System.String, System.String, Int32, Int32, System.Threading.CancellationToken) on controller Controllers.ClienteController (backend-smart-flow-pj-back).
+[2026-05-20 21:13:19.909 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executing action method Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) - Validation state: "Valid"
+[2026-05-20 21:13:30.458 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+[2026-05-20 21:13:30.511 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) No store type was specified for the decimal property 'TotalParticipacao' on entity type 'Cliente'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2026-05-20 21:13:30.512 -04:00 WRN] (Microsoft.EntityFrameworkCore.Model.Validation) No store type was specified for the decimal property 'PercentualParticipacaoSocietaria' on entity type 'Representante'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2026-05-20 21:13:31.533 -04:00 INF] (Microsoft.EntityFrameworkCore.Database.Command) Executed DbCommand (79ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Cliente] AS [c]
+[2026-05-20 21:13:36.228 -04:00 INF] (Microsoft.EntityFrameworkCore.Database.Command) Executed DbCommand (117ms) [Parameters=[@__p_0='0', @__p_1='20'], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[AvaliacaoCreditoClassificacaoRisco], [c].[AvaliacaoCreditoLimiteSugerido], [c].[AvaliacaoCreditoObservacao], [c].[AvaliacaoCreditoScoreInterno], [c].[CapitalSocial], [c].[CnaePrincipal], [c].[Cnpj], [c].[DataConstituicao], [c].[DataDemonstracaoContabil], [c].[DataUltimaAlteracao], [c].[DescricaoCnaePrincipal], [c].[DocumentoConstitutivo], [c].[EmailFinanceiro], [c].[EmailPrincipal], [c].[FaturamentoCaracterizacao], [c].[FaturamentoDataAtualizacao], [c].[FaturamentoMedioMensal], [c].[FaturamentoOrigemDados], [c].[FaturamentoQuantidadeMeses], [c].[FaturamentoValor], [c].[NaturezaJuridica], [c].[NomeFantasia], [c].[PatrimonioDataAtualizacao], [c].[PatrimonioDescricao], [c].[PatrimonioPossui], [c].[PatrimonioValor], [c].[PorteCaixa], [c].[RazaoSocial], [c].[RegimeTributario], [c].[RestricaoCadastral], [c].[Site], [c].[TelefoneCelular], [c].[TelefoneComercial], [c].[TipoEmpresa], [c].[TotalParticipacao], [c].[EnderecoBairro], [c].[EnderecoCep], [c].[EnderecoComplemento], [c].[EnderecoLogradouro], [c].[EnderecoMunicipio], [c].[EnderecoNumero], [c].[EnderecoUf]
+FROM [Cliente] AS [c]
+ORDER BY [c].[RazaoSocial]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2026-05-20 21:13:45.119 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action method Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 25204.6551ms.
+[2026-05-20 21:13:45.124 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor) Executing OkObjectResult, writing value of type 'Application.DTOs.ListaClientesResponse'.
+[2026-05-20 21:13:45.167 -04:00 INF] (Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker) Executed action Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back) in 25452.5367ms
+[2026-05-20 21:13:45.168 -04:00 INF] (Microsoft.AspNetCore.Routing.EndpointMiddleware) Executed endpoint 'Controllers.ClienteController.ListarAsync (backend-smart-flow-pj-back)'
+[2026-05-20 21:13:45.168 -04:00 INF] (Serilog.AspNetCore.RequestLoggingMiddleware) HTTP GET /Clientes responded 200 in 25751.3421 ms
+[2026-05-20 21:13:45.176 -04:00 INF] (Microsoft.AspNetCore.Hosting.Diagnostics) Request finished HTTP/1.1 GET https://localhost:7001/Clientes - 200 null application/json; charset=utf-8 25763.4068ms

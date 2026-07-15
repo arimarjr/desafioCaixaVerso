@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: hackathon-frontend-smart-flow-pj
+  description: Jornada de crédito PJ
+  annotations:
+    argocd/app-selector: 'appName=hackathon-frontend-smart-flow-pj'
+    argocd/instance-name: 'gitops-sandbox'
+    backstage.io/kubernetes-id: hackathon-frontend-smart-flow-pj
+    github.com/project-slug: caixasandbox/hackathon-frontend-smart-flow-pj
+    backstage.io/source-location: url:https://github.com/caixasandbox/hackathon-frontend-smart-flow-pj
+    backstage.io/techdocs-ref: url:https://github.com/caixasandbox/hackathon-frontend-smart-flow-pj/tree/main
+    backstage.io/managed-by-location: url:github.com/caixasandbox/hackathon-frontend-smart-flow-pj
+    sonarqube.org/project-key: sonarqube-produtos4/hackathon-frontend-smart-flow-pj
+    feedback/type: 'MAIL'
+    feedback/email-to: 'cxnde04@corp.caixa.gov.br'
+spec:
+  type: frontend
+  lifecycle: hackathon
+  owner: group:default/g_az_hackathont12026
+  system: HACKATHON

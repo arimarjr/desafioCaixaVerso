@@ -1,0 +1,142 @@
+<section class="pesquisas">
+
+  <!-- CABEÇALHO -->
+  <header class="pesquisas__cabecalho">
+    <div class="pesquisas__cabecalho-texto">
+      <h2>Pesquisas Cadastrais</h2>
+      <p>
+        Selecione as pesquisas, clique em <strong>Efetuar Pesquisas</strong> para abrir os
+        sites oficiais em novas abas, baixe o PDF em cada site e envie na linha correspondente.
+      </p>
+    </div>
+    <div class="pesquisas__acoes">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="efetuarPesquisas()"
+        matTooltip="Abre todos os links selecionados em novas abas"
+      >
+        <mat-icon>open_in_new</mat-icon>
+        Efetuar Pesquisas
+      </button>
+    </div>
+  </header>
+
+  <!-- IDENTIFICADOR / CNPJ -->
+  <div class="pesquisas__identificador">
+    <span class="pesquisas__identificador-label">Identificador da empresa:</span>
+    <strong>{{ identificadorEmpresa }}</strong>
+  </div>
+
+  <!-- MARCAR TODOS -->
+  <div class="pesquisas__marcar-todos">
+    <mat-checkbox
+      [checked]="todasMarcadas()"
+      [indeterminate]="parcialmenteMarcadas()"
+      (change)="alternarTodas($event.checked)"
+    >
+      Marcar todos
+    </mat-checkbox>
+    <span class="pesquisas__contador">
+      {{ totalSelecionadas() }} / {{ pesquisas().length }} selecionadas
+    </span>
+  </div>
+
+  <!-- GRUPOS DE PESQUISAS -->
+  @for (grupo of grupos(); track grupo.nome) {
+    <section class="pesquisas__grupo">
+      <h3 class="pesquisas__grupo-titulo">{{ grupo.nome }}</h3>
+
+      <!-- CABEÇALHO DA TABELA -->
+      <div class="pesquisas__tabela">
+        <div class="pesquisas__linha pesquisas__linha--cabecalho" role="row">
+          <div role="columnheader">Sel.</div>
+          <div role="columnheader">Pesquisa</div>
+          <div role="columnheader">Descrição</div>
+          <div role="columnheader">Abrir Site</div>
+          <div role="columnheader">Upload PDF</div>
+          <div role="columnheader">Status</div>
+        </div>
+
+        @for (pesquisa of grupo.pesquisas; track pesquisa.id) {
+          <div class="pesquisas__linha" [class.pesquisas__linha--enviada]="pesquisa.arquivoEnviado" role="row">
+
+            <!-- CHECKBOX -->
+            <div role="cell">
+              <mat-checkbox
+                [checked]="pesquisa.selecionada"
+                (change)="alternarPesquisa(pesquisa.id, $event.checked)"
+                [attr.aria-label]="'Selecionar ' + pesquisa.nome"
+              />
+            </div>
+
+            <!-- NOME + OBRIGATÓRIA -->
+            <div role="cell" class="pesquisas__nome">
+              <strong>{{ pesquisa.nome }}</strong>
+              @if (pesquisa.obrigatoria) {
+                <span class="pesquisas__tag pesquisas__tag--obrigatoria">Obrigatória</span>
+              }
+            </div>
+
+            <!-- DESCRIÇÃO -->
+            <div role="cell" class="pesquisas__descricao">{{ pesquisa.descricao }}</div>
+
+            <!-- ABRIR LINK -->
+            <div role="cell">
+              <a
+                mat-button
+                color="primary"
+                [href]="pesquisa.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                [matTooltip]="pesquisa.url"
+              >
+                <mat-icon>open_in_new</mat-icon>
+                Abrir
+              </a>
+            </div>
+
+            <!-- UPLOAD PDF -->
+            <div role="cell">
+              <label class="pesquisas__upload" [matTooltip]="'Enviar PDF de ' + pesquisa.nome">
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  (change)="uploadArquivo($event, pesquisa)"
+                />
+                <span>
+                  <mat-icon>upload_file</mat-icon>
+                  Enviar PDF
+                </span>
+              </label>
+            </div>
+
+            <!-- STATUS -->
+            <div role="cell" class="pesquisas__status-cell">
+              @if (pesquisa.arquivoEnviado) {
+                <span class="pesquisas__status pesquisas__status--ok">
+                  <mat-icon>check_circle</mat-icon>
+                  Enviado
+                </span>
+                <small class="pesquisas__nome-arquivo">{{ pesquisa.nomeArquivoSalvo }}</small>
+              } @else {
+                <span class="pesquisas__status pesquisas__status--pendente">
+                  <mat-icon>pending</mat-icon>
+                  Pendente
+                </span>
+              }
+            </div>
+
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  @if (pesquisas().length === 0) {
+    <p class="pesquisas__vazio">Nenhuma pesquisa disponível. Verifique se o CNPJ e os sócios foram carregados.</p>
+  }
+
+</section>
+

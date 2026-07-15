@@ -1,0 +1,114 @@
+<section class="faturamento-section" [formGroup]="form">
+
+  <!-- FATURAMENTO ANUAL -->
+  <div class="secao-header">
+    <h3 class="secao-titulo">Faturamento Fiscal</h3>
+    <button class="btn-adicionar" (click)="adicionarFaturamento()">
+      <span class="material-icons">add_circle_outline</span> Incluir Ano
+    </button>
+  </div>
+
+  @if (faturamentosArray.length === 0) {
+    <p class="texto-vazio">Nenhum faturamento informado. Clique em "Incluir Ano" para adicionar.</p>
+  }
+
+  <div formArrayName="faturamentos">
+    @for (fat of faturamentosArray.controls; track $index; let i = $index) {
+      <div class="card-fat" [formGroupName]="i">
+        <div class="card-fat-header">
+          <strong>Faturamento {{ fat.get('anoReferencia')?.value }}</strong>
+          <button class="btn-icone btn-excluir" (click)="removerFaturamento(i)">
+            <span class="material-icons">delete_outline</span>
+          </button>
+        </div>
+        <div class="grid-form">
+          <div class="campo">
+            <dsc-input label="Ano de Referência" formControlName="anoReferencia"
+              placeholder="AAAA" maxlength="4" />
+          </div>
+          <div class="campo campo-lg">
+            <dsc-input label="Caracterização" formControlName="caracterizacao"
+              placeholder="Faturamento Fiscal" />
+          </div>
+          <div class="campo">
+            <dsc-input-currency label="Valor (R$)" formControlName="valor" />
+          </div>
+          <div class="campo">
+            <dsc-input-currency label="Comprovada (R$)" formControlName="comprovada" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Data de Atualização" formControlName="dataAtualizacao"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+          <div class="campo">
+            <mat-form-field appearance="outline" class="mat-field-full">
+              <mat-label>Origem dos Dados</mat-label>
+              <mat-select formControlName="origemDados">
+                @for (o of origens; track o) {
+                  <mat-option [value]="o">{{ o }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Faturamento dos Últimos 12 Meses (readonly calculado) -->
+        <div class="resumo-fat">
+          <div class="resumo-item">
+            <span class="resumo-label">Faturamento Médio Mensal:</span>
+            <span class="resumo-valor">
+              {{ (fat.get('valor')?.value / 12) | currency:'BRL':'symbol':'1.2-2' }}
+            </span>
+          </div>
+          <div class="resumo-item">
+            <span class="resumo-label">Quantidade de Meses:</span>
+            <span class="resumo-valor">12</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- PATRIMÔNIO -->
+  <div class="secao-header" style="margin-top: 2rem">
+    <h3 class="secao-titulo">Patrimônio da Empresa</h3>
+    <button class="btn-adicionar" (click)="adicionarPatrimonio()">
+      <span class="material-icons">add_circle_outline</span> Incluir Patrimônio
+    </button>
+  </div>
+
+  @if (patrimoniosArray.length === 0) {
+    <p class="texto-vazio">NÃO POSSUI PATRIMÔNIO cadastrado.</p>
+  }
+
+  <div formArrayName="patrimonios">
+    @for (pat of patrimoniosArray.controls; track $index; let i = $index) {
+      <div class="card-fat" [formGroupName]="i">
+        <div class="card-fat-header">
+          <strong>Patrimônio {{ i + 1 }}</strong>
+          <button class="btn-icone btn-excluir" (click)="removerPatrimonio(i)">
+            <span class="material-icons">delete_outline</span>
+          </button>
+        </div>
+        <div class="grid-form">
+          <div class="campo campo-lg">
+            <dsc-input label="Descrição" formControlName="descricao"
+              placeholder="Imóvel, máquinas, veículos..." />
+          </div>
+          <div class="campo">
+            <dsc-input-currency label="Valor (R$)" formControlName="valor" />
+          </div>
+          <div class="campo">
+            <dsc-input label="Data de Atualização" formControlName="atualizacao"
+              mask="00/00/0000" placeholder="DD/MM/AAAA" />
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- AÇÕES -->
+  <div class="acoes-form">
+    <dsc-button label="Salvar Faturamento e Patrimônio" (click)="salvar()" />
+  </div>
+</section>

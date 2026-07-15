@@ -1,0 +1,21 @@
+<div class="home-page">
+
+  <!-- HERO: busca por CNPJ -->
+  <section class="hero-busca">
+    <div class="hero-conteudo">
+      <h2 class="hero-titulo">Plataforma Pessoa Jurídica</h2>
+      <p class="hero-subtitulo">
+        Informe o CNPJ para iniciar ou continuar uma operação de crédito PJ.
+      </p>
+      <div class="busca-wrapper">
+        <app-input-cnpj (pesquisar)="aoReceberCnpj($event)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- OPORTUNIDADES DA CARTEIRA -->
+  <section class="oportunidades-section">
+    <app-oportunidades-da-carteira />
+  </section>
+
+</div>
